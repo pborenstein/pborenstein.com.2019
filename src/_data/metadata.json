@@ -1,0 +1,15 @@
+{
+  "title": "pborenstein.com",
+  "url": "https://pborenstein.com/",
+  "feed": {
+    "subtitle": "stuff",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "url": "https://myurl.com/feed/feed.xml",
+    "id": "https://myurl.com/"
+  },
+  "author": {
+    "name": "Philip Borenstein",
+    "email": "pborenstein@gmail.com"
+  }
+}

@@ -1,0 +1,200 @@
+:root {
+	--red: #c22323;
+  --darkred: #7F0036;
+  --fadedred: #7f003638;
+	--lightgray: #e0e0e0;
+	--gray: #C0C0C0;
+	--darkgray: #666;
+	--navy: #17050F;
+	--blue: #082840;
+  --white: #fff;
+  --body: #111;
+  --heading: #333;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  overflow-y: scroll;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight:  400;
+    font-family: 'Georgia', 'Raleway', sans-serif, 'Open Sans';
+    margin: 0 20px;
+    padding: 0;
+    word-wrap: break-word;
+    color: var(--body);
+    background-color: var(--white);
+}
+
+#wrapper {
+    max-width: 32rem;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+/*  headings  */
+h1, h2, h3, h4, h5, h6, dt {
+  color: var(--heading);
+  font-family: 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  font-weight: 500;
+  margin-bottom: 0.33rem;
+  margin-top: 3rem;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+}
+
+
+p,ul,ol,pre,table,blockquote,dd {
+  line-height: 1.68rem;
+}
+
+p :not(ul) {
+  margin-top: 0em;
+  margin-bottom: 1.68rem;
+}
+
+/*  page header */
+
+#logo {
+  clear: both;
+  color: var(--heading);
+  font-family: 'Helvetica Neue';
+  font-weight: 700;
+  padding: 0;
+  font-size: 2.5rem;
+  line-height: 3rem;
+  margin-bottom: 0rem;
+  font-weight: 900;
+}
+
+span.slug {
+  color: var(--red);
+}
+
+
+/*  nav */
+
+nav ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  max-width: 4rem;
+}
+
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+  font-family: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  font-size: 60%;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav-item-active {
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+
+/*  main  */
+
+/*  how to display in-line code:
+      apply only to naked <code> blocks
+*/
+code:not([class]) {
+	font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-size: 15px;
+  padding:  2px 2px;
+  border: 1px solid var(--fadedred);
+  border-radius: 3px;
+}
+
+
+.tag {
+	font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-size: 15px;
+  padding:  2px 2px;
+  border: 1px solid var(--fadedred);
+  border-radius: 3px;
+  background-color: var(--fadedred)
+}
+
+
+
+.article-date {
+  text-align: right;
+  font-style: italic;
+  color: var(--red);
+  font-size: 75%;
+}
+
+
+
+/*  footer  */
+footer {
+  font-size: .7rem;
+  color: var(--gray)
+}
+
+
+pre {
+	font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+	line-height: 1.5;
+}
+
+pre {
+	font-size: 14px;
+	line-height: 1.375;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	padding: 1em;
+	margin: .5em 0;
+	background-color: #f6f6f6;
+}
+
+.highlight-line {
+	padding: 0.125em 1em; /* 2px 16px /16 */
+}
+.highlight-line-isdir {
+	color: #b0b0b0;
+	background-color: #222;
+}
+.highlight-line-active {
+	background-color: #444;
+	background-color: hsla(0, 0%, 27%, .8);
+}
+.highlight-line-add {
+	background-color: #45844b;
+}
+.highlight-line-remove {
+	background-color: #902f2f;
+}

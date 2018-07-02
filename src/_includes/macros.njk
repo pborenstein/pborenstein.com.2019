@@ -1,0 +1,26 @@
+{% macro articlesList(aList) %}
+
+<ol reversed class="postlist" style="counter-reset: start-from {{ aList.length + 1 }}">
+{% for article in aList | reverse %}
+	<li class="postlist-item">
+    <a href="{{ article.url | url }}">
+      <span>
+        {% if article.data.title %}
+          {{ article.data.title }}
+        {% else %}
+          <code>{{ article.url }}</code>
+        {% endif %}
+      </span>
+    </a>
+    <span class="postlist-date">{{ article.date | readableDate }}</span>
+
+    <div>
+		{% for tag in article.data.tags | sort %}
+           {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+     <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a>
+    {% endfor %}
+    </div>
+	</li>
+{% endfor %}
+</ol>
+{% endmacro %}

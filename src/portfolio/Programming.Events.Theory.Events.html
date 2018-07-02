@@ -1,0 +1,557 @@
+<html xmlns:cogdoc="http://www.cognex.com/cogdoc">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="msdn.css">
+<TITLE>About Events in VisionPro</TITLE>
+</head>
+<body topmargin="0" id="bodyID" class="dtBODY">
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING="0">
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap="">Users Guide</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1">About Events in VisionPro</H1>
+</div>
+</div>
+<div id="nstext" valign="bottom">
+<p>
+VisionPro objects fire, or raise, events to let your application know that something has 
+happened or that the state of an object has changed. In order to be notified when an event
+occurs, your application uses event handlers. VisionPro objects call 
+your event handlers when the events fire.
+</p>
+<p>
+This topic describes the kinds of events that VisionPro classes can fire and how you should write your event handlers. You can learn more about events in <a href="ms-help://MS.VSCC.2003/MS.MSDNQTR.2003FEB.1033/cpguide/html/cpconevents.htm">Handling and Raising Events</a> in the  <i>.NET Framework Developer's Guide</i>.
+</p>
+<p>
+The following table summarizes the types of events that VisionPro uses.
+</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#event_types"></a><i>Table 1. Event types</i></caption>
+<tr>
+<th>Event Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#changed_events">Changed Events</a></td>
+<td>
+<p>
+				Changed events are fired whenever the state of a VisionPro object changes. Changed event parameters 
+				include detailed information about how the object has changed.
+				</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#tool_events">Tool Events</a></td>
+<td>
+<p>
+				Tool events are fired by VisionPro tools at well-defined times during the execution of the tool. 
+				</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#acquisition_events">Acquisition Events</a></td>
+<td>
+<p>
+				Acquisition events are fired by the acquisition system to indicate the progress of an acquisition. 
+				You can use these events to determine when it is safe to move a part out of the camera's field of
+				view.
+				</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#collection_events">Collection Events</a></td>
+<td>
+<p>
+				VisionPro contains many collection classes. These collection classes fire specific events when items
+				are added, changed, moved, or removed from a collection.
+				</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#interactive_shape_events">Interactive Shape Events</a></td>
+<td>
+<p>
+				VisionPro graphic shape objects (circles, lines, rectangles, and so on) fire events when users 
+				manipulate them. These events include standard changed events as well as special events related 
+				to user dragging of shapes.
+				</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#coordinate_space_tree_events">Coordinate Space Tree Events</a></td>
+<td>
+<p>
+				The VisionPro coordinate space tree objects fire special events to indicate specific changes 
+				in a coordinate space tree such as the addition or deletion of a space or a change in a 
+				space's transformation.
+				</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#display_events">Display Events</a></td>
+<td>
+<p>
+				The display control fires several special events to indicate certain user actions such as clicking, 
+				double clicking, or dragging shapes.
+				</p>
+</td>
+</tr>
+</table>
+</div>
+<h1><a name="#changed_events"></a>Changed Events</h1>
+<p>
+	The most common type of event fired by a VisionPro object is a changed event. Changed events are used by 
+	VisionPro objects to indicate that the state of the object has changed. For example, when you change 
+	the <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogAcqBrightness.Brightness.html">brightness</a> of an <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogAcqFifo.html">ICogAcqFifo</a> it fires a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a> event  that you can handle if you want to do something in response to the change or ignore if you do not. 
+	</p>
+<h2><a name="#visionpro_object_state"></a>VisionPro Object State</h2>
+<p>	
+	A VisionPro 
+	object's state is 
+	made up of all of the attributes of that object. Much of an object's state is contained in its 
+	various properties. An object's state also 
+	includes items that are returned by an object's methods (such as result graphics).
+	</p>
+<p>
+	Each part of an object's state (each individual 
+	piece of information that you can obtain by calling
+	a property getter function or a method) has a unique <b>state flag</b>.
+	State flags are read-only bit flags that VisionPro passes to an event handler so that it can
+	determine what changed.
+	The name of the field corresponds to affected state item.
+	State flags are defined as fields within a class, such as the fields
+	of <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCircle.html">CogCircle</a>,
+	or as fields in a class of their own, such as <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogAcqFifoStateFlags.html">CogAcqFifoStateFlags</a>.
+	Typically, state flags that pertain to a single class are defined within a class, and state flags the pertain to
+	several interfaces and classes are defined in their own class.
+	</p>
+<h2><a name="#state_change"></a>State Change</h2>
+<p>
+	Whenever the state of a VisionPro object changes, that object fires a 
+	<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a> event which invokes
+	a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ChangedEventHandler.html">changed event handler</a> that you define.
+	Following the .NET convention for event handlers, the first argument is the object that raised the event, and
+	the second argument is an object that describes the change. In the case of changed events in VisionPro,
+	this is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogChangedEventArgs.html">CogChangedEventArgs</a> object. It has a
+	<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ChangedEventArgs.StateFlags.html">StateFlags</a> field what  tells your application 
+	what it needs to know about the new state of the object.  
+	</p>
+<p>
+The value of the <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ChangedEventArgs.StateFlags.html">StateFlags</a> field
+of a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogChangedEventArgs.html">CogChangedEventArgs</a> is set to the bitwise OR of every
+state flag that corresponds to a changed state item.
+</p>
+<h2><a name="#using_changed_events"></a>Using Changed Events</h2>
+<p>
+How you use changed events depends in large part on why you are using changed events. A 
+<a href="ms-its:UsersGuide.chm::/Programming.Events.CodeWalkthrough.UseChangeEvents.html">typical example</a> 
+is  to use a changed event to acquire a new image whenever certain acquisition FIFO properties 
+change. There are two steps in writing a changed event handler.</p>
+<p>First, associate a changed event handler with the changed event:</p>
+<pre class="code">
+myAcqFifo.Changed += new CogChangedEventHandler(myAcqFifo_Changed);
+</pre>
+<p>Second, write the event handler itself:</p>
+<pre class="code">
+private void myAcqFifo_Changed(object sender, CogChangedEventArgs e) {
+    int tNum;
+
+    if ( (e.StateFlags &amp; CogAcqFifoStateFlags.SfBrightness) != 0)
+        System.Console.WriteLine("Brightness changed");
+    if ( (e.StateFlags &amp; CogAcqFifoStateFlags.SfContrast) != 0)
+        System.Console.WriteLine("Contrast changed");
+
+    cogDisplay1.Image = ((ICogAcqFifo) sender).Acquire(out tNum);
+}
+</pre>
+<p>
+When your event handler is executes, you can 
+examine the <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogChangedEventArgs.html">changed event argument</a>
+to determine how the state has changed. You can also cast  the <i>sender</i> argument to the appropriate type
+to examine the object that raised the event.
+</p>
+<p class="note"><b>Note: </b>
+		If you are using QuickBuild and using your own changed event handler, bear in mind that QuickBuild may change properties
+		(such as triggering) that may invoke your changed even handler. Your changed event handler must be able to handle this case.
+	</p>
+<p>
+Keep in mind that events fired in VisionPro objects that are part of VisionPro tools do not propagate 
+to the tool. If you are working with VisionPro tools and you want to handle changed events from the 
+component objects within the tool, you must set up separate changed event handlers for the component
+objects.</p>
+<h2><a name="#suspending_changed_events"></a>Suspending Changed Events</h2>
+<p>
+If you are making many changes to an object, you may not want to receive a changed event for every property you change.
+In these cases, you can use
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.SuspendChangedEvent.html">SuspendChangedEvent</a>  to keep changed events from firing.
+When you call 
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.ResumeAndRaiseChangedEvent.html">ResumeAndRaiseChangedEvent</a>,
+and at least one event would have fired during the time events were suspended,
+a single changed event fires.
+</p>
+<h1><a name="#tool_events"></a>Tool Events</h1>
+<p>
+Each VisionPro tool implements the <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogTool.html">ICogTool</a> interface which includes two
+tool-related events. All VisionPro tools fire these events under the same conditions. The 
+VisionPro tool group framework makes use of these events to manage the updating of data links between 
+the tools in a tool group. Your application can use these events to help manage the execution of tools and 
+tool groups, and it can use these events to modify the results produced by individual tools during the 
+execution of a tool group.
+ </p>
+<p>
+The following table describes the individual tool events.
+</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#tool_events"></a><i>Table 2. Tool events</i></caption>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogTool.Ran.html">Ran</a></td>
+<td>
+<p>
+				This event is fired after the tool has completed its <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogTool.Run.html">Run</a> method.
+				Note that the <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogToolGroup.html">CogToolGroup</a> class uses this event to update data links between tools in the tool group. If your application sinks this event, it may be called before or after the links are updated. If you want to use 
+an event to modify tool results, use the <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a> event.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogTool.Running.html">Running</a></td>
+<td>
+<p>This event is fired as the tool's <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogTool.Run.html">Run</a> method  starts.</p>
+</td>
+</tr>
+</table>
+</div>
+<h1><a name="#acquisition_events"></a>Acquisition Events</h1>
+<p>The VisionPro acquisition system implements three events that fire during the image acquisition process. </p>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a> event fires when an acquisition FIFO property is changed.</p>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogAcqFifo.Flushed.html">Flushed</a> event fires when an acquisition FIFO is flushed.</p>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogAcqFifo.MovePart.html">MovePart</a> event fires after the camera has integrated the image, but (possibly) before it is available in video memory. When this event fires, it is safe to change the scene visible by the camera. The move part event has two parameters: the ticket of the acquisition request and a trigger sequence number..
+ </p>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogAcqFifo.Complete.html">Complete</a> event fires when an acquisition has been completed and the image may be available. (The complete event fires even if an image is not available when the acquisition times out.) The complete event has two parameters: the ticket of the acquisition request that is being completed and a trigger sequence number.
+</p>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogAcqFifo.Overrun.html">Overrun</a> event fires when an acquisition fails because, even though the acquisition system was able to obtain the required resources, it was unable to start the acquisition in a timely fashion. Either a trigger was detected but the acquisition system could not start the acquisition, or trigger signals arrived faster than the acquisition system could handle them. The overrun event has two parameters: the ticket that indicates whether a trigger was missed or whether the acquisition was overrun and a trigger sequence number.
+</p>
+<h1><a name="#collection_events"></a>Collection Events</h1>
+<p>
+Most of VisionPro's collection classes, such as <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogGraphicCollection.html">CogGraphicCollection</a> and  <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogStringCollection.html">CogStringCollection</a>, as well as the ones that provide multiple parameters to vision tools,
+such as  <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Blob.CogBlobMeasureCollection.html">CogBlobMeasureCollection</a> and <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Caliper.CogCaliperScorers.html">CogCaliperScorers</a>,
+fire  <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.html">ICogCollectionEvents</a>.
+</p>
+<p>
+Collection events come in pairs. One fires before an operation, and the other fires after an operation. For example, the
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.Clearing.html">Clearing</a> event fires before a collection is cleared, and the
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.Cleared.html">Cleared</a> event fires after a collection is cleared.
+Depending on your application, you may want to handle either or both kinds of events.
+</p>
+<p>
+The following table lists the collection events.
+</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#collection_events"></a><i>Table 3. Collection events</i></caption>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a></td>
+<td>
+<p>Fires when a collection is loaded from a persistence archive.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.Clearing.html">Clearing</a></td>
+<td>
+<p>Fires before the entire collection is cleared.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.EventArgs.html">EventArgs</a> (no event data).</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.Cleared.html">Cleared</a></td>
+<td>
+<p>Fires after the entire collection is cleared.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.EventArgs.html">EventArgs</a> (no event data).</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.InsertingItem.html">InsertingItem</a></td>
+<td>
+<p>Fires before an item is inserted.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionInsertEventArgs.html">CogCollectionInsertEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.InsertedItem.html">InsertedItem</a></td>
+<td>
+<p>Fires after an item is inserted.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionInsertEventArgs.html">CogCollectionInsertEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.RemovingItem.html">RemovingItem</a></td>
+<td>
+<p>Fires before an item is removed.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionRemoveEventArgs.html">CogCollectionRemoveEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.RemovedItem.html">RemovedItem</a></td>
+<td>
+<p>Fires after after an item is removed.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionRemoveEventArgs.html">CogCollectionRemoveEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.ReplacingItem.html">ReplacingItem</a></td>
+<td>
+<p>Fires before an item is replaced.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionReplaceEventArgs.html">CogCollectionReplaceEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.ReplacedItem.html">ReplacedItem</a></td>
+<td>
+<p>Fires after after an item is replaced.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionReplaceEventArgs.html">CogCollectionReplaceEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.MovingItem.html">MovingItem</a></td>
+<td>
+<p>Fires before an item is moved to a new index.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionMoveEventArgs.html">CogCollectionMoveEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogCollectionEvents.MovedItem.html">MovedItem</a></td>
+<td>
+<p>Fires after after an item is moved to a new index.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionMoveEventArgs.html">CogCollectionMoveEventArgs</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>Additionally, keyed collections, such as <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogStringCollection.html">CogStringCollection</a>, fire two additional events when keys change:</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#keyed_collection_events"></a><i>Table 4. Keyed collection events</i></caption>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogKeyedCollectionEvents.KeyChanging.html">KeyChanging</a></td>
+<td>
+<p>Fires before an item's key is changed.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionKeyChangeEventArgs.html">CogCollectionKeyChangeEventArgs</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogKeyedCollectionEvents.KeyChanged.html">KeyChanged</a></td>
+<td>
+<p>Fires after an item's key is changed.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCollectionKeyChangeEventArgs.html">CogCollectionKeyChangeEventArgs</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<h1><a name="#interactive_shape_events"></a>Interactive Shape Events</h1>
+<p>
+All of the VisionPro shapes fire changed events when you make a change to their properties. For instance, if you change a circle's <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCircle.CenterX.html">CenterX</a> and <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCircle.CenterY.html">CenterY</a> properties, two changed events will fire, one for each property (unless you have <a href="ms-its:UsersGuide.chm::/Programming.Events.Theory.Events.html#suspending_change_events">suspended changed events</a>). If you set the circle's <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCircle.Interactive.html">Interactive</a> property and drag it, a changed event fires if its location or radius is changed. 
+</p>
+<p>
+Interactive shapes can also fire events as they are dragged. The 
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogGraphicInteractive.Dragging.html">Dragging</a> event fires as the shape is being moved or resized with the mouse.
+The event handler's <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogDraggingEventArgs.html">CogDraggingEventArgs</a> argument provides a
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogDraggingEventArgs.DragGraphic.html">DragGraphic</a> property that contains the shape that would result if dragging ended.
+The
+  event fires when you release the mouse button. 
+The event handler's
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogDraggingEventArgs.html">CogDraggingEventArgs</a> argument provides a
+<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogDraggingEventArgs.DragGraphic.html">DragGraphic</a> property that contains the shape that resulted from dragging the original shape.
+</p>
+<h1><a name="#coordinate_space_tree_events"></a>Coordinate Space Tree Events</h1>
+<p><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.html">CogCoordinateSpaceTree</a> fires events whenever a change is made to the tree. The following table lists the coordinate space tree events:
+</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#coordinate_space_tree_events"></a><i>Table 5. Coordinate space tree events</i></caption>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a></td>
+<td>
+<p>Fires when a coordinate space tree is loaded from a persistence archive.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.NameChanged.html">NameChanged</a></td>
+<td>
+<p>Fires when the name of a coordinate space changes.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogNameChangedEventArgs.html">CogNameChangedEventArgs</a>
+				that provides <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogNameChangedEventArgs.NewSpaceName.html">NewSpaceName</a> 
+				and <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogNameChangedEventArgs.OldSpaceName.html">OldSpaceName</a> properties.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.SpaceAdded.html">SpaceAdded</a></td>
+<td>
+<p>Fires when a new coordinate space is added to the tree.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSpaceAddedEventArgs.html">CogSpaceAddedEventArgs</a>
+				that provides a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSpaceAddedEventArgs.NewSpaceName.html">NewSpaceName</a> property.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.SubtreeDeleted.html">SubtreeDeleted</a></td>
+<td>
+<p>Fires when a subtree has been deleted from a coordinate space tree.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSubtreeDeletedEventArgs.html">CogSubtreeDeletedEventArgs</a>
+				that provides a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSubtreeDeletedEventArgs.OldSpaceName.html">OldSpaceName</a> property.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.SubtreeMoved.html">SubtreeMoved</a></td>
+<td>
+<p>Fires when a subtree is moved within a coordinates space tree.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSubtreeMovedEventArgs.html">CogSubtreeMovedEventArgs</a>
+				that provides <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSubtreeMovedEventArgs.NewSpaceName.html">NewSpaceName</a> 
+				and <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogSubtreeMovedEventArgs.OldSpaceName.html">OldSpaceName</a> properties.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.TransformChanged.html">TransformChanged</a></td>
+<td>
+<p>Fires when a coordinate space's transformation object changes.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogTransformChangedEventArgs.html">CogTransformChangedEventArgs</a>
+				that provides a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogTransformChangedEventArgs.SpaceName.html">SpaceName</a> property.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogCoordinateSpaceTree.TreeAdded.html">TreeAdded</a></td>
+<td>
+<p>Fires when a new coordinate space tree is added to the tree. </p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogTreeAddedEventArgs.html">CogTreeAddedEventArgs</a>
+				that provides a <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.CogTreeAddedEventArgs.NewSpaceName.html">NewSpaceName</a> property.</p>
+</td>
+</tr>
+</table>
+</div>
+<h1><a name="#display_events"></a>Display Events</h1>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.html">CogDisplay</a> control fires events in response to
+	changes in the state of the control and in response to user actions such as mouse clicks and keyboard presses.
+	</p>
+<p>The 
+		<a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogChangedEvent.Changed.html">Changed</a>  event fires whenever there is a change to the
+		state of the display control itself. For instance, this event fires when you make scroll bars visible or invisible or
+		when you change the display's zoom factor.
+	</p>
+<p>
+The following table lists the events that the Display Control fires in response to mouse actions:
+</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#mouserelated_events_fired_by_the_display_control"></a><i>Table 6. Mouse-related events fired by the Display Control</i></caption>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.Click.html">Click</a></td>
+<td>
+<p>Fires when the user clicks and releases the left mouse button in the display control.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.EventArgs.html">EventArgs</a> (no event data).</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.DoubleClick.html">DoubleClick</a></td>
+<td>
+<p>Fires when the user double-clicks and releases the left mouse button in the display control.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.EventArgs.html">EventArgs</a> (no event data).</p>
+<p>The <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.DoubleClick.html">DoubleClick</a> event fires if the two clicks take place
+				within the system wide double click time. Other wise, individual <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.Click.html">Click</a>
+				events fire.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.DraggingStopped.html">DraggingStopped</a></td>
+<td>
+<p>Fires when the user stops dragging an object that implements <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.ICogGraphicInteractive.html">ICogGraphicInteractive</a></p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.EventArgs.html">EventArgs</a> (no event data).</p>
+<p>This event fires in addition to any specific  even
+				 that the shape might fire.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.MouseDown.html">MouseDown</a></td>
+<td>
+<p>Fires when the user clicks either mouse button in the display control.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.MouseEventArgs.html">MouseEventArgs</a>
+				that provides properties that describe the mouse location and mouse button states.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.MouseMove.html">MouseMove</a></td>
+<td>
+<p>Fires when the user moves the mouse in the display control.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.MouseEventArgs.html">MouseEventArgs</a>
+				that provides properties that describe the mouse location and mouse button states.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.MouseUp.html">MouseUp</a></td>
+<td>
+<p>Fires when the user releases either mouse button in the display control.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.MouseEventArgs.html">MouseEventArgs</a>
+				that provides properties that describe the mouse location and mouse button states.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>
+The following table lists the events that the Display Control fires in response to keyboard actions:
+</p>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+<caption align="top"><a name="#keyrelated_events_fired_by_the_display_control"></a><i>Table 7. Key-related events fired by the Display Control</i></caption>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.KeyDown.html">KeyDown</a></td>
+<td>
+<p>Fires when the user presses a key while the Display Control has input focus.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.KeyEventArgs.html">KeyEventArgs</a>
+				that provides properties that describe the keyboard states.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.KeyUp.html">KeyUp</a></td>
+<td>
+<p>Fires when the user releases a key while the Display Control has input focus.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.KeyEventArgs.html">KeyEventArgs</a>
+				that provides properties that describe the keyboard states.</p>
+</td>
+</tr>
+<tr>
+<td><a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.KeyPress.html">KeyPress</a></td>
+<td>
+<p>Fires when the user presses a key while the Display Control has input focus. If the key does not have an ASCII value (such as an arrow key) this event does not fire, though <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.KeyDown.html">KeyDown</a>
+and <a href="ms-its:ProgrammingReference.chm::/Cognex.VisionPro.Display.CogDisplay.KeyUp.html">KeyUp</a> do.</p>
+<p>The second argument to the event handler is a <a href="ms-its:ProgrammingReference.chm::/System.KeyPressEventArgs.html">KeyPressEventArgs</a>
+				that provides properties that return the pressed key.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<DIV CLASS="footer"><br><HR>
+<p><a href="copyright.html">© 2008 Cognex Corporation. All rights reserved.</a></p>
+</DIV>
+</body>
+</html>

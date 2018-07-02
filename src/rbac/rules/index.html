@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Working with Rules</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/styles/styles.css"    rel="stylesheet" type="text/css"  />
+  <link href="/assets/styles/docstyles.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/styles/prettify.css"  rel="stylesheet" type="text/css" />
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('pre').each(function() {
+              var thepre = $(this);
+              if (thepre.hasClass('javascript') ||
+                  thepre.hasClass('js') ||
+                  thepre.hasClass('shell') ||
+                  thepre.hasClass('bash')
+                 )
+                thepre.addClass('prettyprint');
+          });
+          prettyPrint();
+      });
+    </script>
+
+
+
+</head>
+
+<body>
+
+  <div id="header">
+      <div style="margin: 10px 10px">
+        <p>
+          Philip Borenstein: Writing sample <br/>
+          This is a snapshot of this topic when I wrote it.<br/>
+          You can find the current version in the
+          <a href="http://docs.joyent.com">Joyent documentation.</p>
+        </p>
+      </div>
+  </div>
+  <div id="sidebar">
+    <div class="menu">
+      <form id="search" action="/search"><input type="search" name="q" placeholder="Search..."></form>
+
+<ul>
+
+
+
+	<li class="depth-1">
+
+	<a href="/rbac">Role Based Access Control</a>
+
+
+<ul>
+
+
+
+	<li class="depth-2 hasChildren">
+
+	<a href="/rbac/quickstart">Getting Started with Access Control: CLI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/portal">Getting Started with Access Control: Portal</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/cloudapi">Using Access Control with CloudAPI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/users">Working with Users</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/roles">Working with Roles</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/policies">Working with Policies</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a class="active" href="/rbac/rules">Working with Rules</a>
+
+
+<ul>
+
+
+
+</ul>
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/underthehood">Under the Hood</a>
+
+
+	</li>
+
+
+</ul>
+
+	</li>
+
+
+</ul>
+    </div>
+        <div class="footblock">
+    <p>© 2015 <a href="http://joyent.com">Joyent, Inc.</a> | <a href="mailto:&#115;&#117;&#112;&#112;&#111;&#x72;&#116;&#x40;&#x6a;&#x6f;&#121;&#101;&#x6e;&#116;&#46;&#x63;&#111;&#x6d;">Questions, comments, feeback.</a></p></div>
+  </div>
+<div id="content" class="content">
+    <nav class="breadcrumb">
+	<ul>
+					<li><a href="/">Home &rsaquo;</a></li>
+					<li><a href="/rbac">Role Based Access Control &rsaquo;</a></li>
+			</ul>
+</nav>    <h1>Working with Rules</h1>
+    <div class="infoblock">
+                
+    <div class="stability_3 stability">
+        Stability: <a href="/stability">Stable</a>
+    </div>
+    </div>
+    <p>Rules are written in the
+<a href="https://github.com/joyent/node-aperture">Aperture policy language </a>
+which allows you write rules in a human readable form.
+The access control system of the Joyent Cloud
+uses a subset of the Aperture policy language,
+and that's what we describe here.</p>
+<p>The general form of a rule is:</p>
+<pre><code>CAN &lt;actions&gt;  [IF | WHEN | WHERE] &lt;conditions&gt;`</code></pre>
+<p>You can use any of <code>IF</code>, <code>WHEN</code>, or <code>WHERE</code> to make the condition easier to read.</p>
+<p>The default permission for all resources
+is to deny access.
+The rules of a policy enable access.</p>
+<p>This is what rules look like:</p>
+<pre><code>CAN getobject and getdirectory IF sourceip = 1.2.3.0/24 OR sourceip = 3.2.1.0/24
+CAN putobject IF overwrite = false
+CAN getobject IF fromjob = true
+CAN putobject IF day IN (Monday, Tuesday, Wednesday, Thursday, Friday)</code></pre>
+<p>The actions for Manta and CloudAPI are listed in the tables below.</p>
+<ul>
+<li><a href="#mantaactions">Manta Actions</a></li>
+<li><a href="#cloudapiactions">CloudAPI Actions</a></li>
+</ul>
+<h2 id="mantaactions">Manta Actions</h2>
+<p>For Manta, the action part of a rule operates on Manta objects.</p>
+<h3>Directory Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Manta API Endpoint</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">putdirectory</td>
+<td style="text-align: left;">[PutDirectory]</td>
+<td style="text-align: left;">create directories, update directory metadata</td>
+</tr>
+<tr>
+<td style="text-align: left;">getdirectory</td>
+<td style="text-align: left;">[ListDirectory]</td>
+<td style="text-align: left;">list contents of directories</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletedirectory</td>
+<td style="text-align: left;">[DeleteDirectory]</td>
+<td style="text-align: left;">delete (empty) directories</td>
+</tr>
+</tbody>
+</table>
+<h3>Object Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Manta API Endpoint</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">putobject</td>
+<td style="text-align: left;">[PutObject]<br>[PutMetadata]</td>
+<td style="text-align: left;">create objects, overwrite objects, update object metadata</td>
+</tr>
+<tr>
+<td style="text-align: left;">getobject</td>
+<td style="text-align: left;">[GetObject]</td>
+<td style="text-align: left;">read object, get archived job stats</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleteobject</td>
+<td style="text-align: left;">[DeleteObject]</td>
+<td style="text-align: left;">delete objects</td>
+</tr>
+</tbody>
+</table>
+<h3>SnapLink Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Manta API Endpoint</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">putlink</td>
+<td style="text-align: left;">[PutSnapLink]</td>
+<td style="text-align: left;">create snaplinks  (You must also have <code>getobject</code> access on the source.)</td>
+</tr>
+</tbody>
+</table>
+<h4>Job Actions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Manta API Endpoint</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">createjob</td>
+<td style="text-align: left;">[CreateJob]</td>
+<td style="text-align: left;">create jobs</td>
+</tr>
+<tr>
+<td style="text-align: left;">listjobs</td>
+<td style="text-align: left;">[ListJobs]</td>
+<td style="text-align: left;">list jobs</td>
+</tr>
+<tr>
+<td style="text-align: left;">getjob</td>
+<td style="text-align: left;">[GetJob]<br>[GetJobOutput]<br>[GetJobInput]<br>[GetJobFailures]<br>[GetJobErrors]</td>
+<td style="text-align: left;">get live job status, errors, inputs, and outputs</td>
+</tr>
+<tr>
+<td style="text-align: left;">managejob</td>
+<td style="text-align: left;">[AddJobInputs]<br>[EndJobInput]<br>[CancelJob]</td>
+<td style="text-align: left;">add input keys to jobs, end job input, cancel jobs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cloudapiactions">CloudAPI Actions</h2>
+<p>For CloudAPI, the action part of a rule operates on CloudAPI endpoints.</p>
+<h3>Account Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">getaccount</td>
+<td style="text-align: left;">[GetAccount]</td>
+<td style="text-align: left;">sdc-getaccount</td>
+</tr>
+<tr>
+<td style="text-align: left;">updateaccount</td>
+<td style="text-align: left;">[UpdateAccount]</td>
+<td style="text-align: left;">sdc-updateaccount</td>
+</tr>
+</tbody>
+</table>
+<h3>Key Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listkeys</td>
+<td style="text-align: left;">[ListKeys]</td>
+<td style="text-align: left;">sdc-listkeys</td>
+</tr>
+<tr>
+<td style="text-align: left;">getkey</td>
+<td style="text-align: left;">[GetKey]</td>
+<td style="text-align: left;">sdc-getkey</td>
+</tr>
+<tr>
+<td style="text-align: left;">createkey</td>
+<td style="text-align: left;">[CreateKey]</td>
+<td style="text-align: left;">sdc-createkey</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletekey</td>
+<td style="text-align: left;">[DeleteKey]</td>
+<td style="text-align: left;">sdc-deletekey</td>
+</tr>
+</tbody>
+</table>
+<h3>User Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listusers</td>
+<td style="text-align: left;">[ListUsers]</td>
+<td style="text-align: left;">sdc-user list</td>
+</tr>
+<tr>
+<td style="text-align: left;">getuser</td>
+<td style="text-align: left;">[GetUser]</td>
+<td style="text-align: left;">sdc-user get</td>
+</tr>
+<tr>
+<td style="text-align: left;">createuser</td>
+<td style="text-align: left;">[CreateUser]</td>
+<td style="text-align: left;">sdc-user create</td>
+</tr>
+<tr>
+<td style="text-align: left;">updateuser</td>
+<td style="text-align: left;">[UpdateUser]</td>
+<td style="text-align: left;">sdc-user update</td>
+</tr>
+<tr>
+<td style="text-align: left;">changeuserpassword</td>
+<td style="text-align: left;">[ChangeUserPassword]</td>
+<td style="text-align: left;">sdc-user change-password</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleteuser</td>
+<td style="text-align: left;">[DeleteUser]</td>
+<td style="text-align: left;">sdc-user delete</td>
+</tr>
+</tbody>
+</table>
+<h3>Role Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listroles</td>
+<td style="text-align: left;">[ListRoles]</td>
+<td style="text-align: left;">sdc-role list</td>
+</tr>
+<tr>
+<td style="text-align: left;">getrole</td>
+<td style="text-align: left;">[GetRole]</td>
+<td style="text-align: left;">sdc-role get</td>
+</tr>
+<tr>
+<td style="text-align: left;">createrole</td>
+<td style="text-align: left;">[CreateRole]</td>
+<td style="text-align: left;">sdc-role create</td>
+</tr>
+<tr>
+<td style="text-align: left;">updaterole</td>
+<td style="text-align: left;">[UpdateRole]</td>
+<td style="text-align: left;">sdc-role update</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleterole</td>
+<td style="text-align: left;">[DeleteRole]</td>
+<td style="text-align: left;">sdc-role update</td>
+</tr>
+</tbody>
+</table>
+<h3>Role Tag Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">setroletags</td>
+<td style="text-align: left;">[SetRoleTags]</td>
+<td style="text-align: left;">sdc-chmod</td>
+</tr>
+</tbody>
+</table>
+<h3>Policy Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listpolicies</td>
+<td style="text-align: left;">[ListPolicies]</td>
+<td style="text-align: left;">sdc-policy list</td>
+</tr>
+<tr>
+<td style="text-align: left;">getpolicy</td>
+<td style="text-align: left;">[GetPolicy]</td>
+<td style="text-align: left;">sdc-policy get</td>
+</tr>
+<tr>
+<td style="text-align: left;">createpolicy</td>
+<td style="text-align: left;">[CreatePolicy]</td>
+<td style="text-align: left;">sdc-policy create</td>
+</tr>
+<tr>
+<td style="text-align: left;">updatepolicy</td>
+<td style="text-align: left;">[UpdatePolicy]</td>
+<td style="text-align: left;">sdc-policy update</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletepolicy</td>
+<td style="text-align: left;">[DeletePolicy]</td>
+<td style="text-align: left;">sdc-policy delete</td>
+</tr>
+</tbody>
+</table>
+<h3>User SSH Key Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listuserkeys</td>
+<td style="text-align: left;">[ListUserKeys]</td>
+<td style="text-align: left;">sdc-user keys</td>
+</tr>
+<tr>
+<td style="text-align: left;">getuserkey</td>
+<td style="text-align: left;">[GetUserKey]</td>
+<td style="text-align: left;">sdc-user key</td>
+</tr>
+<tr>
+<td style="text-align: left;">createuserkey</td>
+<td style="text-align: left;">[CreateUserKey]</td>
+<td style="text-align: left;">sdc-user upload-key</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleteuserkey</td>
+<td style="text-align: left;">[DeleteUserKey]</td>
+<td style="text-align: left;">sdc-user delete-key</td>
+</tr>
+</tbody>
+</table>
+<h3>Datacenter Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listdatacenters</td>
+<td style="text-align: left;">[ListDataCenters]</td>
+<td style="text-align: left;">sdc-listdatacenters</td>
+</tr>
+<tr>
+<td style="text-align: left;">getdatacenter</td>
+<td style="text-align: left;">[GetDatacenter]</td>
+<td style="text-align: left;">none</td>
+</tr>
+</tbody>
+</table>
+<h3>Image Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listimages</td>
+<td style="text-align: left;">[ListImages]</td>
+<td style="text-align: left;">sdc-listimages</td>
+</tr>
+<tr>
+<td style="text-align: left;">getimage</td>
+<td style="text-align: left;">[GetImage]</td>
+<td style="text-align: left;">sdc-getimage</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleteimage</td>
+<td style="text-align: left;">[DeleteImage]</td>
+<td style="text-align: left;">sdc-deleteimage</td>
+</tr>
+<tr>
+<td style="text-align: left;">exportimage</td>
+<td style="text-align: left;">[ExportImage]</td>
+<td style="text-align: left;">sdc-exportimage</td>
+</tr>
+<tr>
+<td style="text-align: left;">createimagefrommachine</td>
+<td style="text-align: left;">[CreateImageFromMachine]</td>
+<td style="text-align: left;">sdc-createimagefrommachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">updateimage</td>
+<td style="text-align: left;">[UpdateImage]</td>
+<td style="text-align: left;">sdc-updateimage</td>
+</tr>
+</tbody>
+</table>
+<h3>Package Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listpackages</td>
+<td style="text-align: left;">[ListPackages]</td>
+<td style="text-align: left;">sdc-listpackages</td>
+</tr>
+<tr>
+<td style="text-align: left;">getpackage</td>
+<td style="text-align: left;">[GetPackage]</td>
+<td style="text-align: left;">sdc-getpackage</td>
+</tr>
+</tbody>
+</table>
+<h3>Machine Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listmachines</td>
+<td style="text-align: left;">[ListMachines]</td>
+<td style="text-align: left;">sdc-listmachines</td>
+</tr>
+<tr>
+<td style="text-align: left;">getmachine</td>
+<td style="text-align: left;">[GetMachine]</td>
+<td style="text-align: left;">sdc-getmachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">createmachine</td>
+<td style="text-align: left;">[CreateMachine]</td>
+<td style="text-align: left;">sdc-createmachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">stopmachine</td>
+<td style="text-align: left;">[StopMachine]</td>
+<td style="text-align: left;">sdc-stopmachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">startmachine</td>
+<td style="text-align: left;">[StartMachine]</td>
+<td style="text-align: left;">sdc-startmachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">rebootmachine</td>
+<td style="text-align: left;">[RebootMachine]</td>
+<td style="text-align: left;">sdc-rebootmachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">resizemachine</td>
+<td style="text-align: left;">[ResizeMachine]</td>
+<td style="text-align: left;">sdc-resizemachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">renamemachine</td>
+<td style="text-align: left;">[RenameMachine]</td>
+<td style="text-align: left;">sdc-renamemachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">enablemachinefirewall</td>
+<td style="text-align: left;">[EnableMachineFirewall]</td>
+<td style="text-align: left;">sdc-enablemachinefirewall</td>
+</tr>
+<tr>
+<td style="text-align: left;">disablemachinefirewall</td>
+<td style="text-align: left;">[DisableMachineFirewall]</td>
+<td style="text-align: left;">sdc-disablemachinefirewall</td>
+</tr>
+<tr>
+<td style="text-align: left;">createmachinesnapshot</td>
+<td style="text-align: left;">[Createmachinesnapshot]</td>
+<td style="text-align: left;">sdc-createmachinesnapshot</td>
+</tr>
+<tr>
+<td style="text-align: left;">startmachinefromsnapshot</td>
+<td style="text-align: left;">[StartMachineFromSnapshot]</td>
+<td style="text-align: left;">sdc-startmachinefromsnapshot</td>
+</tr>
+<tr>
+<td style="text-align: left;">listmachinesnapshots</td>
+<td style="text-align: left;">[ListMachineSnapshots]</td>
+<td style="text-align: left;">sdc-listmachinesnapshots</td>
+</tr>
+<tr>
+<td style="text-align: left;">getmachinesnapshot</td>
+<td style="text-align: left;">[GetMachineSnapshot]</td>
+<td style="text-align: left;">sdc-getmachinesnapshot</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletemachinesnapshot</td>
+<td style="text-align: left;">[DeleteMachineSnapshot]</td>
+<td style="text-align: left;">sdc-deletemachinesnapshot</td>
+</tr>
+<tr>
+<td style="text-align: left;">updatemachinemetadata</td>
+<td style="text-align: left;">[UpdateMachineMetadata]</td>
+<td style="text-align: left;">sdc-updatemachinemetadata</td>
+</tr>
+<tr>
+<td style="text-align: left;">getmachinemetadata</td>
+<td style="text-align: left;">[GetMachineMetadata]</td>
+<td style="text-align: left;">sdc-getmachinemetadata</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletemachinemetadata</td>
+<td style="text-align: left;">[DeleteMachineMetadata]</td>
+<td style="text-align: left;">sdc-deletemachinemetadata</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleteallmachinemetadata</td>
+<td style="text-align: left;">[DeleteAllMachineMetadata]</td>
+<td style="text-align: left;">sdc-deletemachinemetadata</td>
+</tr>
+<tr>
+<td style="text-align: left;">addmachinetags</td>
+<td style="text-align: left;">[AddMachineTags]</td>
+<td style="text-align: left;">sdc-addmachinetags</td>
+</tr>
+<tr>
+<td style="text-align: left;">replacemachinetags</td>
+<td style="text-align: left;">[ReplaceMachineTags]</td>
+<td style="text-align: left;">sdc-replacemachinetags</td>
+</tr>
+<tr>
+<td style="text-align: left;">listmachinetags</td>
+<td style="text-align: left;">[ListMachineTags]</td>
+<td style="text-align: left;">sdc-listmachinetags</td>
+</tr>
+<tr>
+<td style="text-align: left;">getmachinetag</td>
+<td style="text-align: left;">[GetMachineTag]</td>
+<td style="text-align: left;">sdc-getmachinetag</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletemachinetag</td>
+<td style="text-align: left;">[DeleteMachineTag]</td>
+<td style="text-align: left;">sdc-deletemachinetag</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletemachinetags</td>
+<td style="text-align: left;">[DeleteMachineTags]</td>
+<td style="text-align: left;">sdc-deletemachinetag</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletemachine</td>
+<td style="text-align: left;">[DeleteMachine]</td>
+<td style="text-align: left;">sdc-deletemachine</td>
+</tr>
+<tr>
+<td style="text-align: left;">machineaudit</td>
+<td style="text-align: left;">[MachineAudit]</td>
+<td style="text-align: left;">sdc-getmachineaudit</td>
+</tr>
+</tbody>
+</table>
+<h3>Analytics Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">describeanalytics</td>
+<td style="text-align: left;">[DescribeAnalytics]</td>
+<td style="text-align: left;">sdc-describeanalytics</td>
+</tr>
+<tr>
+<td style="text-align: left;">listinstrumentations</td>
+<td style="text-align: left;">[ListInstrumentations]</td>
+<td style="text-align: left;">sdc-listinstrumentations</td>
+</tr>
+<tr>
+<td style="text-align: left;">getinstrumentation</td>
+<td style="text-align: left;">[GetInstrumentation]</td>
+<td style="text-align: left;">sdc-getinstrumentation</td>
+</tr>
+<tr>
+<td style="text-align: left;">getinstrumentationvalue</td>
+<td style="text-align: left;">[GetInstrumentationValue]</td>
+<td style="text-align: left;">sdc-getinstrumentation</td>
+</tr>
+<tr>
+<td style="text-align: left;">getinstrumentationheatmap</td>
+<td style="text-align: left;">[GetInstrumentationHeatmap]</td>
+<td style="text-align: left;">none</td>
+</tr>
+<tr>
+<td style="text-align: left;">getinstrumentationheatmapdetails</td>
+<td style="text-align: left;">[GetInstrumentationHeatmapDetails]</td>
+<td style="text-align: left;">none</td>
+</tr>
+<tr>
+<td style="text-align: left;">createinstrumentation</td>
+<td style="text-align: left;">[CreateInstrumentation]</td>
+<td style="text-align: left;">sdc-createinstrumentation</td>
+</tr>
+<tr>
+<td style="text-align: left;">deleteinstrumentation</td>
+<td style="text-align: left;">[DeleteInstrumentation]</td>
+<td style="text-align: left;">sdc-deleteinstrumentation</td>
+</tr>
+</tbody>
+</table>
+<h3>Firewall Rule Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listfirewallrules</td>
+<td style="text-align: left;">[ListFirewallRules]</td>
+<td style="text-align: left;">sdc-listfirewallrules</td>
+</tr>
+<tr>
+<td style="text-align: left;">getfirewallrule</td>
+<td style="text-align: left;">[GetFirewallRule]</td>
+<td style="text-align: left;">sdc-getfirewallrule</td>
+</tr>
+<tr>
+<td style="text-align: left;">createfirewallrule</td>
+<td style="text-align: left;">[CreateFirewallRule]</td>
+<td style="text-align: left;">sdc-createfirewallrule</td>
+</tr>
+<tr>
+<td style="text-align: left;">updatefirewallrule</td>
+<td style="text-align: left;">[UpdateFirewallRule]</td>
+<td style="text-align: left;">sdc-updatefirewallrule</td>
+</tr>
+<tr>
+<td style="text-align: left;">enablefirewallrule</td>
+<td style="text-align: left;">[EnableFirewallRule]</td>
+<td style="text-align: left;">sdc-enablefirewallrule</td>
+</tr>
+<tr>
+<td style="text-align: left;">disablefirewallrule</td>
+<td style="text-align: left;">[DisableFirewallRule]</td>
+<td style="text-align: left;">sdc-disablefirewallrule</td>
+</tr>
+<tr>
+<td style="text-align: left;">deletefirewallrule</td>
+<td style="text-align: left;">[DeleteFirewallRule]</td>
+<td style="text-align: left;">sdc-deletefirewallrule</td>
+</tr>
+<tr>
+<td style="text-align: left;">listmachinefirewallrules</td>
+<td style="text-align: left;">[ListmachineFirewallRules]</td>
+<td style="text-align: left;">sdc-listmachinefirewallrules</td>
+</tr>
+<tr>
+<td style="text-align: left;">listfirewallrulemachines</td>
+<td style="text-align: left;">[ListFirewallRuleMachines]</td>
+<td style="text-align: left;">sdc-listfirewallrulemachines</td>
+</tr>
+</tbody>
+</table>
+<h3>Network Actions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">CloudAPI Endpoint</th>
+<th style="text-align: left;">Command Line Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">listnetworks</td>
+<td style="text-align: left;">[ListNetworks]</td>
+<td style="text-align: left;">sdc-listnetworks</td>
+</tr>
+<tr>
+<td style="text-align: left;">getnetwork</td>
+<td style="text-align: left;">[GetNetwork]</td>
+<td style="text-align: left;">sdc-getnetwork</td>
+</tr>
+</tbody>
+</table>
+<h2>Conditions</h2>
+<p>You can add conditions to specify when a rule is valid.
+For example, you may want to limit contractor access
+to requests from a specific IP address.</p>
+<p>The following operators are valid in condition expressions.
+Operators must be delimited with spaces.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operator</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">=</td>
+<td style="text-align: left;">equal</td>
+</tr>
+<tr>
+<td style="text-align: left;">!=</td>
+<td style="text-align: left;">not equal</td>
+</tr>
+<tr>
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">less than</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;</td>
+<td style="text-align: left;">greater than</td>
+</tr>
+<tr>
+<td style="text-align: left;">&lt;=</td>
+<td style="text-align: left;">less than or equal</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;=</td>
+<td style="text-align: left;">greater than or equal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AND</code></td>
+<td style="text-align: left;">and boolean values, list separator</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OR</code></td>
+<td style="text-align: left;">or boolean values</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>NOT</code></td>
+<td style="text-align: left;">boolean negation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IN</code></td>
+<td style="text-align: left;">array membership</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(</code>, <code>)</code></td>
+<td style="text-align: left;">grouping</td>
+</tr>
+</tbody>
+</table>
+<p>Lists can be given in various forms:</p>
+<ul>
+<li>bob, carol, ted, alice</li>
+<li>bob, carol, ted and alice</li>
+<li>bob, carol, ted, and alice</li>
+</ul>
+<p>You can use fuzzy matches and regular expressions.</p>
+<p><code>ops_*</code> matches a string beginning with <code>ops_</code>.
+Use <code>\</code> to escape asterisks: <code>Star\*Command</code>.</p>
+<p>Follow JavaScript regular expressions with <code>::regex</code>.
+If you want to keep people from using <code>curl</code>, you might do something like this:</p>
+<p><code>CAN getobject IF user-agent !=  /^curl/::regex</code></p>
+<p>(Note that it's very simple to change the user agent in <code>curl</code>.)</p>
+<h3>General Conditions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">activeRoles</td>
+<td style="text-align: left;">List of active roles.</td>
+<td style="text-align: left;"><code>CAN listnetworks AND getnetwork WHEN activeRoles = *ops</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">Date of the request.</td>
+<td style="text-align: left;"><code>CAN getobject IF date &gt; "25 Dec 2014"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">day</td>
+<td style="text-align: left;">Day of the week the request is made. Valid values:<br>monday mon m<br> tuesday tue t<br> wednesday wed w<br> thursday thu th<br> friday fri f<br> saturday sat s<br> sunday sun su</td>
+<td style="text-align: left;"><code>CAN createuser IF day IN (Monday, Wednesday, Friday)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">sourceip</td>
+<td style="text-align: left;">Source ip address of the request.</td>
+<td style="text-align: left;"><code>CAN listpolicies IF sourceip = 127.0.0.1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">time</td>
+<td style="text-align: left;">Time of day the request was made.</td>
+<td style="text-align: left;"><code>CAN createrole IF time &gt; 13:00 AND time &lt; 21:00</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">user-agent</td>
+<td style="text-align: left;">User agent of the request.</td>
+<td style="text-align: left;"><code>CAN getobject IF user-agent !=  /^curl/::regex</code></td>
+</tr>
+</tbody>
+</table>
+<p>Time and date can be given in any format that JavaScript
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Date.parse()</a>
+can parse. All times and dates are UTC.</p>
+<p>IP addresses are IPv4 or IPv6. CIDR ranges are valid.</p>
+<h3>CloudAPI Conditions</h3>
+<p>These conditions apply only to CloudAPI operations.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ips</td>
+<td style="text-align: left;">List of machine IPs when if action is machine related.</td>
+<td style="text-align: left;"><code>CAN deletemachine WHEN ips IN (10.17.12/24)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">tag_<em>tagName</em>::string</td>
+<td style="text-align: left;">The value of a <a href="https://apidocs.joyent.com/cloudapi/#AddMachineTags">machine tag</a>.</td>
+<td style="text-align: left;"><code>CAN rebootmachine IF tag_rebootable::string != never</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Manta Conditions</h3>
+<p>These conditions apply only to Manta requests.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">fromjob</td>
+<td style="text-align: left;">True if the request was made from within a Manta job.</td>
+<td style="text-align: left;"><code>CAN putobject IF fromjob = true</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">overwrite</td>
+<td style="text-align: left;">True if a request is overwriting an existing object or metadata.</td>
+<td style="text-align: left;"><code>CAN putobject IF overwrite = false</code></td>
+</tr>
+</tbody>
+</table>
+<!-- Not implemented yet.
+| parentdirectory | Full path of the parent directory. | `CAN getobject IF parentdirectory = /account/stor` |</div>
+<div style="clear:both"></div>
+</body>
+
+</html>
