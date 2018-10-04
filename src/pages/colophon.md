@@ -17,7 +17,7 @@ Made with:
 - [eleventy base blog][]
 - bbedit
 - vscode
-- Netlify[]
+- [Netlify][]
 
 [Eleventy]: https://www.11ty.io/
 [eleventy base blog]: https://github.com/11ty/eleventy-base-blog
