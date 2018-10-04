@@ -37,12 +37,12 @@ The templates that use this are:
 
 They both have code like this, where you set up `postslist`, then use `postslist.njk` to do the rendering.
 
-  ``` liquid
+``` liquid
   {%- raw -%}
   {% set postslist = collections.posts %}
   {% include "postslist.njk" %}
   {%- endraw -%}
-  ```
+```
 
 We're going to want to change that.
 And as long as we're making changes,
@@ -181,7 +181,7 @@ Yup.
 
 There's a problem with the feed.njk file, which I've been ignoring from day one. Let's take a look.
 
-Renamed collections.posts to collections.articles.
+Renamed `collections.posts` to `collections.articles`.
 
 Let's fix up the collection functions. Point the articles collection to the right directory:
 
@@ -199,7 +199,7 @@ And we're good. There are still post things over in the feeds directory, but we'
 ## What we learned
 
 There is no implicit / magic link between directory names
-and collection names. That happens explicitly in the .eleventy.js configuration file through an addCollection() invokation.
+and collection names. That happens explicitly in the .eleventy.js configuration file through an addCollection() invocation.
 
 ``` js
 // only content in the `articles/` directory
