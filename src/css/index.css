@@ -10,6 +10,7 @@
   --white: #fff;
   --body: #111;
   --heading: #333;
+  --list-font: 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
 }
 
 html {
@@ -58,6 +59,7 @@ h1 {
   font-size: 2rem;
   line-height: 2rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 
@@ -106,12 +108,19 @@ nav ul {
   font-family: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   font-size: 60%;
 }
-.nav-item a[href]:not(:hover) {
-	text-decoration: none;
-}
+
 .nav-item-active {
 	font-weight: 700;
 	text-decoration: underline;
+}
+
+.nav-item a[href] {
+  text-decoration: none;
+  color: var(--darkgray)
+}
+
+.nav-item a[href]:hover {
+  text-decoration: underline;
 }
 
 
@@ -135,7 +144,14 @@ code:not([class]) {
   padding:  2px 2px;
   border: 1px solid var(--fadedred);
   border-radius: 3px;
+  color: var(--darkred)
+/*
   background-color: var(--fadedred)
+ */
+}
+a[href].tag,
+a[href].tag:visited {
+  text-decoration: transparent;
 }
 
 
@@ -149,12 +165,38 @@ code:not([class]) {
 
 
 
+/* Article List */
+
+.postlist-item {
+  font-family: var(--list-font);
+  color: var(--body);
+  margin: 1em 0em;
+}
+
+.postlist-date {
+  font-size: 60%;
+  color: var(--darkgray);
+  margin-left: 1rem;
+}
+
+
+.postlist-item a[href] {
+  text-decoration: none;
+  color: var(--body)
+}
+
+.postlist-item a[href]:hover {
+  text-decoration: underline;
+}
+
 /*  footer  */
 footer {
   font-size: .7rem;
   color: var(--gray)
 }
 
+
+/*  Code Highlighting */
 
 pre {
 	font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
