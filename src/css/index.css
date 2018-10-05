@@ -173,6 +173,10 @@ a[href].tag:visited {
   margin: 1em 0em;
 }
 
+.postlist-item::first-letter {
+  color: var(--darkred);
+}
+
 .postlist-date {
   font-size: 60%;
   color: var(--darkgray);
