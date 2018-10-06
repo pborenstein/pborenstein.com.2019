@@ -10,8 +10,11 @@ navtitle: Home
 
 I'm Philip Borenstein.
 
-I'm redoing this site in [Eleventy][]
+I'm redoing this site in [Eleventy][].
+
+Read all [about that][].
 
 [Eleventy]: https://www.11ty.io/
+[about that]: /tags/eleventy/
 
 

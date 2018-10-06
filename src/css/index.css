@@ -41,8 +41,8 @@ body {
 
 #wrapper {
     max-width: 32rem;
-    margin-top: 1em;
-    margin-bottom: 2em;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -204,21 +204,22 @@ footer {
   color: var(--gray);
   font-family: var(--footer-font);
   font-size: 0.6rem;
-  background: linen;
+  border-top: 1px solid var(--darkred);
 }
 
 footer ul {
   padding: 0;
+  margin: 0;
   list-style: none;
   display: flex;
   justify-content: space-between ;
-  margin: 0 1rem;
 }
 
-footer ul li p{
+.footer-text {
   display: inline-block;
   line-height: 1rem;
-  vertical-align: baseline;
+  vertical-align: top;
+  margin: 0
 }
 
 .footer-item {
