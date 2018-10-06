@@ -1,11 +1,10 @@
 ---
 date: 2018-12-01
 title: Colophon
-layout: layouts/article.njk
+layout: layouts/home.njk
 tags:
   - nav
 navtitle: Colophon
-templateClass: tmpl-post
 ---
 
 I liked the red and black from Mad Men. It's been done,
@@ -15,8 +14,8 @@ Made with:
 
 - [eleventy][Eleventy]
 - [eleventy base blog][]
-- bbedit
-- vscode
+- BBEdit
+- VSCode
 - [Netlify][]
 
 [Eleventy]: https://www.11ty.io/

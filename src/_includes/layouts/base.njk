@@ -40,10 +40,22 @@
       </main>
 
       <footer>
-        {% if git.curbranch != 'HEAD' %}
-          {{git.curbranch}}@
-        {%- endif -%}
-        {{ git.commitsha }}
+        <ul>
+          <li>
+            <p style="color: #111">
+            Copyright &copy; 2018 Philip Borenstein<br>
+            Made in Manchester, USA
+            </p>
+          </li>
+          <li>
+            <p>
+            {% if git.curbranch != 'HEAD' %}
+              {{git.curbranch}}@
+            {%- endif -%}
+            {{ git.commitsha }}
+            </p>
+          </li>
+        </ul>
       </footer>
 		  <!-- Current page: {{ page.url | url }} -->
 	  </div>

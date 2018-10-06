@@ -11,6 +11,7 @@
   --body: #111;
   --heading: #333;
   --list-font: 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --footer-font: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
 }
 
 html {
@@ -21,6 +22,7 @@ html {
 
 *, *:before, *:after {
     box-sizing: inherit;
+    /* border: 1px solid red !important; */
 }
 
 body {
@@ -94,11 +96,14 @@ span.slug {
 /*  nav */
 
 nav ul {
-  margin: 0 0 0 1em;
   padding: 0;
   list-style: none;
   display: flex;
   justify-content: space-between;
+}
+
+header nav ul{
+  margin: 0 0 0 1rem;
   max-width: 4rem;
 }
 
@@ -159,8 +164,8 @@ a[href].tag:visited {
 .article-date {
   text-align: right;
   font-style: italic;
-  color: var(--red);
-  font-size: 75%;
+  color: var(--darkred);
+  margin: 0;
 }
 
 
@@ -195,10 +200,38 @@ a[href].tag:visited {
 
 /*  footer  */
 footer {
-  font-size: .7rem;
-  color: var(--gray)
+  font-size: 1rem;
+  color: var(--gray);
+  font-family: var(--footer-font);
+  font-size: 0.6rem;
+  background: linen;
 }
 
+footer ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between ;
+  margin: 0 1rem;
+}
+
+footer ul li p{
+  display: inline-block;
+  line-height: 1rem;
+  vertical-align: baseline;
+}
+
+.footer-item {
+	display: inline-block;
+}
+
+.article-footer {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 0.875rem;
+  font-style: italic;
+}
 
 /*  Code Highlighting */
 
