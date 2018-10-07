@@ -2,7 +2,8 @@
 comments: true
 date: 2010-06-28 15:00:10
 slug: ability-disability-inability
-title: 'Ability, Disability, and Inability: Notes from a one-eyed man'
+title: 'Ability, Disability, and Inability'
+subtitle: 'Notes from a one-eyed man'
 wordpress_id: 283
 categories:
 - Life
@@ -73,8 +74,3 @@ I've come to accept that, as I get older, some things will pass out of the range
 I used to boast that I could work in 10-point text on a 1600x1200 pixel display. Now I work with 12-point text at much lower resolution, and still sometimes I have to lean close to distinguish a period from a comma. I find that I'm saying, "I'm sorry, I couldn't hear you," more often. My memory has become pockmarked with odd lacunae.
 
 It's true, I only see a few movies a year. My fondness for sitting with strangers in the dark isn't what it once was. Nonetheless, I still feel left out, left behind, slightly discarded. And I find this particular loss of ability frustrating. Because of a change in technology, not nature and not age, my idiosyncratic eyesight, which was never more than a minor inconvenience may turn into a disability that would prevent me from watching movies.
-
-[![](/IMAGE/clock-e1277438541795.jpg)](https://www.flickr.com/photos/kaczmarek/3419755539/)
-
-
-

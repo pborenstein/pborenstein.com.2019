@@ -1,6 +1,6 @@
 {% macro articlesList(aList) %}
 
-<ol reversed class="postlist" style="counter-reset: start-from {{ aList.length + 1 }}">
+<ul reversed class="postlist" style="counter-reset: start-from {{ aList.length + 1 }}">
 {% for article in aList | reverse %}
 	<li class="postlist-item">
     <a href="{{ article.url | url }}">
@@ -22,5 +22,5 @@
     </div>
 	</li>
 {% endfor %}
-</ol>
+</ul>
 {% endmacro %}

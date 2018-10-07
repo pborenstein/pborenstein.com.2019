@@ -7,6 +7,8 @@ tags:
 navtitle: Colophon
 ---
 
+# Colophon
+
 I liked the red and black from Mad Men. It's been done,
 but not by me.
 
