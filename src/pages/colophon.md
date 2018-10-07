@@ -7,7 +7,6 @@ tags:
 navtitle: Colophon
 ---
 
-# Colophon
 
 Made with:
 
