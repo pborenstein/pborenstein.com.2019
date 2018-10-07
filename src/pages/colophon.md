@@ -9,9 +9,6 @@ navtitle: Colophon
 
 # Colophon
 
-I liked the red and black from Mad Men. It's been done,
-but not by me.
-
 Made with:
 
 - [eleventy][Eleventy]
@@ -19,7 +16,16 @@ Made with:
 - BBEdit
 - VSCode
 - [Netlify][]
+- [Neue Kabel][kabel] from [Typekit][]
+
+I liked the red and black from Mad Men. It's been done,
+but not by me.
+
+
+
 
 [Eleventy]: https://www.11ty.io/
 [eleventy base blog]: https://github.com/11ty/eleventy-base-blog
 [Netlify]: https://netlify.com
+[Typekit]: https://typekit.com
+[kabel]: https://www.monotype.com/resources/font-stories/neue-kabel-reshaping-a-lost-classic/
