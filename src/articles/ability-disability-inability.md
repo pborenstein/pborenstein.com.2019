@@ -40,8 +40,6 @@ I'm comfortable with my monocularity, and never felt disenfranchised by the ster
 
 I took my son to see [Avatar](https://avatarmovie.com). It was playing on a real movie screen and on a 3-D screen. The only time that worked for us was the 3-D showing. Even though I don't see out of my left eye, I still needed the 3-D glasses so that the movie wouldn't be fuzzy. But because my left eye still sees some light, I was going to have to watch the movie with one eye closed. Otherwise, the slightly different images would drive me nuts.
 
-[![](/IMAGE/3dglasses2-150x150.jpg)](https://www.flickr.com/photos/mattneale/4685631255/)
-
 I can't imagine that the 3-D effects made the movie any more enjoyable. It certainly didn't add anything from my point of view. Watching a movie with one eye closed is annoying. And on top of everything, the movie was pretty bad.
 
 When it was the odd movie that featured a bit of 3-D here and there, it didn't matter to me. More and more movies, however, are coming out in 3-D though. So far, they tend to be animated or action movies I'd skip anyway, but it's only a matter of time that someone makes a decent film in 3-D. That's likely to be the end of movies for me.

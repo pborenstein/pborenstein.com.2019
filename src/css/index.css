@@ -52,8 +52,15 @@ body {
 
 p,ul,ol,pre,table,blockquote,dd {
   line-height: 1.4rem;
-  margin: .8rem 0 0 0;
+  margin-top: 0.8rem;
 }
+
+blockquote {
+  margin: 0.8rem 1em 0rem 1em;
+  padding: 0 1em;
+  border-left: 4px solid var(--red);
+}
+
 
 ul, ol {
   margin: 0 0 1rem 0;
@@ -200,7 +207,7 @@ code:not([class]) {
 
 .tag {
 	font-family: var(--code-font);
-  font-size: var(--code-font-size);
+  font-size: 62%;
   padding:  2px 2px;
   border: 1px solid var(--fadedred);
   border-radius: 3px;
