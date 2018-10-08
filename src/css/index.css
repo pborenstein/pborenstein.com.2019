@@ -45,10 +45,15 @@ body {
     color: var(--body);
     background-color: var(--white);
     font-variant-numeric: oldstyle-nums;
-    -moz-font-feature-settings: "onum";
-    -webkit-font-feature-settings: "onum";
-    font-feature-settings: "onum";
+    -moz-font-feature-settings: "onum", "ss04", "ss08","ss11";
+    -webkit-font-feature-settings: "onum", "ss04","ss08", "ss11";
+    font-feature-settings: "onum", "ss04", "ss08", "ss11";
   }
+
+/*  ss04:   Overlapping W   */
+/*  ss11:   round a */
+/*  ss08:   diamond I dots */
+/* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
 
 p,ul,ol,pre,table,blockquote,dd {
   line-height: 1.4rem;
