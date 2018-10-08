@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2009-08-23 03:32:28
 slug: misery
 title: Misery
-wordpress_id: 129
 categories:
 - Books I Never Finished
 tags:

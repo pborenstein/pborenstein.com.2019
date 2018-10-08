@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2009-09-03 14:14:41
 slug: wetlands
 title: Wetlands
-wordpress_id: 143
 categories:
 - Books You May Not Want to Read
 tags:

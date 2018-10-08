@@ -1,14 +1,10 @@
 ---
-comments: true
 date: 2009-09-21 04:49:30
 slug: brisket
 title: Brisket
-wordpress_id: 205
 categories:
 - Life
 tags:
-- brisket
-- cooking
 - recipes
 ---
 

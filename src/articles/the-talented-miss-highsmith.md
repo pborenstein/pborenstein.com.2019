@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2010-01-09 03:20:09
 slug: the-talented-miss-highsmith
 title: The Talented Miss Highsmith
-wordpress_id: 256
 categories:
 - Books I Never Finished
 tags:

@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2010-08-22 14:12:00
 slug: dandelion-junk-queens
 title: Dandelion Junk Queens
-wordpress_id: 520
 categories:
 - Life
 - Travel

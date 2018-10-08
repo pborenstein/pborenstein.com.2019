@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2010-06-21 21:21:10
 slug: metacognition-and-its-malcontents
 title: Metacognition and its malcontents
-wordpress_id: 389
 categories:
 - Life
 - Work

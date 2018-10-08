@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2012-05-18 16:40:46
 slug: the-power-broker
 title: The Power Broker
-wordpress_id: 605
 categories:
 - Books I Never Finished
 - Life

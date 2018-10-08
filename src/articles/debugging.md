@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2009-08-03 16:14:00
 slug: debugging
 title: Debugging
-wordpress_id: 115
 categories:
 - Life
 tags:

@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2010-05-25 02:57:11
 slug: the-secret-history-of-the-world
 title: The Secret History of the World
-wordpress_id: 291
 categories:
 - Books I Never Finished
 ---

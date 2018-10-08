@@ -104,13 +104,12 @@ h1, h2, h3, h4, h5, h6, dt {
   font-family: var(--heading-font);
   font-weight: 700;
   margin-bottom: 0.33rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 h1 {
-  font-size: 1.68rem;
-  line-height: 1.68rem;
-  margin-top: 1rem;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 
 a[href] {

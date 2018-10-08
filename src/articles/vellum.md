@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2010-12-20 16:51:01
 slug: vellum
 title: Vellum
-wordpress_id: 570
 categories:
 - Books I Never Finished
 tags:

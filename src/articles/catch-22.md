@@ -1,12 +1,9 @@
 ---
-comments: true
 date: 2012-02-09 11:49:43
 slug: catch-22
 title: Catch-22
-wordpress_id: 598
 categories:
 - Books I Never Finished
-- Life
 tags:
 - books
 - parenting
@@ -31,7 +28,7 @@ What I was thinking was "Things like jaded post-war cynicism and absurd nihilism
 
 "Tell you what," I said. "Let me read it first, and after I've read it, I'll let you know whether I think it's OK for you. That sound like a good plan?"
 
-"Yeah," he said. 
+"Yeah," he said.
 
 I picked it up at [my favorite library](https://www.wellesleyfreelibrary.org/home/index.html), and read the first fifty pages or so before I got fed up with it.
 

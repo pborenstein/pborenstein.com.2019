@@ -1,9 +1,7 @@
 ---
-comments: true
 date: 2010-02-03 20:07:02
 slug: last-year-at-marienbad
 title: Last Year at Marienbad
-wordpress_id: 270
 categories:
 - Movies I've Seen
 tags:

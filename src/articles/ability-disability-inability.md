@@ -1,10 +1,8 @@
 ---
-comments: true
 date: 2010-06-28 15:00:10
 slug: ability-disability-inability
 title: 'Ability, Disability, and Inability'
 subtitle: 'Notes from a one-eyed man'
-wordpress_id: 283
 categories:
 - Life
 - Movies I've Seen
