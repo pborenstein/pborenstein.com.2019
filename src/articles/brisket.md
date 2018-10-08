@@ -12,34 +12,21 @@ It's been a long time since I've had brisket on Rosh Hashannah. I got tired of w
 
 **My mother's brisket recipe**
 
-
-1 brisket 3 or 4 lbs trimmed
-1 envelope Lipton Onion Soup original
-1 can Campbell Golden Mushroom soup
-3 carrots, peeled, cut in thirds, and quartered
-3 or 4 potatoes, peeled, quartered
-1 Reynolds Baking Bag, medium size
+- 1 brisket 3 or 4 lbs trimmed
+- 1 envelope Lipton Onion Soup original
+- 1 can Campbell Golden Mushroom soup
+- 3 carrots, peeled, cut in thirds, and quartered
+- 3 or 4 potatoes, peeled, quartered
+- 1 Reynolds Baking Bag, medium size
 
 
 The day before you serve the brisket:
 
-
-
-
 Mix soups. Place meat in bag. Cover with the mix, then add the vegetables.  Place the whole thing in a roasting pan. Tie the bag according to directions, and carefully with the point of a knife cut six slits. Place in oven 325 degrees  for about 2:30 hrs.
-
-
-
 
 Separate meat from gravy. Wrap meat in foil and refrigerate all night. Save the gravy in a container and refrigerate.
 
-
-
-
 The following day:
-
-
-
 
 The following day, slice the meat thin and place it in a baking dish. Skim the fat off the gravy, then pour it over the meat. Heat the meat and the vegetables at 350 degrees for 30 minutes.
 

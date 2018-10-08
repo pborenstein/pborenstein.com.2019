@@ -15,15 +15,13 @@ tags:
 
 Sometimes, people have a hard time telling whether I'm looking at them. I'll be talking to someone, and the person standing to their left will start answering.  Or the person I'm talking to will wait for the person to their left to respond.
 
-[![](/IMAGE/eyes.jpg)](/IMAGE/eyes.jpg)
-
 This is because only one of my eyes works.
 
 When I was a teen, I developed a cataract in my left eye, and at the age of 16, it was removed. For a few years, I used contact lenses. The one in the left eye had a very strong setting (+something) and the one in my right eye was for my regular nearsightedness. Because the lenses were right on top of my eyes, the images projected on my retina were about the same size, and I was able to see stereoscopically.
 
 Wearing hard contacts is a pain. So in college, I gave them up, and just wore glasses. In retrospect, this wasn't such a good idea. I made a lot of bad choices in college, and as things go, this one was not the worst. (The worst was going to college when and where I did, but that's a different story.)
 
-[![](/IMAGE/cryeye-e1277180715652-300x159.jpg)](https://www.flickr.com/photos/chishikilauren/23368239/)Over time, my brain stopped processing data from my left eye. I still see shapes and colors. I can see the outlines of facial features at 3 feet, but at 100 feet, I can't distinguish trees from each other, and large structures appear as colored blobs.
+Over time, my brain stopped processing data from my left eye. I still see shapes and colors. I can see the outlines of facial features at 3 feet, but at 100 feet, I can't distinguish trees from each other, and large structures appear as colored blobs.
 
 I don't have stereoscopic vision, but that doesn't mean that I don't have depth perception. Stereoscopic vision is just one way of seeing depth. I rely on the relative size of objects, shading, movement, experience, and common sense. It's not usually a problem except in specific circumstances. If you hand me a pencil over a uniformly colored table, I might reach slightly ahead or slightly behind because I've misjudged where in space the pencil is. When I pour wine in a dark restaurant, I usually place the neck of the bottle against the glass. Otherwise, I might end up pouring in front of or behind the glass, onto the table. (As I said, experience is a big issue in helping me determine depth.)
 
@@ -31,10 +29,7 @@ Through years of disuse, my brain and body have decided that my left eye deserve
 
 I'm comfortable with my monocularity, and never felt disenfranchised by the stereoscopically able. Until this year.
 
-
-
 ## The 3-D Movie
-
 
 I took my son to see [Avatar](https://avatarmovie.com). It was playing on a real movie screen and on a 3-D screen. The only time that worked for us was the 3-D showing. Even though I don't see out of my left eye, I still needed the 3-D glasses so that the movie wouldn't be fuzzy. But because my left eye still sees some light, I was going to have to watch the movie with one eye closed. Otherwise, the slightly different images would drive me nuts.
 

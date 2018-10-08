@@ -12,14 +12,11 @@ tags:
 
 [_Last Year at Marienbad_](https://www.imdb.com/title/tt0054632/) has been on my list of movies to watch for at least ten years. I'm not sorry I waited. I'm sorry I did not wait longer.
 
-[![Marienbad](/IMAGE/marienbadGIMP.png)](/IMAGE/marienbadGIMP.png)
-
 
 Not that it was a waste of time. It's a gorgeous movie. Imagine the scene near the end of 2001 where Dave finds himself in a beautiful room. Imagine that scene in black and white, and make it an hour and half long. You're on your way to Marienbad.
 
 The story takes place in a  luxury hotel. The interiors are rococo, the grounds are gravel, the trees are perfect cones. The people are beautiful. The women's clothes are by [Coco Chanel](https://en.wikipedia.org/wiki/Coco_Chanel), and the heroine, played by Delphine Seyrig, is beautiful. Her [hairstyle in the movie](https://cinebeats.wordpress.com/2009/11/17/art-film-as-fashion-trend/) apparently caused something of a stir.
 
-https://web.archive.org/web/20091124163853/https://cinebeats.blogsome.com/2009/11/17/art-film-as-fashion-trend/
 
 The plot is très simple: A man, a woman, and another man. One man is maybe the woman's husband. The other man is pursuing her, telling her that they met last year at Marienbad. He tells her that at Marienbad she agreed to leave her maybe husband and go away with him. She doesn't remember meeting him last year.
 

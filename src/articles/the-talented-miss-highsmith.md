@@ -14,7 +14,13 @@ One of the best parts about my slide down the socioeconomic ladder (perhaps the 
 So when I read [Janet Maslin's review](https://www.nytimes.com/2009/12/03/books/03book.html) of Joan Schenkar's biography of Patricia Highsmith, I was moved to clip it to my trusty [Evernote](https://evernote.com) notebook and subsequently to request it from the library.
 
 
-I remember how exciting it was to read [The Talented Mr. Ripley some years ago. It felt odd to root for a sociopath, but he was so nice. ([The movie](https://www.amazon.com/gp/product/0792165020?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0792165020), by the way, was terrible. It did introduce me to [_Tu Vuo Fa l'Americano_](https://www.amazon.com/gp/product/B000MTP84M?ie=UTF8&tag=pbore- 20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B000MTP84M)![](https://www.assoc-amazon.com/e/ir?t=pbore-20&l=as2&o=1&a=B000MTP84M), a wonderful song, though [Brian Setzer's version](https://www.amazon.com/gp/product/B00004U8KD?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B00004U8KD)![](https://www.assoc-amazon.com/e/ir?t=pbore-20&l=as2&o=1&a=B00004U8KD) is more fun.)
+I remember how exciting it was to read _The Talented Mr. Ripley_ some years ago.
+It felt odd to root for a sociopath,
+but he was so nice.
+The movie, by the way, was terrible. It did introduce me to
+[_Tu vuò fà l'americano_](https://youtu.be/BqlJwMFtMCs), a wonderful song,
+though [Brian Setzer's version](https://youtu.be/HjiT3dEfnhM) is more fun.
+
 
 I am a sucker for book reviews.
 
