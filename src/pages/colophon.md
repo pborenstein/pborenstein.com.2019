@@ -10,21 +10,22 @@ navtitle: Colophon
 
 Made with:
 
-- [eleventy][Eleventy]
-- [eleventy base blog][]
-- BBEdit
-- VSCode
 - [Netlify][]
-- [Neue Kabel][kabel] from [Typekit][]
+- [eleventy][Eleventy] + [eleventy base blog][]
+- [BBEdit][] & [VS Code]
+- [Neue Kabel][kabel] via [Typekit][]
+- [Lorem Picsum][]
 
-I liked the red and black from Mad Men. It's been done,
+I liked the red and black. It's been done,
+(_cough_ Mad Men),
 but not by me.
 
 
-
-
+[VS Code]: https://code.visualstudio.com/
+[BBEdit]: https://www.barebones.com/products/bbedit/
 [Eleventy]: https://www.11ty.io/
 [eleventy base blog]: https://github.com/11ty/eleventy-base-blog
 [Netlify]: https://netlify.com
 [Typekit]: https://typekit.com
 [kabel]: https://www.monotype.com/resources/font-stories/neue-kabel-reshaping-a-lost-classic/
+[Lorem Picsum]: https://picsum.photos/

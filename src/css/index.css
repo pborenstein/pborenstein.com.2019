@@ -235,6 +235,10 @@ a[href].tag:visited {
 }
 
 
+p img {
+  margin: 0;
+}
+
 
 /* Article List */
 
