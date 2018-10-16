@@ -45,14 +45,16 @@ body {
     color: var(--body);
     background-color: var(--white);
     font-variant-numeric: oldstyle-nums;
-    -moz-font-feature-settings: "onum", "ss04", "ss08","ss11";
-    -webkit-font-feature-settings: "onum", "ss04","ss08", "ss11";
-    font-feature-settings: "onum", "ss04", "ss08", "ss11";
+    -moz-font-feature-settings: "onum", "ss04", "ss06", "ss08","ss11", "ss14";
+    -webkit-font-feature-settings: "onum", "ss04","ss06", "ss08", "ss11", "ss14";
+    font-feature-settings: "onum", "ss04", "ss06", "ss08", "ss11", "ss14";
   }
 
 /*  ss04:   Overlapping W   */
 /*  ss11:   round a */
 /*  ss08:   diamond I dots */
+/*  ss06:   happy e */
+/*  ss14:   tail l */
 /* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
 
 p,ul,ol,pre,table,blockquote,dd {
