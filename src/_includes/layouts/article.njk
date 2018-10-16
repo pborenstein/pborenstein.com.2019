@@ -2,6 +2,8 @@
 layout: layouts/base.njk
 templateClass: tmpl-post
 ---
+{% from "macros.njk" import timeTag  %}
+
 <h1>{{ title }}</h1>
 
 
@@ -11,7 +13,7 @@ templateClass: tmpl-post
   <nav>
     <ul>
       <li class="footer-item"><a href="{{ '/articles' | url }}">← Articles</a></li>
-      <li class="footer-item article-date">{{ page.date | readableDate }}</li>
+      <li class="footer-item article-date">{{ timeTag(page.date)}}</li>
     </ul>
   </nav>
 </section>

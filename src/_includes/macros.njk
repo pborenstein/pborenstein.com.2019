@@ -12,8 +12,7 @@
         {% endif %}
       </span>
     </a>
-    <span class="postlist-date">{{ article.date | readableDate }}</span>
-
+    {{ timeTag(article.date, "postlist-date")}}
     <div>
 		{% for tag in article.data.tags | sort %}
            {% set tagUrl %}/tags/{{ tag }}/{% endset %}
@@ -23,4 +22,11 @@
 	</li>
 {% endfor %}
 </ul>
+{% endmacro %}
+
+{% macro timeTag(theDate, theClass) %}
+  <time {% if theClass %}class="{{- theClass -}}"{% endif %}
+        datetime="{{ theDate | htmlDateString }}">
+    {{ theDate | readableDate }}
+  </time>
 {% endmacro %}

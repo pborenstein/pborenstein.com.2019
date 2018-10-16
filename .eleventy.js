@@ -7,12 +7,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
 
   eleventyConfig.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj).toFormat("dd LLL yyyy");
+    return DateTime.fromJSDate(dateObj).toFormat("d LLLL yyyy");
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj).toFormat('yyyy-LL-dd');
+    return DateTime.fromJSDate(dateObj).toISODate();
   });
 
   // only content in the `articles/` directory
