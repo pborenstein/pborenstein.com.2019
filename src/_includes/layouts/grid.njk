@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ renderData.title or title or metadata.title }}</title>
+    <link rel="stylesheet" href="https://use.typekit.net/ztn6rcs.css">
+    <link rel="stylesheet" href="{{ '/css/grid.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
+    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
+  </head>
+  <body class="wrapper">
+  <header>
+    <div id="logo"><span class="slug">pborenstein</span>.com</div>
+  </header>
+  <nav>
+    Navigation
+    <ul>
+      {%- for nav in collections.nav  -%}
+        <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+        {{ content | safe }}
+  </main>
+  <aside>Related links</aside>
+  <footer>Footer
+    <ul>
+      <li>
+        <p class="footer-text" style="color: var(--body)">
+        Copyright &copy; 2018 Philip Borenstein<br>
+        Made in Manchester, USA
+        </p>
+      </li>
+      <li>
+        <p class="footer-text">
+        {% if git.curbranch != 'HEAD' %}
+          {{git.curbranch}}@
+        {%- endif -%}
+        {{ git.commitsha }}
+        </p>
+      </li>
+    </ul>
+    </footer>
+    <!-- Current page: {{ page.url | url }} -->
+  </body>
+</html>
