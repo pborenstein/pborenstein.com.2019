@@ -1,26 +1,31 @@
 :root {
-	--red: #c22323;
-  --darkred: #7F0036;
-  --fadedred: #7f003638;
-	--lightgray: #e0e0e0;
-	--gray: #C0C0C0;
-	--darkgray: #666;
-	--navy: #17050F;
-	--blue: #082840;
-  --white: #fff;
-  --body: #111;
-  --heading: #333;
-  --list-font: 'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-  --footer-font: 'neue-kabel', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-  --body-font: 'neue-kabel', Georgia, serif;
-  --heading-font:   'neue-kabel' , "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-  --code-font:  Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+	--red:        #c22323;
+  --darkred:    #7F0036;
+  --fadedred:   #7f003638;
+	--lightgray:  #e0e0e0;
+	--gray:       #C0C0C0;
+	--darkgray:   #666;
+	--navy:       #17050F;
+	--blue:       #082840;
+  --white:      #fff;
+  --body:       #111;
+  --heading:    #333;
+  --list-font:    'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --footer-font:  'neue-kabel', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --body-font:    'neue-kabel', Georgia, serif;
+  --heading-font: 'neue-kabel', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --code-font:    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   --code-font-size: .75em;
+  --font-features:  "onum",   /*  onum:   Old style numbers */
+                    "ss04",   /*  ss04:   Overlapping W   */
+                    "ss06",   /*  ss06:   happy e */
+                    "ss08",   /*  ss08:   diamond I dots */
+                    "ss11",   /*  ss11:   round a */
+                    "ss14";   /*  ss14:   tail l */
+                  /* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
+
 
 }
-
-/* font-family: "adobe-garamond-pro" ,  'Neue Kabel Pro Regular', 'Raleway', sans-serif, 'Open Sans'; */
-
 
 html {
   box-sizing: border-box;
@@ -34,7 +39,7 @@ html {
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-family: var(--body-font);
     font-size: 1rem;
     line-height: 1.5rem;
@@ -45,17 +50,93 @@ body {
     color: var(--body);
     background-color: var(--white);
     font-variant-numeric: oldstyle-nums;
-    -moz-font-feature-settings: "onum", "ss04", "ss06", "ss08","ss11", "ss14";
-    -webkit-font-feature-settings: "onum", "ss04","ss06", "ss08", "ss11", "ss14";
-    font-feature-settings: "onum", "ss04", "ss06", "ss08", "ss11", "ss14";
+    -moz-font-feature-settings: var(--font-features);
+    -webkit-font-feature-settings: var(--font-features);
+    font-feature-settings: var(--font-features);
   }
 
-/*  ss04:   Overlapping W   */
-/*  ss11:   round a */
-/*  ss08:   diamond I dots */
-/*  ss06:   happy e */
-/*  ss14:   tail l */
-/* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
+
+.wrapper {
+  display: grid;
+  height: 100vh;
+  grid-row-gap: 1rem;
+  grid-column-gap: 1em;
+  grid-template-columns: 25vw minmax(16rem, 32rem);
+  grid-template-rows: auto 1fr   6rem;
+  /* grid-auto-rows: minmax(100px, auto); */
+  grid-template-areas:
+    "....  head"
+    "nav   main"
+    "....  foot";
+}
+
+@media (max-width: 500px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 0;
+    grid-column-gap: 0;
+    grid-template-areas:
+      "head"
+      "nav"
+      "main"
+      "foot"
+  }
+  nav {
+    margin: 0 0 1rem 0 !important;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: row !important;
+    padding: 0;
+    list-style: none;
+    justify-content: space-between;
+    margin: 0 0 0 1rem;
+    max-width: 4rem;
+    border: 0 !important;
+  }
+  .nav-item {
+    display: inline;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+#xwrapper {
+  max-width: 32rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+
+header {
+  grid-area: head;
+}
+
+main {
+  grid-area: main;
+}
+
+nav {
+  grid-area: nav;
+  margin: 0 0 0 auto;
+}
+
+aside {
+  display: block;
+  grid-area: aside;
+  background-color: #936;
+}
+
+footer {
+  grid-area: foot;
+}
+
+
+
 
 p,ul,ol,pre,table,blockquote,dd {
   line-height: 1.4rem;
@@ -82,7 +163,8 @@ ul[class=postlist] {
 
 
 h1 + p,
-h2 + p {
+h2 + p,
+h3 + p {
   margin-top: 0px;
 }
 
@@ -91,14 +173,6 @@ p :not(ul) {
   margin-bottom: 1.68rem;
 }
 
-#wrapper {
-    max-width: 32rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-}
 
 /*  headings  */
 h1, h2, h3, h4, h5, h6, dt {
@@ -107,6 +181,11 @@ h1, h2, h3, h4, h5, h6, dt {
   font-weight: 700;
   margin-bottom: 0.33rem;
   margin-top: 2rem;
+}
+
+h2:first-of-type,
+h3:first-of-type {
+  margin-top: 0px;
 }
 
 h1 {
@@ -164,20 +243,18 @@ span.slug {
 /*  nav */
 
 nav ul {
-  padding: 0;
-  list-style: none;
+  list-style: none inside;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  padding: 0 0.5em;
+  border: 1px dotted var(--fadedred);
 }
 
-header nav ul{
-  margin: 0 0 0 1rem;
-  max-width: 4rem;
-}
+
 
 .nav-item {
-	display: inline-block;
-	margin-right: 1em;
+  margin-right: 1em;
+  margin-left: 0;
   font-family: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   font-size: 60%;
 }
@@ -229,12 +306,6 @@ a[href].tag:visited {
 
 
 
-.article-date {
-  text-align: right;
-  font-style: italic;
-  color: var(--darkred);
-  margin: 0;
-}
 
 
 p img {
@@ -243,6 +314,10 @@ p img {
 
 
 /* Article List */
+
+.postlist {
+  list-style: none inside;
+}
 
 .postlist-item {
   font-family: var(--list-font);
@@ -259,6 +334,16 @@ p img {
   color: var(--darkgray);
   margin-left: 1rem;
 }
+
+.article-date {
+  font-size: 60%;
+  line-height: 1em;
+  color: var(--darkgray);
+  text-align: right;
+  font-style: italic;
+  margin: 0;
+}
+
 
 
 .postlist-item a[href] {
@@ -300,8 +385,7 @@ footer ul {
 }
 
 .article-footer {
-  margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin: 1rem 0rem;
   font-family: var(--body-font);
   font-size: 0.875rem;
   font-style: italic;
