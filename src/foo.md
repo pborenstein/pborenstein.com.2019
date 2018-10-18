@@ -1,12 +1,12 @@
 ---
-date: 2018-01-01
+date: 2018-10-01
 layout: layouts/grid.njk
 tags:
   - nav
-navtitle: Home
+navtitle: Grid
 ---
 
-### I'm Philip Borenstein
+## I am Philip Borenstein
 
 
 
@@ -27,6 +27,8 @@ supercomputer espionage 9/11 pipeline Treasury security plutonium STANAG
 satellite Comirex csystems MD2 Waco, Capricorn AK47? SEAL doctrine 9/11
 cryptographic about espionage MD5 computer Heartbleed keyhole AlQaeda Team and
 Forte Janet Mafia unclassified! Oates Bellcore airframe Elvis AVN Saudi bce John
+
+### What hath god wrought.
 
 embassy; Video PGP advisors! Reno Bellcore spies kibo LLNL to Al NWO Kerry;
 Mahmoud Oates FBI Asset 9/11 asset Nations SRI tempest Israel keyhole analyzer
