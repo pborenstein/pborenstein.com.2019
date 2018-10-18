@@ -53,17 +53,10 @@ body {
     color: var(--body);
     background-color: var(--white);
     font-variant-numeric: oldstyle-nums;
-    -moz-font-feature-settings: "onum", "ss04", "ss06", "ss08","ss11", "ss14";
-    -webkit-font-feature-settings: "onum", "ss04","ss06", "ss08", "ss11", "ss14";
-    font-feature-settings: "onum", "ss04", "ss06", "ss08", "ss11", "ss14";
+    -moz-font-feature-settings: var(--font-features);
+    -webkit-font-feature-settings: var(--font-features);
+    font-feature-settings: var(--font-features);
   }
-
-/*  ss04:   Overlapping W   */
-/*  ss11:   round a */
-/*  ss08:   diamond I dots */
-/*  ss06:   happy e */
-/*  ss14:   tail l */
-/* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
 
 
 .wrapper {
@@ -71,9 +64,9 @@ body {
   grid-template-columns: 100px minmax(16rem, 32rem) 100px;
   /* grid-auto-rows: minmax(100px, auto); */
   grid-template-areas:
-    "....  head  aside"
-    "nav   main  aside"
-    "foot  foot  foot";
+    "....  head"
+    "nav   main"
+    "foot  foot";
 }
 #xwrapper {
   max-width: 32rem;
@@ -87,38 +80,26 @@ body {
 
 header {
   grid-area: head;
-  padding: 30px;
-  text-align: center;
-  font-size: 1.4em;
-  background-color: #369;
-  color: white;
+  margin: 1rem 0;
 }
 
 main {
   grid-area: main;
-  padding: 20px;
 }
 
 nav {
   grid-area: nav;
   background-color: #f90;
-  padding: 20px;
 }
 
 aside {
   display: block;
   grid-area: aside;
-  padding: 20px;
   background-color: #936;
 }
 
 footer {
   grid-area: foot;
-  padding: 30px;
-  text-align: center;
-  font-size: 1.4em;
-  background-color: #690;
-  color: white;
 }
 
 
@@ -149,7 +130,8 @@ ul[class=postlist] {
 
 
 h1 + p,
-h2 + p {
+h2 + p,
+h3 + p {
   margin-top: 0px;
 }
 
@@ -166,6 +148,12 @@ h1, h2, h3, h4, h5, h6, dt {
   font-weight: 700;
   margin-bottom: 0.33rem;
   margin-top: 2rem;
+}
+
+h1:first-of-type,
+h2:first-of-type,
+h3:first-of-type {
+  margin-top: 0px;
 }
 
 h1 {
