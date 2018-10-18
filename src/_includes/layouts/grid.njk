@@ -15,7 +15,6 @@
     <div id="logo"><span class="slug">pborenstein</span>.com</div>
   </header>
   <nav>
-    Navigation
     <ul>
       {%- for nav in collections.nav  -%}
         <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
