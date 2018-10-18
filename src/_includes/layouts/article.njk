@@ -5,17 +5,12 @@ templateClass: tmpl-post
 {% from "macros.njk" import timeTag  %}
 
 <h1>{{ title }}</h1>
-
+<div class="article-date">
+{{ timeTag(page.date)}}
+</div>
 
 {{ content | safe }}
 
 <section class="article-footer">
-  <nav>
-    <ul>
-      <li class="footer-item"><a href="{{ '/articles' | url }}">← Articles</a></li>
-      <li class="footer-item article-date">{{ timeTag(page.date)}}</li>
-    </ul>
-  </nav>
-</section>
-
+  <a href="{{ '/articles' | url }}">← Articles</a>
 </section>
