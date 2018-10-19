@@ -7,6 +7,7 @@ title: Portfolio
 # navtitle: ./# templateClass: tmpl-post
 ---
 
+# {{ title }}
 
 Here are some examples of the things I've worked on.
 If you're looking for my resume, you can find it [here][resume]
