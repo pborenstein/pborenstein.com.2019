@@ -5,9 +5,7 @@ templateClass: tmpl-post
 {% from "macros.njk" import timeTag  %}
 
 <h1>{{ title }}</h1>
-<div class="article-date">
-{{ timeTag(page.date)}}
-</div>
+<div class="article-date">{{ timeTag(page.date)}}</div>
 
 {{ content | safe }}
 
