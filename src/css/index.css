@@ -175,11 +175,10 @@ a[href]:hover {
 
 .tag {
 	font-family: var(--code-font);
-  font-size: 62,5%; /* (10px if default is 16px) */
+  font-size: 62.5%; /* (10px if default is 16px) */
   padding:  2px 2px;
   border: 1px solid var(--fadedred);
   border-radius: 3px;
-  color: var(--darkred)
 }
 
 a[href].tag,
@@ -324,7 +323,6 @@ footer ul {
 }
 
 .footer-text {
-  display: inline-block;
   line-height: 1.4em;
   vertical-align: top;
   margin: 0
