@@ -86,12 +86,9 @@ body {
     margin: 0 0 1rem 0 !important;
   }
   nav ul {
-    display: flex;
     flex-direction: row !important;
-    padding: 0;
-    list-style: none;
     justify-content: space-between;
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 1rem !important;
     max-width: 4rem;
     border: 0 !important;
   }
