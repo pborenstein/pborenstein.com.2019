@@ -183,8 +183,9 @@ h1, h2, h3, h4, h5, h6, dt {
   margin-top: 2rem;
 }
 
-h2:first-of-type,
-h3:first-of-type {
+h1:first-child,
+h2:first-child,
+h3:first-child {
   margin-top: 0px;
 }
 
@@ -248,6 +249,7 @@ nav ul {
   flex-direction: column;
   padding: 0 0.5em;
   border: 1px dotted var(--fadedred);
+  margin: 2em 2em 0 0;
 }
 
 
@@ -359,10 +361,11 @@ p img {
 footer {
   font-size: 1rem;
   color: var(--gray);
-  /* font-family: var(--footer-font); */
+  font-family: var(--footer-font);
   font-size: 0.6rem;
+  margin: 0 0 1rem 0;
   border-top: 1px solid var(--darkred);
-  margin: 1rem 0 1rem 0;
+  padding-top: 0.5em;
 }
 
 footer ul {
@@ -385,10 +388,9 @@ footer ul {
 }
 
 .article-footer {
-  margin: 1rem 0rem;
+  margin: 1rem 0 0 0;
   font-family: var(--body-font);
   font-size: 0.875rem;
-  font-style: italic;
 }
 
 /*  Code Highlighting */
