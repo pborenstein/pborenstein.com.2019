@@ -65,7 +65,7 @@ body {
     "....  foot";
 }
 
-@media (max-width: 500px) {
+@media (max-width: 640px) {
   .wrapper {
     display: inherit;
     grid-template-columns: 1fr;
