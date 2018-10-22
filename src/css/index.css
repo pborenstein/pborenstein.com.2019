@@ -136,6 +136,7 @@ blockquote {
   margin: 0.8rem 1em 0rem 1em;
   padding: 0 1em;
   border-left: 4px solid var(--red);
+  font-style: italic;
 }
 
 
