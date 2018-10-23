@@ -2613,7 +2613,7 @@
     "Z-A": "Descending",
     "0-9": "NumericAscending",
     "9-0": "NumericDescending"
-  }
+  },
   "sortAscending": true,
-  "sortNumeric": false,
+  "sortNumeric": false
 }
