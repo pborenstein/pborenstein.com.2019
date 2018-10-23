@@ -24,7 +24,7 @@ There are other people in the resort. They're all very well dressed and very ele
 
 Watching this movie, you find yourself doing odd things, like wondering whether this is a "movie" or a "film," and why you can't just turn it off. You know that at the end there will be no ending. That there will be no resolution. The woman will not go with the man. Or she might. You just hope it doesn't end with someone shooting themselves. You especially hope it's not you.
 
-Maybe the idea is to bring your own meaning to the movie, as if it were some sort of Rorschach test. But as Pauline Kael says, "though it's silly, albeit at times amusing and pretty, it is in no way an _accidental _blot." When it's finally over, there is the satisfaction of having done something. Or did you just dream that you did?
+Maybe the idea is to bring your own meaning to the movie, as if it were some sort of Rorschach test. But as Pauline Kael says, "though it's silly, albeit at times amusing and pretty, it is in no way an _accidental_ blot." When it's finally over, there is the satisfaction of having done something. Or did you just dream that you did?
 
 But we'll never know for sure what happens in this movie because if this it teaches us anything, it is that we can't be sure of whether what we are seeing happened, will happen, or never happened.
 
