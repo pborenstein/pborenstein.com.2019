@@ -412,3 +412,29 @@ pre {
 .highlight-line-remove {
 	background-color: #902f2f;
 }
+
+/* Table hacks */
+
+th, td {
+  vertical-align: top;
+}
+
+td {
+  padding: 0 1em 2em 0;
+}
+
+td:last-of-type {
+  padding: 0 0 2em 0;
+}
+
+div[class="mdhack"] + table   {
+  font-family: "neue-kabel";
+}
+
+div[class="mdhack"] + table thead {
+  font-family: cursive;
+}
+
+div[class="mdhack"] + table tbody tr td:first-child {
+  font-family: Courier;
+}
