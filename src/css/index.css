@@ -415,6 +415,33 @@ pre {
 
 /* Table hacks */
 
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 50%;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--gray);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--white);
+}
+
+
 th, td {
   vertical-align: top;
 }
@@ -432,7 +459,7 @@ div[class="mdhack"] + table   {
 }
 
 div[class="mdhack"] + table thead {
-  font-family: cursive;
+  font-family: "neue-kabel";
 }
 
 div[class="mdhack"] + table tbody tr td:first-child {
