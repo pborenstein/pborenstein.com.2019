@@ -1,9 +1,10 @@
 :root {
 	--red:        #c22323;
   --darkred:    #7F0036;
-  --fadedred:   #7f003638;
+  --fadedred:   #c223234d;
 	--gray:       #C0C0C0;
-	--darkgray:   #666;
+  --darkgray:   #666;
+  --lightgray:  #f2f2f2;
   --white:      #fff;
   --body:       #111;
   --heading:    #333;
@@ -12,7 +13,7 @@
   --body-font:    'neue-kabel',  Georgia, serif;
   --heading-font: 'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   --code-font:    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-  --code-font-size: .75em;
+  --code-font-size: .875em;
   --font-features:  "onum",   /*  onum:   Old style numbers */
                     "ss04",   /*  ss04:   Overlapping W   */
                     "ss06",   /*  ss06:   happy e */
@@ -53,7 +54,7 @@ body {
 
 .wrapper {
   display: grid;
-  height: 100vh;
+  height: 100%;
   grid-row-gap: 1rem;
   grid-column-gap: 1em;
   grid-template-columns: 25vw minmax(16rem, 32rem);
@@ -106,7 +107,7 @@ header {
   clear: both;
   color: var(--heading);
   font-family: var(--heading-font);
-  padding: 0;
+  padding: 0 0em 0.1em 0em;
   font-size: 2.5rem;
   line-height: 3rem;
   margin-bottom: 0rem;
@@ -121,6 +122,7 @@ span.slug {
 /*  Main content */
 main {
   grid-area: main;
+  padding-top: 1.5em;
 }
 
 p,ul,ol,pre,table,blockquote,dd {
@@ -421,12 +423,27 @@ table {
   border-collapse: collapse;
 }
 
+caption {
+  caption-side: top;
+  text-align: right;
+  text-transform: lowercase;
+  font-family: var(--heading-font);
+  font-weight: 450;
+  margin-top: 1em;
+  padding: .1875em 1em;
+  padding-left: 5px;
+  padding-right: 1em;
+  color: var(--body);
+  background-color: var(--fadedred);
+  border-radius: 3px;
+}
+
 thead th:nth-child(1) {
-  width: 30%;
+  width: 35%;
 }
 
 thead th:nth-child(2) {
-  width: 20%;
+  width: 15%;
 }
 
 thead th:nth-child(3) {
@@ -434,7 +451,7 @@ thead th:nth-child(3) {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: var(--gray);
+  background-color: var(--lightgray);
 }
 
 tbody tr:nth-child(even) {
@@ -443,15 +460,21 @@ tbody tr:nth-child(even) {
 
 
 th, td {
-  vertical-align: top;
+  vertical-align: text-top;
 }
 
-td {
-  padding: 0 1em 2em 0;
+td, th {
+  padding: 5px;
 }
 
-td:last-of-type {
-  padding: 0 0 2em 0;
+th {
+  padding-bottom: 0;
+  color: var(--body);
+}
+
+td:last-of-type,
+th:last-of-type {
+  padding-left: 0;
 }
 
 div[class="mdhack"] + table   {
@@ -463,5 +486,10 @@ div[class="mdhack"] + table thead {
 }
 
 div[class="mdhack"] + table tbody tr td:first-child {
-  font-family: Courier;
+  font-family: var(--code-font);
+  font-size: var(--code-font-size);
+}
+
+.footnotes {
+  font-size: 75%;
 }

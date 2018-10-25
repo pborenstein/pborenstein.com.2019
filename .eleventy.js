@@ -31,6 +31,7 @@ module.exports = function(eleventyConfig) {
   /* Markdown Plugins */
   let markdownIt = require("markdown-it");
   let markdownItAnchor = require("markdown-it-anchor");
+  let markdownItMMDTables = require("markdown-it-multimd-table");
   let options = {
     html: true,
     breaks: false,
@@ -45,6 +46,8 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.setLibrary("md", markdownIt(options)
     .use(markdownItAnchor, opts)
+    .use(markdownItMMDTables)
+    .use(require('markdown-it-footnote'))
   );
 
   return {
