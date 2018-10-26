@@ -11,6 +11,10 @@ navtitle: data
 
 OK, so.
 
+Eleventy treats the `tags` page property special.
+For every tag name, there's a corresponding array
+of all the templates with that tag.
+
 When you want to create a new collection that's not
 a tag, you can use `addCollection()` in your
 `.eleventy.js` configuration file.
