@@ -34,11 +34,11 @@ So, what's in this `collection` parameter?
 
 | Property | Type | Description |
 | :---     | :--- | :---        |
-| items | [item] | All of the templates that Eleventy processed. Is this always the same as the number of pages? |
+| items | [`item`] | All of the templates that Eleventy processed. Is this always the same as the number of pages? |
 | sortAscending | Boolean | ? Whether the items are sorted in ascending order? |
 | sortNumeric | Boolean | ? Whether the items are sorted in numeric order? |
 | sortFunctionStringMap | object | Something to do with the sorting stuff. We're not going to talk about it here. |
-[Collection properties]
+[<div class="table-caption">Collection properties</div>]
 
 We're going to look at what an `item` looks like.[^thing]
 
@@ -61,8 +61,8 @@ We're going to look at what an `item` looks like.[^thing]
 | inputPath | string | A path relative to the source directory. Though really it's more like `./src/index.md` where `src` is the source directory. |
 | fileSlug | string | The base name of the input file. The final element in the path. Never `index`. If the file is index.md, the slug is an empty string. |
 | data | object | Whoa |
-| date | string | An the file's date in ISO 8601 format. There's some trickery about dates. |
-| _pages | [stuff] | Something to do with Elventy's caching that I'm not even going to think about. |
+| date | string | An the file's date in <span style="font-variant-caps: small-caps; font-variant: small-caps">ISO 8601</span> format. There's some trickery about dates. |
+| _pages | [`stuff`] | Something to do with Elventy's caching that I'm not even going to think about. |
 | url | string | The URL of this page. Actually just the path without the scheme, host, port info etc. |
 | outputPath | string | Where the processed file ended up. Relative to where `.eleventy.js` is |
-[item properties]
+[<div class="table-caption">item properties</div>]
