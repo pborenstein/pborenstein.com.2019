@@ -437,9 +437,10 @@ caption {
 .table-caption {
   width: max-content;
   padding: 0;
-  border-bottom: var(--fadedred);
-  box-shadow: inset 0 -4px 0 var(--fadedred);
+  /* border-bottom: var(--fadedred);
+  box-shadow: inset 0 -4px 0 var(--fadedred); from wired */
   float: right;
+  background-image: linear-gradient(180deg,transparent 75%,var(--fadedred) 0) /* from https://www.ideo.com/ */
 }
 
 thead th:nth-child(1) {
