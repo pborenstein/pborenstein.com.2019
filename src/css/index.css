@@ -201,6 +201,11 @@ a[href].tag:visited {
   margin: 0 0 1em 0;
 }
 
+.postlist-item::first-letter {
+  color: var(--darkred);
+  font-weight: 450;
+}
+
 
 .postlist-date {
   font-size: 60%;

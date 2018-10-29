@@ -1,4 +1,5 @@
 ---
+date: 2018-10-18
 title: How collections get built
 tags:
   - eleventy

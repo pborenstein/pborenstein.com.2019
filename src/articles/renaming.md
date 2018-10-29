@@ -1,4 +1,5 @@
 ---
+date: 2018-10-18
 title: "Renamering"
 layout: layouts/article.njk
 tags:

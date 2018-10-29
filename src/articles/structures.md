@@ -1,13 +1,10 @@
 ---
 date: 2018-10-22
-layout: layouts/home.njk
 title: Data Structures
 tags:
-  - nav
-navtitle: data
+  - eleventy
+templateClass: tmpl-post
 ---
-
-# {{ title }}
 
 OK, so.
 
