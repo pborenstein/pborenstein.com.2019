@@ -8,6 +8,8 @@ navtitle: Home
 
 ### I'm Philip Borenstein
 
+This is a random picture from [Lorem Picsum](https://picsum.photos/).
+
 ![](https://picsum.photos/512/128?gravity=center&random)
 
 
