@@ -11,7 +11,7 @@ tags:
 - reviews
 ---
 
-So there was a lot of press about [Robert Caro's](https://en.wikipedia.org/wiki/Robert_Caro) [latest installment](https://www.amazon.com/gp/product/0679405070/ref=as_li_ss_tl?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0679405070) of his Lyndon Johnson biography. I haven't read the first three volumes of it. I'm saving them for when I run out of things to read.
+So there was a lot of press about [Robert Caro's](https://en.wikipedia.org/wiki/Robert_Caro) latest installment of his Lyndon Johnson biography. I haven't read the first three volumes of it. I'm saving them for when I run out of things to read.
 
 
 

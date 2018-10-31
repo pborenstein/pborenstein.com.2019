@@ -30,6 +30,6 @@ But we'll never know for sure what happens in this movie because if this it teac
 
 The only thing that is certain is that we spent 94 minutes watching it. Of that there is no question whatever.
 
-Kael called [her review](https://www.amazon.com/gp/product/0714529753?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0714529753)
- of _Marienbad_ (along with _[La Dolce Vita](https://en.wikipedia.org/wiki/La_dolce_vita)_ and _[La Notte](https://en.wikipedia.org/wiki/La_notte)_) "The Come-Dressed-As-the-Sick-Soul-of-Europe Parties." It occurs to me that I haven't seen the other movies in Kael's review. And it occurs to me, too, that I don't have to. That's because at long last I've seen _Marienbad_.
+Kael called her review
+ of _Marienbad_ (along with _La Dolce Vita_ and _La Notte](https://en.wikipedia.org/wiki/La_notte)_) "The Come-Dressed-As-the-Sick-Soul-of-Europe Parties." It occurs to me that I haven't seen the other movies in Kael's review. And it occurs to me, too, that I don't have to. That's because at long last I've seen _Marienbad_.
 

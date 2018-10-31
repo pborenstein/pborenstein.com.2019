@@ -17,9 +17,9 @@ Reader, it isn't.
 
 
 I love goofy books that purport to explain the secret of origins of things. I read
-[_Holy Blood, Holy Grail_](https://www.amazon.com/gp/product/0440136482?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0440136482)
+_Holy Blood, Holy Grail_
 long before
-[_The Da Vinci Code_](https://www.amazon.com/gp/product/0307277674?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0307277674) came out (so I knew who Dan Brown had been cribbing from). And who didn't love [_Foucault's Pendulum_](https://www.amazon.com/gp/product/015603297X?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=015603297X)?
+_The Da Vinci Code_ came out (so I knew who Dan Brown had been cribbing from). And who didn't love _Foucault's Pendulum_?
 
 _The Secret History of the World_ starts off well enough. In the introduction, Mark Booth, the author (who [uses the name Jonathan Black as well](https://quercusblog.typepad.com/insideoutthinking/2007/12/enough-damage.html)-- go figure) talks about working in a publishing house where he meets a man who seems to know a lot about the Mystery Schools. At one point Mystery Man offers to introduce him to some people. Our hero demurs partly out of fear, but mostly because he wants to tell us the story without breaking any oaths.
 

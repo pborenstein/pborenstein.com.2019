@@ -34,7 +34,7 @@ I flew with the Bobble. Just make sure that you empty it before you go through T
 
 But the true test was using water that I knew tasted bad. In this particular venue, the water has the metallic taste of old pipes used too infrequently. I filled up my Bobble with this water, and I drank. It was good. Not Maine good. But pretty good.
 
-You can get a [pack of six](https://www.amazon.com/gp/product/B003BXSED8?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B003BXSED8)![](https://www.assoc-amazon.com/e/ir?t=pbore-20&l=as2&o=1&a=B003BXSED8) from Amazon as well as single bottles from other vendors.
+You can get a pack of six from Amazon as well as single bottles from other vendors.
 
 
 

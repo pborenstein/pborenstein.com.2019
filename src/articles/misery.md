@@ -13,7 +13,7 @@ I came at this book in a roundabout way.  I don't really like Stephen King's boo
 
 I was reading Merlin Mann's [The Problem with “Feeling Creative”](https://www.43folders.com/2009/01/02/feeling-creative)  for inspiration.  Or, as he says in his post, I was reading Merlin Mann to avoid doing something else because I wanted to _feel_ creative instead of _being_ creative.
 
-Somewhere near the top of his post, he mentions books that talk about the creative process and singled out Stephen King's [On Writing](https://www.amazon.com/gp/product/0743455967?ie=UTF8&tag=pbore-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0743455967) as an exemplar of the genre. I downloaded it to read with my iPhone's Kindle app, and it was pretty good.
+Somewhere near the top of his post, he mentions books that talk about the creative process and singled out Stephen King's On Writing as an exemplar of the genre. I downloaded it to read with my iPhone's Kindle app, and it was pretty good.
 
 Throughout _On Writing_, King talks about how he wrote his books which, for the most part, involved a lot of sitting down at his chair and writing. Mr King had something of a drug habit (it's not clear whether prolonged chair-sitting caused or enabled it), and apparently _Misery_ was about that. I was curious about the story of a fan mutilating a writer to keep him productive and docile.
 
