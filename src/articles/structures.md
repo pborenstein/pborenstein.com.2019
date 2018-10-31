@@ -8,9 +8,46 @@ templateClass: tmpl-post
 
 OK, so.
 
+This is all throat-clearing to get to where
+we want to go: To create a page-level property
+`categories` that works in a way similar to `tags`.
+
+It may turn out that the easier way to do this
+is to just use the existing `tag` mechanism.
+It's just that the idea of having to write something
+like this is kind of gross:
+
+``` text
+---
+date: 10/30/2018
+title: Loomings
+tags:
+  - classics
+  - contrived
+  - _cat_examples
+---
+```
+
+It should look like this:
+
+``` text
+---
+date: 10/30/2018
+title: Loomings
+categories:
+  - examples
+tags:
+  - classics
+  - contrived
+---
+```
+
+## Effing `tags`: how do they work?
+
 Eleventy treats the `tags` page property special.
 For every tag name, there's a corresponding array
-of all the templates with that tag.
+of all the templates with that tag.^[I should probably
+write this in English at some point.]
 
 When you want to create a new collection that's not
 a tag, you can use `addCollection()` in your
@@ -41,9 +78,10 @@ So, what's in this `collection` parameter?
 | sortFunctionStringMap | object | Something to do with the sorting stuff. We're not going to talk about it here. |
 [<div class="table-caption">Collection properties</div>]
 
-We're going to look at what an `item` looks like.[^thing]
+We're interested in the `items` array.
+This table shows what an `item` looks like.[^item]
 
-[^thing]: I'm using the notation `[item]` to indicate that
+[^item]: I'm using the notation `[item]` to indicate that
       the property called `items` is an array of item objects.
       There really isn't an `item` object. In other words,
       you'll never see JSON like this:
@@ -67,3 +105,5 @@ We're going to look at what an `item` looks like.[^thing]
 | url | string | The URL of this page. Actually just the path without the scheme, host, port info etc. |
 | outputPath | string | Where the processed file ended up. Relative to where `.eleventy.js` is |
 [<div class="table-caption">item properties</div>]
+
+Let's put links in these tables.
