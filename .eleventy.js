@@ -23,6 +23,7 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
+  eleventyConfig.addCollection("catList", require("./_11ty/getCatList"));
 
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/css");
