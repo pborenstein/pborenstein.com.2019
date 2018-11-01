@@ -27,9 +27,6 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/portfolio");
-  eleventyConfig.addPassthroughCopy("src/resume")
-  eleventyConfig.addPassthroughCopy("src/rbac")
   eleventyConfig.addPassthroughCopy("src/assets")
 
   /* Markdown Plugins */
