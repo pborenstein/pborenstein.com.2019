@@ -4,6 +4,7 @@ const debug = require("debug")("catlist");
 module.exports = function(collection) {
   let catSet = new Set();
   debug(JSON.stringify(decycle(collection), null, 2))
+  let sortedCollection = collection.getAllSorted();
   collection.getAllSorted().forEach(function(item) {
     if( "categories" in item.data ) {
       let categories = item.data.categories;

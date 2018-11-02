@@ -107,3 +107,12 @@ This table shows what an `item` looks like.[^item]
 [<div class="table-caption">item properties</div>]
 
 Let's put links in these tables.
+
+## Eff that. Use the VS Code debugger
+
+Because what we really want to do
+is: to create a page-level property
+`categories` that works in a way similar to `tags`.
+
+How would we actually use the categories?
+
