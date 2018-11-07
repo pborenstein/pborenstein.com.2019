@@ -2,10 +2,13 @@ const decycle = require('json-cycle').decycle
 const debug = require("debug")("catlist");
 
 module.exports = function(collection) {
-  let catSet = new Set();
-  debug(JSON.stringify(decycle(collection), null, 2))
+  let catSet = new Set()
+  let decycled = JSON.stringify(decycle(collection), null, 2)
   let sortedCollection = collection.getAllSorted();
-  collection.getAllSorted().forEach(function(item) {
+
+  debug(decycled)
+
+  sortedCollection.forEach(function(item) {
     if( "categories" in item.data ) {
       let categories = item.data.categories;
       if( typeof categories === "string" ) {
