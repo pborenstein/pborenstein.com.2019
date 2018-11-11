@@ -179,9 +179,69 @@ getFilteredByTag(tagName) {
 }
 ```
 
+This is how the the individual collections
+get into to the `collections` property.
+
+
+``` js
+async getTaggedCollectionsData() {
+  let collections = {};
+  collections.all = this.createTemplateMapCopy(
+    this.collection.getAllSorted()
+  );
+  debug(`Collection: collections.all size: ${collections.all.length}`);
+
+  let tags = this.getAllTags();
+  for (let tag of tags) {
+    collections[tag] = this.createTemplateMapCopy(
+      this.collection.getFilteredByTag(tag)
+    );
+    debug(`Collection: collections.${tag} size: ${collections[tag].length}`);
+  }
+  return collections;
+}
+
+```
+
+Where does it get called? In `TemplateMap.cache()`.
+Hmmm. That's not terribly useful. Is that where
+the magic happens?
+
+I'm getting ahead of myself.
+
+- Can an article have more than one category,
+  or only one?
+- What would it mean for there to be more than
+  one category?
+- OK, only one category.
+
+
+What is a category?
+
+It's like a newspaper section.
+
+What are the categories then?
+
+- Tech
+- Work
+- Personal
+- Books
+- Movies
+- Code
+- Parenting
+- Life
+- Religion
+- Relationships
+
+The idea is to build silos for things
+that shouldn't go together.
+Or that don't necessarily go together.
 
 
 
+<!--
+            F O O T N O T E S
+-->
 
 [^realgetuser]: `getUserConfigCollectionsData` is actually implemented like this:
       ```js
