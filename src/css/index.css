@@ -399,7 +399,7 @@ pre {
 	hyphens: none;
 	padding: 1em;
 	margin: .5em 0;
-	background-color: #f6f6f6;
+	background-color: #f6f6f6 !important;
 }
 
 .highlight-line {
