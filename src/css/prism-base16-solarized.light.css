@@ -23,7 +23,9 @@ pre[class*="language-"] {
   -webkit-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+/*
   background: #fdf6e3;
+ */
   color: #586e75;
 }
 
