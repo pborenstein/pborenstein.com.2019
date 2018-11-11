@@ -410,8 +410,7 @@ pre {
 	background-color: #222;
 }
 .highlight-line-active {
-	background-color: #444;
-	background-color: hsla(0, 0%, 27%, .8);
+background-color: #d6d0c1;
 }
 .highlight-line-add {
 	background-color: #45844b;
