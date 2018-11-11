@@ -119,37 +119,7 @@ Haven't we done this already?
 [Yes we have.](/articles/how-collections-built/)
 
 The [place where that happens](https://github.com/11ty/eleventy/blob/master/src/TemplateMap.js#L165-L189)
-looks like this:
-
-```js
-  async getUserConfigCollectionsData() {
-    let collections = {};
-    let configCollections =
-      this.configCollections || eleventyConfig.getCollections();
-    for (let name in configCollections) {
-      let ret = configCollections[name](this.collection);
-
-      // work with arrays and strings returned from UserConfig.addCollection
-      if (
-        Array.isArray(ret) &&
-        ret.length &&
-        ret[0].inputPath &&
-        ret[0].outputPath
-      ) {
-        collections[name] = this.createTemplateMapCopy(ret);
-      } else {
-        collections[name] = ret;
-      }
-
-      debug(
-        `Collection: collections.${name} size: ${collections[name].length}`
-      );
-    }
-    return collections;
-  }
-```
-
-It used to look like this:
+looks like this:[^realgetuser]
 
 ``` js
 async getUserConfigCollectionsData() {
@@ -168,120 +138,97 @@ async getUserConfigCollectionsData() {
 }
 ```
 
-And this is the typical way of creating a collection:
+
+This is a typical way of creating a collection.
 
 ``` js
-eleventyConfig.addCollection("articles", function(collection) {
-  return collection.getAllSorted().filter(function(item) {
-    return item.url && item.inputPath.startsWith('./src/articles/');
-  });
-});
+eleventyConfig.addCollection("articles", collection =>
+  collection.getAllSorted()
+            .filter(item => item.url &&
+                            item.inputPath.startsWith('./src/articles/'))
+})
+```
+
+We're creating a collection
+made up of pages
+that were rendered
+from templates
+in the `./src/articles/` directory.^[The current directory `.` is the directory
+that you're executing `eleventy` in. It contains `.eleventy.js`.]
+
+
+And this collection is
+made up of pages
+that were rendered
+from templates
+that have a `fun-examples` tag.
+
+``` js
+  eleventyConfig.addCollection("fun-examples", collection =>
+    collection.getFilteredByTag("fun-examples"));
 ```
 
 
-## The Lost Examples
+Let's look at how `getFilteredByTag()` is implemented.[^realgetfiltered]
 
-> There's a set of `addCollection()` examples
-> that went missing around v5.0.4.
->
-> Most of them are examples of sorting.
-
-The data collection gets passed to the callback.
-You can use it in all sorts of ways:
-
-```js
-module.exports = function(eleventyConfig) {
-  // Unsorted items (in whatever order they were added)
-  eleventyConfig.addCollection("allMyContent", function(collection) {
-    return collection.getAll();
-  });
-};
-```
-
-```js
-module.exports = function(eleventyConfig) {
-  // Use the default sorting algorithm (ascending by date, filename tiebreaker)
-  eleventyConfig.addCollection("allMySortedContent", function(collection) {
-    return collection.getAllSorted();
-  });
-};
-```
-
-
-```js
-module.exports = function(eleventyConfig) {
-  // Get only content that matches a tag
-  eleventyConfig.addCollection("myPosts", function(collection) {
-    return collection.getFilteredByTag("post");
-  });
-};
-```
-
-```js
-module.exports = function(eleventyConfig) {
-  // Filter using `Array.filter`
-  eleventyConfig.addCollection("keyMustExistInData", function(collection) {
-    return collection.getAll().filter(function(item) {
-      // Side-step tags and do your own filtering
-      return "myCustomDataKey" in item.data;
-    });
-  });
-};
-```
-
-```js
-module.exports = function(eleventyConfig) {
-  // Filter using `Array.filter`
-  eleventyConfig.addCollection("onlyMarkdown", function(collection) {
-    return collection.getAllSorted().filter(function(item) {
-      // Only return content that was originally a markdown file
-      let extension = item.inputPath.split('.').pop();
-      return extension === "md";
-    });
-  });
-};
-```
-```js
-module.exports = function(eleventyConfig) {
-  // Filter source file names using a glob
-  eleventyConfig.addCollection("onlyMarkdown", function(collection) {
-    return collection.getFilteredByGlob("**/*.md");
-  });
-};
-```
-
-```js
-module.exports = function(eleventyConfig) {
-  // Filter source file names using a glob
-  eleventyConfig.addCollection("posts", function(collection) {
-    return collection.getFilteredByGlob("_posts/*.md");
-  });
-};
-```
-
-```js
-module.exports = function(eleventyConfig) {
-  // Sort with `Array.sort`
-  eleventyConfig.addCollection("myCustomSort", function(collection) {
-    return collection.getAll().sort(function(a, b) {
-      return b.date - a.date;
-    });
-  });
-};
-```
-
-For example, that last `myCustomSort` collection will be available in your templates as `collections.myCustomSort`.
-
-Hmmm. Here's something. Let's look at how `getFilteredByTag()`
-is implemented.[^not-really]
-
-[^not-really]: This is kind of like it's implemented.
-  It should use `some()`.
-
-``` js/6-10
+``` js
 getFilteredByTag(tagName) {
   return this.getAllSorted()
              .filter(item =>
-                item.data.tags.some(e => tag === tagName))
+                item.data.tags.some(tag => tag === tagName))
 }
 ```
+
+
+
+
+
+[^realgetuser]: `getUserConfigCollectionsData` is actually implemented like this:
+      ```js
+      async getUserConfigCollectionsData() {
+        let collections = {};
+        let configCollections =
+          this.configCollections || eleventyConfig.getCollections();
+        for (let name in configCollections) {
+          let ret = configCollections[name](this.collection);
+
+          // work with arrays and strings returned from UserConfig.addCollection
+          if (
+            Array.isArray(ret) &&
+            ret.length &&
+            ret[0].inputPath &&
+            ret[0].outputPath
+          ) {
+            collections[name] = this.createTemplateMapCopy(ret);
+          } else {
+            collections[name] = ret;
+          }
+
+          debug(
+            `Collection: collections.${name} size: ${collections[name].length}`
+          );
+        }
+        return collections;
+      }
+      ```
+
+[^realgetfiltered]: `getFilteredByTag` is actually implemented like this:
+      ``` js
+      getFilteredByTag(tagName) {
+      return this.getAllSorted().filter(function(item) {
+        let match = false;
+        if (!tagName) {
+          return true;
+        } else if (Array.isArray(item.data.tags)) {
+          item.data.tags.forEach(tag => {
+            if (tag === tagName) {
+              match = true;
+            }
+          });
+          // This branch should no longer be necessary per TemplateContent.cleanupFrontMatterData
+        } else if (typeof item.data.tags === "string") {
+          match = item.data.tags === tagName;
+        }
+        return match;
+      });
+      ```
