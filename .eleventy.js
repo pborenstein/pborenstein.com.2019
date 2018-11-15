@@ -15,12 +15,20 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toISODate();
   });
 
-  // only content in the `articles/` directory
-  eleventyConfig.addCollection("articles", function(collection) {
-    return collection.getAllSorted().filter(function(item) {
-      return item.url && item.inputPath.startsWith('./src/articles/');
-    });
-  });
+
+
+  //  The `articles` collection contains
+  //  only pages that are in the `./src/articles/` directory
+
+  eleventyConfig
+    .addCollection("articles",
+        (collection) =>
+          collection
+            .getAllSorted()
+            .filter((item) =>
+              item.url && item.inputPath.startsWith('./src/articles/')
+    )
+  );
 
   eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
   eleventyConfig.addCollection("catList", require("./_11ty/getCatList"));
