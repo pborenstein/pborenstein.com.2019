@@ -2,8 +2,7 @@
 date: 2009-08-07 13:52:12
 slug: finding-oz
 title: Finding Oz
-categories:
-- Books I Never Finished
+category: Culture
 tags:
 - books
 - reviews

@@ -3,9 +3,7 @@ date: 2010-06-28 15:00:10
 slug: ability-disability-inability
 title: 'Ability, Disability, and Inability'
 subtitle: 'Notes from a one-eyed man'
-categories:
-- Life
-- Movies I've Seen
+category: Life
 tags:
 - ability
 - aging

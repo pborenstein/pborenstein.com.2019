@@ -2,8 +2,7 @@
 date: 2011-03-02 01:43:21
 slug: dress
 title: Dress
-categories:
-- Life
+category: Culture
 tags:
 - photos
 ---

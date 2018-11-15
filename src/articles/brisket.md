@@ -2,8 +2,7 @@
 date: 2009-09-21 04:49:30
 slug: brisket
 title: Brisket
-categories:
-- Life
+category: Life
 tags:
 - recipes
 ---

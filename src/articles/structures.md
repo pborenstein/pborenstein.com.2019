@@ -34,7 +34,7 @@ It should look like this:
 ---
 date: 10/30/2018
 title: Loomings
-categories:
+category:
   - examples
 tags:
   - classics
@@ -219,24 +219,61 @@ I'm getting ahead of myself.
 What is a category?
 
 It's like a newspaper section.
-
-What are the categories then?
-
-- Tech
-- Work
-- Personal
-- Books
-- Movies
-- Code
-- Parenting
-- Life
-- Religion
-- Relationships
-
 The idea is to build silos for things
 that shouldn't go together.
 Or that don't necessarily go together.
 
+What are the categories then?
+
+<div style="column-count: 3">
+<div>
+
+- CULTURE
+  - movies
+  - books
+  - writing
+  - poetry
+</div>
+<div>
+
+- TECH
+  - code
+  - gadgets
+  - tools
+  - work
+</div>
+<div>
+
+- LIFE
+  - parenting
+  - relationships
+  - divorce
+  - religion
+</div>
+</div>
+
+
+
+``` text
+---
+date: 10/30/2018
+title: Loomings
+category: Tech
+tags:
+  - tools
+  - git
+  - eleventy
+---
+```
+
+What's the default category?
+- stuff
+- misc
+- things
+- uncategorized
+
+Maybe a special category name
+that never gets rendered.
 
 
 <!--

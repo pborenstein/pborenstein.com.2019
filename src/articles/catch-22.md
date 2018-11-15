@@ -2,8 +2,7 @@
 date: 2012-02-09 11:49:43
 slug: catch-22
 title: Catch-22
-categories:
-- Books I Never Finished
+category: Culture
 tags:
 - books
 - parenting

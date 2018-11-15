@@ -2,8 +2,7 @@
 date: 2010-01-09 03:20:09
 slug: the-talented-miss-highsmith
 title: The Talented Miss Highsmith
-categories:
-- Books I Never Finished
+category: Culture
 tags:
 - books
 - reviews

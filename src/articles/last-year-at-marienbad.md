@@ -2,8 +2,7 @@
 date: 2010-02-03 20:07:02
 slug: last-year-at-marienbad
 title: Last Year at Marienbad
-categories:
-- Movies I've Seen
+category: Culture
 tags:
 - movies
 - pretentious French films

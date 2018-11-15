@@ -2,8 +2,7 @@
 date: 2009-08-03 16:14:00
 slug: debugging
 title: Debugging
-categories:
-- Life
+category: Life
 tags:
 - coding
 - parenting

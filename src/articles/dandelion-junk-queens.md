@@ -2,9 +2,7 @@
 date: 2010-08-22 14:12:00
 slug: dandelion-junk-queens
 title: Dandelion Junk Queens
-categories:
-- Life
-- Travel
+category: Life
 tags:
 - music
 - photos

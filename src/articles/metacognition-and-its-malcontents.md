@@ -2,9 +2,7 @@
 date: 2010-06-21 21:21:10
 slug: metacognition-and-its-malcontents
 title: Metacognition and its malcontents
-categories:
-- Life
-- Work
+category: Life
 tags:
 - ability
 - dunning kruger

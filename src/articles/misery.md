@@ -2,8 +2,7 @@
 date: 2009-08-23 03:32:28
 slug: misery
 title: Misery
-categories:
-- Books I Never Finished
+category: Culture
 tags:
 - books
 - reviews
