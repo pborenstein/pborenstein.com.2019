@@ -1,7 +1,6 @@
 const decycle = require('json-cycle').decycle
 const debug = require("debug")("catlist");
 
-const propInObject = (p, o) => (p in o)
 
 module.exports = function(collection) {
   let catSet = new Set()
@@ -11,16 +10,13 @@ module.exports = function(collection) {
   debug(decycled)
 
   sortedCollection.forEach(function(item) {
-    if (!propInObject("categories", item.data.collections)) {
+    if (! ("categories" in item.data.collections)) {
       // no categories collection? make one
-      item.data.collections.categories = {}
+      item.data.collections.categories = []
     }
 
-
-    if (propInObject("categories", item.collections)) {
-      if (typeof item.data.category === "string") {
-        catSet.add(item.data.category)
-      }
+    if (typeof item.data.category === "string") {
+      catSet.add(item.data.category)
     }
   });
 
