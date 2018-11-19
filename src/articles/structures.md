@@ -169,7 +169,7 @@ that have a `fun-examples` tag.
 ```
 
 
-Let's look at how `getFilteredByTag()` is implemented.[^realgetfiltered]
+Let's look at how `getFilteredByTag()` is implemented:[^realgetfiltered]
 
 ``` js
 getFilteredByTag(tagName) {
@@ -180,7 +180,7 @@ getFilteredByTag(tagName) {
 ```
 
 This is how the the individual collections
-get into to the `collections` property.
+get into to the `collections` property:
 
 
 ``` js
@@ -203,7 +203,8 @@ async getTaggedCollectionsData() {
 
 ```
 
-Where does it get called? In `TemplateMap.cache()`.
+Where does `getTaggedCollectionsData` get called?
+In `TemplateMap.cache()`.
 Hmmm. That's not terribly useful. Is that where
 the magic happens?
 
@@ -274,6 +275,25 @@ What's the default category?
 
 Maybe a special category name
 that never gets rendered.
+It doesn't really matter.
+
+OK, so what we're going to do is
+to make our `getCatList` function
+do several things:
+
+- create the categories collection^[I am embarrassed about this side-effect thing.]
+- create a collection with all of the
+  category names
+
+Have we talked about how we're actually going
+going to use these categories?
+Something like this:
+
+``` liquid
+
+
+```
+
 
 
 <!--
