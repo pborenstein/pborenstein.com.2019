@@ -121,7 +121,7 @@ Haven't we done this already?
 The [place where that happens](https://github.com/11ty/eleventy/blob/master/src/TemplateMap.js#L165-L189)
 looks like this:[^realgetuser]
 
-``` js
+``` js/6
 async getUserConfigCollectionsData() {
   let collections = {};
   let configCollections =
@@ -183,7 +183,7 @@ This is how the the individual collections
 get into to the `collections` property:
 
 
-``` js
+``` js/9
 async getTaggedCollectionsData() {
   let collections = {};
   collections.all = this.createTemplateMapCopy(
