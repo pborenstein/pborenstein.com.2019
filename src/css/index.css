@@ -67,7 +67,7 @@ body {
     "....  foot";
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   .wrapper {
     display: inherit;
     grid-template-columns: 1fr;
@@ -145,6 +145,12 @@ blockquote {
 
 ul, ol {
   margin: 0 0 1rem 0;
+  padding-left: 2em;
+}
+
+li > ul,
+li > ol {
+  padding-left: 1.1em;
 }
 
 /*  the default UL OL has 40px left padding! */
