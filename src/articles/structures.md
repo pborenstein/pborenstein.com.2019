@@ -290,8 +290,9 @@ going to use these categories?
 Something like this:
 
 ``` liquid
-
-
+{%- raw -%}
+{{ collections.categories.Culture }}
+{%- endraw -%}
 ```
 
 
