@@ -13,7 +13,7 @@
       </span>
     </a>
     {{ timeTag(article.date, "postlist-date")}}
-    <div>
+    <div style="display: none">
 		{% for tag in article.data.tags | sort %}
            {% set tagUrl %}/tags/{{ tag }}/{% endset %}
      <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a>

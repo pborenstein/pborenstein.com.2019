@@ -1,0 +1,18 @@
+---
+pagination:
+  data: collections.categories
+  resolve: values
+  alias: articles
+  size: 1
+
+layout: layouts/home.njk
+permalink: /categories/{{ articles[0].data.category }}/
+---
+
+<h1>Articles in {{articles[0].data.category}}</h1>
+
+{% from "macros.njk" import articlesList  %}
+
+
+{{ articlesList(articles) }}
+

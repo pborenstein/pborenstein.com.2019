@@ -1,6 +1,7 @@
 ---
 date: 2018-10-18
 title: About collections
+category: Tech
 tags:
   - eleventy
   - common

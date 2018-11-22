@@ -2,6 +2,7 @@
 date: 2018-10-18
 title: "Renamering"
 layout: layouts/article.njk
+category: Tech
 tags:
   - eleventy
 #   - nav

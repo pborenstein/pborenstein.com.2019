@@ -1,0 +1,20 @@
+---
+pagination:
+  data: collections.categories
+  resolve: values
+  alias: xyx
+  size: 1
+layout: layouts/home.njk
+permalink: /ejs/A-<%- pagination.pageNumber -%>/
+---
+
+
+PAGINATION
+<%- JSON.stringify(decycle(pagination), null, 2) -%>
+
+
+<%_
+
+function decycle(t){var r=[],e=[];return function t(n,o){var f,c,i,p=n&&n.toJSON instanceof Function?n.toJSON():n;if("object"==typeof p&&null!==p){for(f=0;f<r.length;f+=1)if(r[f]===p)return{$ref:e[f]};if(r.push(p),e.push(o),"[object Array]"===Object.prototype.toString.apply(p))for(i=[],f=0;f<p.length;f+=1)i[f]=t(p[f],o+"["+f+"]");else{i={};for(c in p)Object.prototype.hasOwnProperty.call(p,c)&&(i[c]=t(p[c],o+"["+JSON.stringify(c)+"]"))}return i}return p}(t,"$")}
+
+_%>

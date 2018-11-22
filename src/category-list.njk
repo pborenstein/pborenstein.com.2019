@@ -1,0 +1,18 @@
+---
+permalink: /categories/
+layout: layouts/home.njk
+tags:
+  - nav
+navtitle: Categories
+title: Categories
+---
+<h1>{{title}}</h1>
+
+<ul>
+{% for cat in collections.catList | sort %}
+  {% set catUrl %}/categories/{{ cat }}/{% endset %}
+  <li>
+  <a href="{{ catUrl | url }}" class="cat">{{ cat }}</a>
+  </li>
+{% endfor %}
+</ul>

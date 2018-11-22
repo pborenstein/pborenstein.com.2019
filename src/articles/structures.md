@@ -1,6 +1,7 @@
 ---
 date: 2018-10-22
 title: Data Structures
+category: Tech
 tags:
   - eleventy
 templateClass: tmpl-post
@@ -294,6 +295,89 @@ Something like this:
 {{ collections.categories.Culture }}
 {%- endraw -%}
 ```
+
+## Now what?
+
+Let's see if this works.
+Let's try to make category pages
+analogous to the tag pages.
+
+Where to start? The tag list in
+`tags-list.njk` looks like this:
+
+``` liquid
+{%- raw -%}
+---
+permalink: /tags/
+layout: layouts/home.njk
+---
+<h1>Tags</h1>
+
+{% for tag in collections.tagList | sort %}
+  {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+  <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+{% endfor %}
+{%- endraw -%}
+```
+
+Let's make a copy of it called
+`category-list.njk`.
+And copy `tags.njk`
+to `categories.njk`.
+
+OK, this is weird.
+
+This is how I create the categories.
+There's a new `categories` property in `data.collections`.
+Then for each category, the idea is to create
+an array element / object property.
+I want to be able to write
+`collections.categories.Culture`.
+
+
+
+``` js
+  sortedCollection.forEach(function(item) {
+    if (! ("categories" in item.data.collections)) {
+      // no categories collection? make one
+      item.data.collections.categories = {}
+    }
+
+    if (typeof item.data.category === "string") {
+      catSet.add(item.data.category)
+      if (!Array.isArray(item.data.collections.categories[item.data.category])) {
+        item.data.collections.categories[item.data.category] = []
+      }
+
+      item.data.collections.categories[item.data.category].push(item)
+    }
+  });
+```
+So I'll get something like this:
+
+``` json
+collections: {
+  all: [ items ],
+  categories: {
+    Culture: [ items ],
+    Life: [ items ],
+    Thinking: [ items ]
+  }
+}
+```
+
+I was getting an error:
+
+``` text
+TypeError: collections[collectionName] is not iterable
+```
+
+This turned out to be a bug,
+where Eleventy was expecting
+that every property was some sort
+of array. This gets fixed in [version
+0.6.0.](https://github.com/11ty/eleventy/issues/277).
+
 
 
 
