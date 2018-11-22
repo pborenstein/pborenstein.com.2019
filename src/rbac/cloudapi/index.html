@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Using Access Control with CloudAPI</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/styles/styles.css"    rel="stylesheet" type="text/css"  />
+  <link href="/assets/styles/docstyles.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/styles/prettify.css"  rel="stylesheet" type="text/css" />
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('pre').each(function() {
+              var thepre = $(this);
+              if (thepre.hasClass('javascript') ||
+                  thepre.hasClass('js') ||
+                  thepre.hasClass('shell') ||
+                  thepre.hasClass('bash')
+                 )
+                thepre.addClass('prettyprint');
+          });
+          prettyPrint();
+      });
+    </script>
+
+
+
+</head>
+
+<body>
+
+  <div id="header">
+      <div style="margin: 10px 10px">
+        <p>
+          Philip Borenstein: Writing sample <br/>
+          This is a snapshot of this topic when I wrote it.<br/>
+          You can find the current version in the
+          <a href="http://docs.joyent.com">Joyent documentation.</p>
+        </p>
+      </div>
+  </div>
+  <div id="sidebar">
+    <div class="menu">
+      <form id="search" action="/search"><input type="search" name="q" placeholder="Search..."></form>
+
+<ul>
+
+
+
+	<li class="depth-1">
+
+	<a href="/rbac">Role Based Access Control</a>
+
+
+<ul>
+
+
+
+	<li class="depth-2 hasChildren">
+
+	<a href="/rbac/quickstart">Getting Started with Access Control: CLI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/portal">Getting Started with Access Control: Portal</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a class="active" href="/rbac/cloudapi">Using Access Control with CloudAPI</a>
+
+
+<ul>
+
+
+
+</ul>
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/users">Working with Users</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/roles">Working with Roles</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/policies">Working with Policies</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/rules">Working with Rules</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/underthehood">Under the Hood</a>
+
+
+	</li>
+
+
+</ul>
+
+	</li>
+
+
+</ul>
+    </div>
+        <div class="footblock">
+    <p>© 2015 <a href="http://joyent.com">Joyent, Inc.</a> | <a href="mailto:&#x73;&#117;&#x70;&#x70;&#111;&#x72;&#x74;&#x40;&#106;&#111;&#121;&#101;&#110;&#116;&#x2e;&#99;&#x6f;&#109;">Questions, comments, feeback.</a></p></div>
+  </div>
+<div id="content" class="content">
+    <nav class="breadcrumb">
+	<ul>
+					<li><a href="/">Home &rsaquo;</a></li>
+					<li><a href="/rbac">Role Based Access Control &rsaquo;</a></li>
+			</ul>
+</nav>    <h1>Using Access Control with CloudAPI</h1>
+    <div class="infoblock">
+                
+    <div class="stability_3 stability">
+        Stability: <a href="/stability">Stable</a>
+    </div>
+    </div>
+    <p>You can use role based access control
+to limit the users who can work with
+instances and other objects in your
+Joyent Cloud account by assigning
+roles to CloudAPI endpoints.</p>
+<h2>Resources in CloudAPI</h2>
+<p>In Manta resources are Manta objects.
+For CloudAPI, resources are CloudAPI endpoints
+that look like this:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">CloudAPI Documentation Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>/:account/machines/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#machines">Machines</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/users/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#users">Users</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/roles/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#roles">Roles</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/packages/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#packages">Packages</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/images/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#images">Images</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/policies/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#policies">Policies</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/keys/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#keys">Keys</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/datacenters/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#datacenters">Datacenters</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/analytics/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#analytics">Analytics</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/fwrules/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#fwrules">Fwrules</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/networks/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#networks">Networks</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/:account/instrumentations/</code></td>
+<td style="text-align: left;"><a href="https://apidocs.joyent.com/cloudapi/#instrumentations">Instrumentations</a></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>:account</code> element can be either the literal <code>my</code>
+or it can be an account name.
+The literal <code>my</code> means the account name specified
+in the the <code>--account</code> option of a CloudAPI CLI command,
+or, if missing, the account name specified by the <code>SDC_ACCOUNT</code>
+environment variable.</p>
+<p>In Manta, objects inherit roles from its parent directory.
+In CloudAPI <strong>roles are never inherited</strong>.
+You must provide a role to each resource that requires one.</p>
+<p>If a user in an account creates an object, such as an instance,
+the new object is tagged with that user's default roles,
+and any role the user assumed when the object was created.
+You can see an example of this
+in the section
+<a href="#writingaroleforinstancecreation">Writing a Role for Instance Creation</a>
+later in this page.</p>
+<h2>Working with CloudAPI and Access Control</h2>
+<p>Assume we have some instances running in the datacenter.</p>
+<pre><code>$ sdc-listmachines | json -a id name
+db1186a7-e908-632e-d609-ed960ed8bac1 first
+dbdd81f1-43a7-4adb-a5cd-d18655c4b682 second
+ad4c95dc-c813-6b63-b3b4-fc4515d36951 third</code></pre>
+<p>Maria can't do this because there's no default role that lets her list machines.</p>
+<pre><code>$ sdc-listmachines --user=maria --keyId=$MARIA_KEY
+sdc-listmachines: error (NotAuthorized): You do not have permission to access /philip/machines (listmachines)</code></pre>
+<p>But we can user <code>sdc-user get --membership</code>
+and see that she's an <code>administrator</code>.</p>
+<pre><code>$ sdc-user get 8e9fcc58-3240-4e33-d145-fad9d92c6822 --membership
+{
+  "id": "8e9fcc58-3240-4e33-d145-fad9d92c6822",
+  "login": "maria",
+  "email": "maria@example.com",
+  "city": "Boston",
+  "roles": [
+    "contractor",
+    "support",
+    "administrator",
+    "listing"
+  ],
+  "default_roles": [],
+  "updated": "2014-07-21T22:54:34.586Z",
+  "created": "2014-07-17T15:32:48.029Z"
+}</code></pre>
+<p>If Maria assumes the administrator role,
+she's able to list the machines in the datacenter.</p>
+<pre><code>$ sdc-listmachines --user=maria --keyId=$MARIA_KEY --role=administrator| json -a id name
+db1186a7-e908-632e-d609-ed960ed8bac1 first
+dbdd81f1-43a7-4adb-a5cd-d18655c4b682 second
+ad4c95dc-c813-6b63-b3b4-fc4515d36951 third</code></pre>
+<h2>Creating a List-Only Role</h2>
+<p>Let's make a role, <code>listing</code>, that allows someone
+to list all the instances, images, and packages
+available to the account.
+The <code>listonly</code> role has a single policy called <code>canlist</code>.</p>
+<p>First, let's create the policy.</p>
+<pre><code>$ sdc-policy create --name=canlist \
+                    --rules='CAN listmachines' \
+                    --rules='CAN listimages' \
+                    --rules='CAN listpacakges'
+{
+  "name": "canlist",
+  "id": "ef21ba5c-ea15-4690-a074-d24cade9b9f6",
+  "rules": [
+    "CAN listimages",
+    "CAN listmachines",
+    "CAN listpackages"
+  ]
+}</code></pre>
+<p>The actions in the rules say that members of the role
+who use this policy,
+can list images, list instances (machines), and list packages.
+You an see a full list of valid CloudAPI actions
+<a href="/rbac/rules#cloudapiactions">here</a>.</p>
+<p>Now let's create the role <code>listing</code>.</p>
+<pre><code>$ sdc-role create --name=listing \
+                  --members=maria \
+                  --members=bob \
+                  --default-members=bob \
+                  --policies=canlist
+{
+  "name": "listing",
+  "id": "0596598a-8bb6-6c11-edd2-ccd2dfc4437f",
+  "members": [
+    "bob",
+    "maria"
+  ],
+  "default_members": [
+    "bob"
+  ],
+  "policies": [
+    "canlist"
+  ]
+}</code></pre>
+<h2>Tagging CloudAPI Resources with Roles</h2>
+<p>Before we can use those roles, however,
+we have to associate them with a resource.
+In CloudAPI resources are REST endpoints.</p>
+<p>Use the <code>sdc-chmod</code> command to tag the
+corresponding endpoints for the
+listimages,
+listmachines,
+and listpackages
+actions
+with the <code>listing</code> role:</p>
+<pre><code>$ sdc-chmod -- +listing /my/machines
+["listing"]
+$ sdc-chmod -- +listing /my/packages
+["listing"]
+$ sdc-chmod -- +listing /my/images
+["listing"]</code></pre>
+<p>Bob is a default member, so he can list instances (machines),
+images, and
+packages
+without assuming a role.</p>
+<pre><code>$ sdc-listmachines --user=bob --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27 | json -a id
+db1186a7-e908-632e-d609-ed960ed8bac1
+dbdd81f1-43a7-4adb-a5cd-d18655c4b682
+ad4c95dc-c813-6b63-b3b4-fc4515d36951
+
+$ sdc-listimages --user=bob --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27
+[
+  {
+    "id": "2b683a82-a066-11e3-97ab-2faa44701c5a",
+    "name": "base",
+    "version": "13.4.0",
+    "os": "smartos",
+. . .
+]</code></pre>
+<p>But Bob cannot create new instances:</p>
+<pre><code>$ sdc-createmachine --user=bob \
+                    --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27 \
+                    --image=bae9b95e-10c0-11e4-89d4-9fb9155d8bda \
+                    --package=2eac03a7-ea7f-4215-fb66-e2ef510f2cde
+sdc-createmachine: error (NotAuthorized): You do not have permission to access /philip/machines (createmachine)</code></pre>
+<h2 id="writingaroleforinstancecreation">Writing a Role for Instance Creation</h2>
+<p>To allow Bob to create new instances,
+we need a new policy and a new role.</p>
+<p>The <code>basicmachineops</code> policy allows a user
+to do some basic things with instances,
+but not others.
+For example, the policy allows a user to provision an instance
+but not to delete or rename it.</p>
+<pre><code>$ sdc-policy create --name=basicmachineops
+                    --rules='CAN listmachines' \
+                    --rules='CAN createmachine' \
+                    --rules='CAN getmachine' \
+                    --rules='CAN stopmachine' \
+                    --rules='CAN restartmachine'
+{
+  "name": "basicmachineops",
+  "id": "15d05417-1edc-4f80-9946-bf288d8a58ae",
+  "rules": [
+    "CAN listmachines",
+    "CAN createmachine",
+    "CAN getmachine",
+    "CAN stopmachine",
+    "CAN restartmachine"
+  ]
+}
+
+The role `basicmachine` will allow Bob
+to perform basic instance-related tasks.
+
+$ sdc-role create --name="basicmachine" \
+                  --members=bob \
+                  --default-members=bob \
+                  --policies=basicmachineops
+{
+  "name": "basicmachine",
+  "id": "2e7ec1ed-6b33-69d2-c5ea-b8df1657e90f",
+  "members": [
+    "bob"
+  ],
+  "default_members": [
+    "bob"
+  ],
+  "policies": [
+    "basicmachineops"
+  ]
+}</code></pre>
+<p>Now tag the <code>/my/machines</code> resource with the new role:</p>
+<pre><code>$ sdc-chmod -- +basicmachine /my/machines
+["listing","basicmachine"]</code></pre>
+<p>Now Bob can create a machine:</p>
+<pre><code>$ sdc-createmachine --user=bob \
+                    --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27 \
+                    --image=bae9b95e-10c0-11e4-89d4-9fb9155d8bda \
+                    --package=2eac03a7-ea7f-4215-fb66-e2ef510f2cde
+{
+  "id": "e571f3ab-2f2b-6b9d-8098-be5d2c39c1ee",
+  "name": "e306e5e",
+  "type": "smartmachine",
+  "state": "provisioning",
+  "image": "bae9b95e-10c0-11e4-89d4-9fb9155d8bda",
+  "ips": [],
+  "memory": 128,
+  "disk": 1280,
+  "metadata": {
+    "root_authorized_keys": "ssh-rsa AAAAB3NzaC1yc2...M384hFfS4PQ== \n"
+  },
+  "tags": {},
+  "created": "2014-08-05T03:20:37.319Z",
+  "updated": "2014-08-05T03:20:37.319Z",
+  "networks": [],
+  "dataset": "sdc:sdc:base:14.2.0",
+  "firewall_enabled": false,
+  "compute_node": null,
+  "package": "test_128"
+}</code></pre>
+<p>Note that since <code>bob</code> created the machine,
+that resource is tagged with all of Bob's active roles.
+These are all of Bob's default roles as well as any role he assumed when creating the machine.</p>
+<pre><code>$ sdc-info /my/machines/e571f3ab-2f2b-6b9d-8098-be5d2c39c1ee
+[
+  "manager",
+  "listing",
+  "basicmachine"
+]</code></pre>
+<h2>Writing Roles and Policies for Individual Resources</h2>
+<p>You can use roles to apply to individual instances (machines).
+This policy allows a user to start, stop, and reboot an instance:</p>
+<pre><code>$ sdc-policy create --name=startstop \
+                    --rules='CAN rebootmachine' \
+                    --rules='CAN stopmachine' \
+                    --rules='CAN startmachine'
+{
+  "name": "startstop",
+  "id": "6544f677-58b1-4c8d-e701-f7b6a61ab4b0",
+  "rules": [
+    "CAN rebootmachine",
+    "CAN stopmachine",
+    "CAN startmachine"
+  ]
+}</code></pre>
+<p>And this role allows <code>jill</code> to start, stop, and restart instances:</p>
+<pre><code>$ sdc-role create --name=startstop \
+                  --members=jill \
+                  --default-members=jill \
+                  --policies=startstop
+{
+  "name": "startstop",
+  "id": "73a39ab7-4192-6636-a8d9-9a981cc4fb79",
+  "members": [
+    "jill"
+  ],
+  "default_members": [
+    "jill"
+  ],
+  "policies": [
+    "startstop"
+  ]
+}</code></pre>
+<p>You can assign the <code>startstop</code> role to a specific instance:</p>
+<pre><code>$ sdc-chmod -- +startstop /my/machines/db1186a7-e908-632e-d609-ed960ed8bac1
+["startstop"]</code></pre>
+<p>Now <code>jill</code> can stop that machine:</p>
+<pre><code>$ sdc-stopmachine db1186a7-e908-632e-d609-ed960ed8bac1 \
+                  --user=jill --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27
+{}
+$ sdc-getmachine db1186a7-e908-632e-d609-ed960ed8bac1 | json state
+stopped</code></pre>
+<p>But Jill cannot stop other machines:</p>
+<pre><code>$ sdc-stopmachine ad4c95dc-c813-6b63-b3b4-fc4515d36951 \
+                  --user=jill --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27
+sdc-stopmachine: error (NotAuthorized): You do not have permission to access /philip/machines/ad4c95dc-c813-6b63-b3b4-fc4515d36951 (stopmachine)</code></pre></div>
+<div style="clear:both"></div>
+</body>
+
+</html>

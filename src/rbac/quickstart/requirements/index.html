@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Getting the RBAC Tools</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/styles/styles.css"    rel="stylesheet" type="text/css"  />
+  <link href="/assets/styles/docstyles.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/styles/prettify.css"  rel="stylesheet" type="text/css" />
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('pre').each(function() {
+              var thepre = $(this);
+              if (thepre.hasClass('javascript') ||
+                  thepre.hasClass('js') ||
+                  thepre.hasClass('shell') ||
+                  thepre.hasClass('bash')
+                 )
+                thepre.addClass('prettyprint');
+          });
+          prettyPrint();
+      });
+    </script>
+
+
+
+</head>
+
+<body>
+
+  <div id="header">
+      <div style="margin: 10px 10px">
+        <p>
+          Philip Borenstein: Writing sample <br/>
+          This is a snapshot of this topic when I wrote it.<br/>
+          You can find the current version in the
+          <a href="http://docs.joyent.com">Joyent documentation.</p>
+        </p>
+      </div>
+  </div>
+  <div id="sidebar">
+    <div class="menu">
+      <form id="search" action="/search"><input type="search" name="q" placeholder="Search..."></form>
+      
+<ul>
+
+  
+	
+	<li class="depth-1">
+
+	<a href="/rbac">Role Based Access Control</a>
+
+			
+<ul>
+
+  
+	
+	<li class="depth-2 hasChildren">
+
+	<a href="/rbac/quickstart">Getting Started with Access Control: CLI</a>
+
+			
+<ul>
+
+  
+	
+	<li class="depth-3">
+
+	<a class="active" href="/rbac/quickstart/requirements">Getting the RBAC Tools</a>
+
+			
+<ul>
+
+  
+	
+</ul>
+
+	</li>
+
+	
+</ul>
+
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/portal">Getting Started with Access Control: Portal</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/cloudapi">Using Access Control with CloudAPI</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/users">Working with Users</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/roles">Working with Roles</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/policies">Working with Policies</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/rules">Working with Rules</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/underthehood">Under the Hood</a>
+
+			
+	</li>
+
+	
+</ul>
+
+	</li>
+
+	
+</ul>
+    </div>
+        <div class="footblock">
+    <p>© 2015 <a href="http://joyent.com">Joyent, Inc.</a> | <a href="mailto:&#115;&#x75;&#112;&#112;&#111;&#114;&#x74;&#x40;&#x6a;&#111;&#121;&#101;&#110;&#116;&#x2e;&#99;&#x6f;&#x6d;">Questions, comments, feeback.</a></p></div>
+  </div>
+<div id="content" class="content">
+    <nav class="breadcrumb">
+	<ul>
+					<li><a href="/">Home &rsaquo;</a></li>
+					<li><a href="/rbac">Role Based Access Control &rsaquo;</a></li>
+			</ul>
+</nav>    <h1>Getting the RBAC Tools</h1>
+    <div class="infoblock">
+                
+    <div class="stability_3 stability">
+        Stability: <a href="/stability">Stable</a>
+    </div>
+    </div>
+    <p>To use Role Based Access Control (RBAC) from the command line
+make sure that you have updated to the latest
+<code>smartdc</code> and <code>manta</code> tools:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tool</th>
+<th style="text-align: left;">Minimum version for RBAC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">smartdc</td>
+<td style="text-align: left;">7.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">manta</td>
+<td style="text-align: left;">1.4.1</td>
+</tr>
+</tbody>
+</table>
+<p>To update, you can use the following commands.</p>
+<pre><code>$ sudo npm install -g smartdc
+$ sudo npm install -g manta</code></pre>
+<h2>Command Arguments and Environment Variables</h2>
+<p>The <code>smartdc</code> and Manta commands now take a new <code>--user</code>
+argument to specify the <a href="/rbac/users">user</a>
+that is making the request.</p>
+<p>Since you'll often be making requests for the same
+user and account, you can put common arguments in environment variables.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">SmartDataCenter Environment Variable</th>
+<th style="text-align: left;">Corresponding Argument</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>SDC_URL</code></td>
+<td style="text-align: left;">--url</td>
+<td style="text-align: left;">URL of datacenter to use. <code>https://us-east-1.api.joyentcloud.com</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SDC_ACCOUNT</code></td>
+<td style="text-align: left;">--account</td>
+<td style="text-align: left;">The account name. <code>bigco</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SDC_USER</code></td>
+<td style="text-align: left;">--user</td>
+<td style="text-align: left;">The user making the request. <code>maria</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SDC_KEY_ID</code></td>
+<td style="text-align: left;">--keyId</td>
+<td style="text-align: left;">The fingerprint of the account or user SSH public key. <code>10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Manta Environment Variable</th>
+<th style="text-align: left;">Corresponding Argument</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>MANTA_URL</code></td>
+<td style="text-align: left;">--url</td>
+<td style="text-align: left;">URL of Manta endpoint. <code>https://us-east.manta.joyent.com</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MANTA_USER</code></td>
+<td style="text-align: left;">--account</td>
+<td style="text-align: left;">The account name. <code>bigco</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MANTA_SUBUSER</code></td>
+<td style="text-align: left;">--user</td>
+<td style="text-align: left;">The user making the request. <code>maria</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MANTA_KEY_ID</code></td>
+<td style="text-align: left;">--keyId</td>
+<td style="text-align: left;">The fingerprint of the account or user SSH public key. <code>10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>SDC_KEY_ID</code> and <code>MANTA_KEY_ID</code> refer to the <em>user's</em> key if the user specified.
+Otherwise the key ID is the account's key.</p>
+<p>Here is how to  generate a key ID (fingerprint) for a public SSH key stored in <code>~/.ssh/id_rsa.pub</code>:</p>
+<pre><code>export MANTA_KEY_ID=$(ssh-keygen -l -f $HOME/.ssh/id_rsa.pub | awk '{print $2}')</code></pre>
+<h2>New smartdc Commands</h2>
+<p>The sdc user, role, and policy commands are used to manage
+access control in both CloudAPI and Manta.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">sdc-user</td>
+<td style="text-align: left;">Commands for <a href="/rbac/users/">working with users</a>.<br>For sub-commands use <code>sdc-user help</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">sdc-role</td>
+<td style="text-align: left;">Commands for <a href="/rbac/roles/">working with roles</a>.<br>For sub-commands use <code>sdc-role help</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">sdc-policy</td>
+<td style="text-align: left;">Commands for <a href="/rbac/policies/">working with policies</a>.<br>For sub-commands use <code>sdc-policy help</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">sdc-info</td>
+<td style="text-align: left;">Get role information about a CloudAPI resource.</td>
+</tr>
+<tr>
+<td style="text-align: left;">sdc-chmod</td>
+<td style="text-align: left;">Set the role information for a CloudAPI resource.</td>
+</tr>
+</tbody>
+</table>
+<h2>New Manta Commands</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">minfo</td>
+<td style="text-align: left;">Get information about a Manta resource.</td>
+</tr>
+<tr>
+<td style="text-align: left;">mchmod</td>
+<td style="text-align: left;">Set role information for a Manta resource.</td>
+</tr>
+</tbody>
+</table></div>
+<div style="clear:both"></div>
+</body>
+
+</html>

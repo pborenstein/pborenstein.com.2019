@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Working with Users</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/styles/styles.css"    rel="stylesheet" type="text/css"  />
+  <link href="/assets/styles/docstyles.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/styles/prettify.css"  rel="stylesheet" type="text/css" />
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('pre').each(function() {
+              var thepre = $(this);
+              if (thepre.hasClass('javascript') ||
+                  thepre.hasClass('js') ||
+                  thepre.hasClass('shell') ||
+                  thepre.hasClass('bash')
+                 )
+                thepre.addClass('prettyprint');
+          });
+          prettyPrint();
+      });
+    </script>
+
+
+
+</head>
+
+<body>
+
+  <div id="header">
+      <div style="margin: 10px 10px">
+        <p>
+          Philip Borenstein: Writing sample <br/>
+          This is a snapshot of this topic when I wrote it.<br/>
+          You can find the current version in the
+          <a href="http://docs.joyent.com">Joyent documentation.</p>
+        </p>
+      </div>
+  </div>
+  <div id="sidebar">
+    <div class="menu">
+      <form id="search" action="/search"><input type="search" name="q" placeholder="Search..."></form>
+
+<ul>
+
+
+
+	<li class="depth-1">
+
+	<a href="/rbac">Role Based Access Control</a>
+
+
+<ul>
+
+
+
+	<li class="depth-2 hasChildren">
+
+	<a href="/rbac/quickstart">Getting Started with Access Control: CLI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/portal">Getting Started with Access Control: Portal</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/cloudapi">Using Access Control with CloudAPI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a class="active" href="/rbac/users">Working with Users</a>
+
+
+<ul>
+
+
+
+</ul>
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/roles">Working with Roles</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/policies">Working with Policies</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/rules">Working with Rules</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="/rbac/underthehood">Under the Hood</a>
+
+
+	</li>
+
+
+</ul>
+
+	</li>
+
+
+</ul>
+    </div>
+        <div class="footblock">
+    <p>© 2015 <a href="http://joyent.com">Joyent, Inc.</a> | <a href="mailto:&#115;&#x75;&#x70;&#112;&#111;&#114;&#x74;&#64;&#106;&#x6f;&#x79;&#101;&#x6e;&#116;&#x2e;&#x63;&#111;&#109;">Questions, comments, feeback.</a></p></div>
+  </div>
+<div id="content" class="content">
+    <nav class="breadcrumb">
+	<ul>
+					<li><a href="/">Home &rsaquo;</a></li>
+					<li><a href="/rbac">Role Based Access Control &rsaquo;</a></li>
+			</ul>
+</nav>    <h1>Working with Users</h1>
+    <div class="infoblock">
+                
+    <div class="stability_3 stability">
+        Stability: <a href="/stability">Stable</a>
+    </div>
+    </div>
+    <p>Users are login credentials that allow different people in
+your organization to log in to your Joyent Cloud account.
+Sometimes we use the term <em>subuser</em>
+to emphasize that these users are subordinate
+to the account owner.
+User names must be unique within the scope of the account.
+If there is a Joyent Cloud account named <code>bigco</code>
+and another one named <code>littleco</code>,
+both can have a user named <code>contractor</code>.</p>
+<p>The subuser name <code>anonymous</code> is reserved to
+allow unrestricted access to resources.
+See <a href="#theanonymoususer">The Anonymous User</a></p>
+<p>All of the CLI commands involving users are
+subcommands of the <code>sdc-user</code> command.</p>
+<pre><code>$ sdc-user help
+SmartDC Account Users and SSH keys associated with them
+
+Usage:
+    sdc-user [OPTIONS] COMMAND [ARGS...]
+    sdc-user help COMMAND
+
+Options:
+    -h, -?, --help         Print help and exit.
+    --version              Print version and exit.
+    -d, --debug            enable debug/verbose mode (default: disabled)
+    -a ARG, --account=ARG  account name. Environment: SDC_ACCOUNT=ARG
+    -A ARG, --user=ARG     account sub-user login. Environment: SDC_USER=ARG
+    -u ARG, --url=ARG      url for SmartDataCenter API. Environment: SDC_URL=ARG
+    -k ARG, --keyId=ARG    your ssh key fingerprint. Environment: SDC_KEY_ID=ARG
+
+Commands:
+    help (?)        Help on a specific sub-command.
+    list            List your Account Users.
+    get             Get an account User by id.
+    create          Creates a new User for your account.
+    change-password  Updates password for a User of your account.
+    update          Updates a User of your account.
+    delete          Removes a User from your account.
+    keys            List SSH keys for the given user.
+    key             Get a SSH key from your account.
+    upload-key      Uploads a SSH key for an account User.
+    delete-key      Removes the given account User SSH key.</code></pre>
+<h2>Creating Users</h2>
+<p>Use the <code>sdc-user create</code> command to create a user.
+You must provide at least</p>
+<ul>
+<li>a login name</li>
+<li>a password</li>
+<li>an email address</li>
+</ul>
+<pre><code>$ sdc-user create --login=maria --password=123secret --email=maria@example.com
+{
+  "id": "8e9fcc58-3240-4e33-d145-fad9d92c6822",
+  "login": "maria",
+  "email": "maria@example.com",
+  "updated": "2014-07-17T15:32:48.029Z",
+  "created": "2014-07-17T15:32:48.029Z"
+}</code></pre>
+<p>To see a list of the other available fields, use the <code>sdc-user create --help</code> command.</p>
+<pre><code>$ sdc-user create --help
+Creates a new User for your account.
+
+Usage:
+     sdc-user create [OPTIONS]
+
+Options:
+    --login=ARG        User login name (required)
+    -h, -?, --help     Show this help.
+    --name=ARG         User given name
+    --surname=ARG      User surname
+    --address=ARG      User address
+    --city=ARG         User city
+    --company=ARG      User company
+    --country=ARG      User country
+    --email=ARG        User email adress (required)
+    --phone=ARG        User phone number
+    --postal-code=ARG  User postal code
+    --state=ARG        User state
+    --password=ARG     User password (required)</code></pre>
+<h2>Working with SSH Keys</h2>
+<p>For many operations, the user will need an SSH key to access resources.</p>
+<pre><code>$ sdc-user upload-key 8e9fcc58-3240-4e33-d145-fad9d92c6822 --name=mariakey ~/.ssh/maria.pub
+{
+  "name": "mariakey",
+  "fingerprint": "61:62:35:66:e6:e0:91:6a:fc:dc:d2:1b:90:52:51:04",
+  "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLnrt...fMp maria@example.com\n"
+}</code></pre>
+<p>Use <code>sdc-user key</code> to get a specific user's key.</p>
+<pre><code>$ sdc-user key 8e9fcc58-3240-4e33-d145-fad9d92c6822 61:62:35:66:e6:e0:91:6a:fc:dc:d2:1b:90:52:51:04
+{
+  "name": "mariakey",
+  "fingerprint": "61:62:35:66:e6:e0:91:6a:fc:dc:d2:1b:90:52:51:04",
+  "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLnrt...fMp maria@example.com\n"
+}</code></pre>
+<p>Use <code>sdc-user keys</code> to get a list of all the keys a user has.
+Maria has only one key.</p>
+<pre><code>$ sdc-user keys 8e9fcc58-3240-4e33-d145-fad9d92c6822
+[
+  {
+    "name": "mariakey",
+    "fingerprint": "61:62:35:66:e6:e0:91:6a:fc:dc:d2:1b:90:52:51:04",
+    "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLnrt...fMp maria@example.com\n"
+  }
+]</code></pre>
+<h2>Getting Information about Users</h2>
+<p>Use <code>sdc-user list</code> to list all of the users
+associated with your account.</p>
+<pre><code>$ sdc-user list
+[
+  {
+    "id": "11a251a3-7548-66a2-f8e2-cfceb2941370",
+    "login": "bob",
+    "email": "bob@test.joyent.com",
+    "updated": "2014-07-15T04:33:50.351Z",
+    "created": "2014-07-15T04:33:50.351Z"
+  },
+. . .
+]</code></pre>
+<p>If you've installed
+<a href="https://www.npmjs.org/package/json">json</a>,
+you can use this for a quick list
+of all your users' login names and <code>id</code>s.</p>
+<pre><code>$  sdc-user list  | json -a login id
+bob 11a251a3-7548-66a2-f8e2-cfceb2941370
+jill dcd08cdb-4341-e391-f6e8-e39d9ce6c488
+maria 8e9fcc58-3240-4e33-d145-fad9d92c6822
+romeo 43bc25a6-81f5-6a8f-8677-c098bdb53b7a</code></pre>
+<p>Use <code>sdc-user get</code> to get information
+about a user.</p>
+<pre><code>$ sdc-user get 8e9fcc58-3240-4e33-d145-fad9d92c6822
+{
+  "id": "8e9fcc58-3240-4e33-d145-fad9d92c6822",
+  "login": "maria",
+  "email": "maria@example.com",
+  "updated": "2014-07-17T15:32:48.029Z",
+  "created": "2014-07-17T15:32:48.029Z"
+}</code></pre>
+<p>The <code>--membership</code> option lists all the roles
+that a user belongs to:</p>
+<pre><code>$ sdc-user get 11a251a3-7548-66a2-f8e2-cfceb2941370 --membership
+{
+  "id": "11a251a3-7548-66a2-f8e2-cfceb2941370",
+  "login": "bob",
+  "email": "bob@test.joyent.com",
+  "roles": [
+    "manager",
+    "ops"
+  ],
+  "default_roles": [
+    "manager"
+  ],
+  "updated": "2014-07-15T04:33:50.351Z",
+  "created": "2014-07-15T04:33:50.351Z"
+}</code></pre>
+<h2>Changing User Information</h2>
+<p>Use the <code>sdc-user update</code> command to change information about a user.
+For example, the user <code>romeo</code> doesn't have a city listed. Let's add one.</p>
+<pre><code>$ sdc-user get 43bc25a6-81f5-6a8f-8677-c098bdb53b7a
+{
+  "id": "43bc25a6-81f5-6a8f-8677-c098bdb53b7a",
+  "login": "romeo",
+  "email": "romeo@example.com",
+  "updated": "2014-07-17T17:29:13.526Z",
+  "created": "2014-07-17T17:29:13.526Z"
+}
+
+$ sdc-user update --city=Verona 43bc25a6-81f5-6a8f-8677-c098bdb53b7a
+{
+  "id": "43bc25a6-81f5-6a8f-8677-c098bdb53b7a",
+  "login": "romeo",
+  "email": "romeo@example.com",
+  "city": "Verona",
+  "updated": "2014-07-18T05:02:31.987Z",
+  "created": "2014-07-17T17:29:13.526Z"
+}</code></pre>
+<!-- TODO:  How do you delete a field? -->
+<p>To change a user's password,
+use the <code>sdc-user change-password</code> command.</p>
+<h2>Deleting Users</h2>
+<p>Use <code>sdc-user delete</code> to delete a user.</p>
+<pre><code>$ sdc-user delete 43bc25a6-81f5-6a8f-8677-c098bdb53b7a
+
+$ sdc-user get 43bc25a6-81f5-6a8f-8677-c098bdb53b7a
+sdc-user: error (ResourceNotFound): 43bc25a6-81f5-6a8f-8677-c098bdb53b7a does not exist</code></pre>
+<h2 id="theanonymoususer">The Anonymous User</h2>
+<p>If you want to allow public access to objects,
+you can create a subuser with the name <code>anonymous</code>.
+The anonymous user is used as the user making the
+request for unauthenticated requests, or if authorization fails for an
+authenticated user.</p>
+<p>With the <code>anonymous</code> user,
+you can control the conditions
+under which a resource is publicly accessibl
+by making the anonymous user a member of a role,
+just like any other user.</p>
+<p><strong>Note</strong><br>
+Everything under <code>~~/public</code> is accessible to anyone, regardless of role
+tags or other context.</p>
+<h2>Example: Allowing public reads on a Manta object</h2>
+<p>First, create a user named &quot;anonymous&quot;.</p>
+<pre><code>$ sdc-user create --login=anonymous --email=ignore@example.com --password=ignored00
+{
+  "id": "1f73b7bf-2af5-ef70-8630-efc949c48858",
+  "login": "anonymous",
+  "email": "ignore@example.com",
+  "updated": "2014-07-18T05:20:47.593Z",
+  "created": "2014-07-18T05:20:47.593Z"
+}</code></pre>
+<p>Now create a policy with a rule that allows reading of Manta objects.
+If you followed the <a href="/rbac/quickstart">Getting Started with Access Control</a>
+walkthrough, you may already have created this  policy.</p>
+<pre><code>$ sdc-policy create --name=read --rules='CAN getobject'
+{
+  "name": "read",
+  "id": "3072e003-34f7-c4a5-9f73-a8808de40e26",
+  "rules": [
+    "CAN getobject"
+  ]
+}</code></pre>
+<p>Next, create a role for the anonymous user.</p>
+<pre><code>$ sdc-role create --name='public-read' --members=anonymous \
+                  --default-members=anonymous --policies=read
+{
+  "name": "public-read",
+  "id": "94d0d2fc-eeda-4729-d6db-bbd683e249be",
+  "members": [
+    "anonymous"
+  ],
+  "default_members": [
+    "anonymous"
+  ],
+  "policies": [
+    "read"
+  ]
+}</code></pre>
+<p>Finally, tag the object with the role.</p>
+<pre><code>$ mchmod +public-read ~~/stor/readme.txt</code></pre>
+<p>As long as <code>readme.txt</code> is tagged with the role <code>public-read</code>,
+it is available to anyone.
+You can try this about by using a browser to open</p>
+<pre><code>$MANTA_URL/$MANTA_USER/stor/access.log</code></pre></div>
+<div style="clear:both"></div>
+</body>
+
+</html>
