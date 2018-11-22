@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Working with Roles</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/styles/styles.css"    rel="stylesheet" type="text/css"  />
+  <link href="/assets/styles/docstyles.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/styles/prettify.css"  rel="stylesheet" type="text/css" />
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('pre').each(function() {
+              var thepre = $(this);
+              if (thepre.hasClass('javascript') ||
+                  thepre.hasClass('js') ||
+                  thepre.hasClass('shell') ||
+                  thepre.hasClass('bash')
+                 )
+                thepre.addClass('prettyprint');
+          });
+          prettyPrint();
+      });
+    </script>
+
+
+
+</head>
+
+<body>
+
+  <div id="header">
+      <div style="margin: 10px 10px">
+        <p>
+          Philip Borenstein: Writing sample <br/>
+          This is a snapshot of this topic when I wrote it.<br/>
+          You can find the current version in the
+          <a href="http://docs.joyent.com">Joyent documentation.</p>
+        </p>
+      </div>
+  </div>
+  <div id="sidebar">
+    <div class="menu">
+      <form id="search" action="/search"><input type="search" name="q" placeholder="Search..."></form>
+      
+<ul>
+
+  
+	
+	<li class="depth-1">
+
+	<a href="/rbac">Role Based Access Control</a>
+
+			
+<ul>
+
+  
+	
+	<li class="depth-2 hasChildren">
+
+	<a href="/rbac/quickstart">Getting Started with Access Control: CLI</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/portal">Getting Started with Access Control: Portal</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/cloudapi">Using Access Control with CloudAPI</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/users">Working with Users</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a class="active" href="/rbac/roles">Working with Roles</a>
+
+			
+<ul>
+
+  
+	
+</ul>
+
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/policies">Working with Policies</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/rules">Working with Rules</a>
+
+			
+	</li>
+
+	
+	<li class="depth-2">
+
+	<a href="/rbac/underthehood">Under the Hood</a>
+
+			
+	</li>
+
+	
+</ul>
+
+	</li>
+
+	
+</ul>
+    </div>
+        <div class="footblock">
+    <p>© 2015 <a href="http://joyent.com">Joyent, Inc.</a> | <a href="mailto:&#x73;&#x75;&#112;&#112;&#111;&#114;&#116;&#x40;&#106;&#111;&#x79;&#x65;&#110;&#x74;&#x2e;&#x63;&#111;&#x6d;">Questions, comments, feeback.</a></p></div>
+  </div>
+<div id="content" class="content">
+    <nav class="breadcrumb">
+	<ul>
+					<li><a href="/">Home &rsaquo;</a></li>
+					<li><a href="/rbac">Role Based Access Control &rsaquo;</a></li>
+			</ul>
+</nav>    <h1>Working with Roles</h1>
+    <div class="infoblock">
+                
+    <div class="stability_3 stability">
+        Stability: <a href="/stability">Stable</a>
+    </div>
+    </div>
+    <p>Roles are lists of users and policies.
+Roles describe which users are allowed access according to the policies.
+To allow access to a resource,
+you associate, or tag, a resource with a role.</p>
+<p>The role name <code>administrator</code> is reserved to
+allow unrestricted access to resources.
+See <a href="#theadministratorrole">The Administrator Role</a></p>
+<p>All of the CLI commands involving roles are
+subcommands of the <code>sdc-role</code> command.</p>
+<pre><code>$ sdc-role help
+SmartDC Account Roles
+
+Usage:
+    sdc-role [OPTIONS] COMMAND [ARGS...]
+    sdc-role help COMMAND
+
+Options:
+    -h, -?, --help         Print help and exit.
+    --version              Print version and exit.
+    -d, --debug            enable debug/verbose mode (default: disabled)
+    -a ARG, --account=ARG  account name. Environment: SDC_ACCOUNT=ARG
+    -A ARG, --user=ARG     account sub-user login. Environment: SDC_USER=ARG
+    -u ARG, --url=ARG      url for SmartDataCenter API. Environment: SDC_URL=ARG
+    -k ARG, --keyId=ARG    your ssh key fingerprint. Environment: SDC_KEY_ID=ARG
+
+Commands:
+    help (?)        Help on a specific sub-command.
+    list            List your Account Roles.
+    get             Get an account Role by id.
+    create          Creates a new Role for your account.
+    update          Updates an account role.
+    delete          Removes an account role.</code></pre>
+<h2 id="memberlistsanddefaultroles">Member Lists and Default Roles</h2>
+<p>A role has two member lists:</p>
+<ul>
+<li>members</li>
+<li>default_members</li>
+</ul>
+<p>The members list contains all the users who can assume the role.
+Users in this list must explicitly assume the role.</p>
+<p>The default members list contains all the users who assume the role automatically.
+Users in this list do not need to assume the role explicitly.
+User in the default members list must also be in the members list.</p>
+<p>Here's an example. The <code>contractor</code> role looks like this.
+The resource <code>~~/stor/access.log</code> is tagged with this role.</p>
+<pre><code>$ sdc-role get 559d4252-d75c-4189-bf08-f30c73a703a6
+{
+  "name": "contractor",
+  "id": "559d4252-d75c-4189-bf08-f30c73a703a6",
+  "members": [
+    "bob",
+    "jill",
+    "maria"
+  ],
+  "default_members": [
+    "maria",
+    "jill"
+  ],
+  "policies": [
+    "read"
+  ]
+}</code></pre>
+<p>Maria is in the default members list.
+She can get <code>access.log</code> without specifying the role.</p>
+<pre><code>$ mget -q --user=maria \
+          --keyId=61:62:35:66:e6:e0:91:6a:fc:dc:d2:1b:90:52:51:04 \
+          ~~/stor/access.log | head -2
+127.0.0.1 - - [11/Feb/2014:13:31:11 -0500] "GET / HTTP/1.1" 200 2158
+127.0.0.1 - - [11/Feb/2014:13:31:18 -0500] "GET /search?q=linux HTTP/1.1" 200 2580</code></pre>
+<p>Bob is not in the default members list.
+If he does not specify a role, he cannot read <code>access.log</code>.</p>
+<pre><code>$ mget -q --user=bob \
+          --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27 \
+          ~~/stor/access.log | head -2
+mget: NoMatchingRoleTagError: None of your active roles are present on the resource.</code></pre>
+<p>But if he explicitly assumes the role, he can get <code>access.log</code>.</p>
+<pre><code>$ mget -q --role=contractor \
+          --user=bob --keyId=10:d0:59:ef:4f:71:3b:8b:4b:6a:05:d2:57:24:28:27 \
+          ~~/stor/access.log | head -2
+127.0.0.1 - - [11/Feb/2014:13:31:11 -0500] "GET / HTTP/1.1" 200 2158
+127.0.0.1 - - [11/Feb/2014:13:31:18 -0500] "GET /search?q=linux HTTP/1.1" 200 2580</code></pre>
+<p>It's important to keep the relationship
+between members and default members
+in mind when updating either of these lists.</p>
+<h2>Creating Roles</h2>
+<p>Use <code>sdc-role create</code> to create a role.
+You must provide a name to create a role.</p>
+<pre><code>$ sdc-role create --name=support
+{
+  "name": "support",
+  "id": "027344ad-8d2e-c767-e81f-b211966bca10",
+  "members": [],
+  "default_members": [],
+  "policies": []
+}</code></pre>
+<h2>Getting Information about Roles</h2>
+<p>Use <code>sdc-role list</code> to list all the roles in your account.</p>
+<pre><code>$ sdc-role list
+[
+  {
+    "name": "contractor",
+    "id": "559d4252-d75c-4189-bf08-f30c73a703a6",
+    "members": [
+      "jill",
+      "maria"
+    ],
+    "default_members": [
+      "maria"
+    ],
+    "policies": [
+      "read",
+      "list"
+    ]
+  },
+. . .
+]</code></pre>
+<p>If you've installed
+<a href="https://www.npmjs.org/package/json">json</a>,
+you can use this for a quick list
+of all your roles' names and <code>id</code>s.</p>
+<pre><code>$  sdc-role list  | json -a name id
+contractor 559d4252-d75c-4189-bf08-f30c73a703a6
+manager 38474359-29f9-cf8a-d496-bd06bbda66cf
+public-read 94d0d2fc-eeda-4729-d6db-bbd683e249be
+support f7b263dc-e22f-e3eb-f40f-84f05de0a76f
+ops d314eddf-1397-6a38-a83b-e67614ee095c</code></pre>
+<h2>Changing Role Information</h2>
+<p>Use <code>sdc-role update</code> to change a role's name, members, default members, and policies.</p>
+<pre><code>$ sdc-role update 559d4252-d75c-4189-bf08-f30c73a703a6 --policies=read
+{
+  "name": "contractor",
+  "id": "559d4252-d75c-4189-bf08-f30c73a703a6",
+  "members": [
+    "jill",
+    "maria"
+  ],
+  "default_members": [
+    "maria"
+  ],
+  "policies": [
+    "read"
+  ]
+}</code></pre>
+<p>Note that updating a field replaces all the values
+with the ones you specify in the update command.
+This has some subtle ramifications when you update
+members or default members.</p>
+<p>To add a member, make sure that you include all of
+the existing members in the update command.</p>
+<p>To add a default member, make sure that you include
+all of the existing default members <em>and</em> that
+the members list includes all of the existing members
+and the new members.</p>
+<p>To delete all of the default members use <code>'[]'</code> like this:</p>
+<pre><code>$ sdc-role update 559d4252-d75c-4189-bf08-f30c73a703a6 --default-members='[]'
+{
+  "name": "contractor",
+  "id": "559d4252-d75c-4189-bf08-f30c73a703a6",
+  "members": [
+    "jill",
+    "maria"
+  ],
+  "default_members": [],
+  "policies": [
+    "read"
+  ]
+}</code></pre>
+<h2>Deleting Roles</h2>
+<p>Use <code>sdc-role delete</code> to delete a role.</p>
+<pre><code>$ sdc-role delete 027344ad-8d2e-c767-e81f-b211966bca10</code></pre>
+<h2 id="theadministratorrole">The Administrator Role</h2>
+<p>The role named <code>administrator</code> is a special role
+similar to <code>sudo</code> in Unix systems.
+Any user that assumes the role
+can do anything that the account owner can do.</p>
+<p>As in UNIX, it is recommended that you avoid authenticating as the account
+owner, and instead create a user with administrator access and assume the
+administrator role with that user for any further operations that need
+privileged access.</p>
+<p><strong>Note</strong><BR>
+You cannot attach policies to the <code>administrator</code> role since all requests
+to your account will be authorized.</p></div>
+<div style="clear:both"></div>
+</body>
+
+</html>

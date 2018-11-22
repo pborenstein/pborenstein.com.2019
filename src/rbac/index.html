@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Role Based Access Control</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/styles/styles.css"    rel="stylesheet" type="text/css"  />
+  <link href="/assets/styles/docstyles.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/styles/prettify.css"  rel="stylesheet" type="text/css" />
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="/assets/js/prettify.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('pre').each(function() {
+              var thepre = $(this);
+              if (thepre.hasClass('javascript') ||
+                  thepre.hasClass('js') ||
+                  thepre.hasClass('shell') ||
+                  thepre.hasClass('bash')
+                 )
+                thepre.addClass('prettyprint');
+          });
+          prettyPrint();
+      });
+    </script>
+
+
+
+</head>
+
+<body>
+
+  <div id="header">
+      <div style="margin: 10px 10px">
+        <p>
+          Philip Borenstein: Writing sample <br/>
+          This is a snapshot of this topic when I wrote it.<br/>
+          You can find the current version in the
+          <a href="http://docs.joyent.com">Joyent documentation.</p>
+        </p>
+      </div>
+  </div>
+  <div id="sidebar">
+    <div class="menu">
+      <form id="search" action="/search"><input type="search" name="q" placeholder="Search..."></form>
+
+<ul>
+
+
+
+	<li class="depth-1">
+
+	<a class="active" href="/rbac">Role Based Access Control</a>
+
+
+<ul>
+
+
+
+	<li class="depth-2 hasChildren">
+
+	<a href="quickstart">Getting Started with Access Control: CLI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="portal">Getting Started with Access Control: Portal</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="cloudapi">Using Access Control with CloudAPI</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="users">Working with Users</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="roles">Working with Roles</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="policies">Working with Policies</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="rules">Working with Rules</a>
+
+
+	</li>
+
+
+	<li class="depth-2">
+
+	<a href="underthehood">Under the Hood</a>
+
+
+	</li>
+
+
+</ul>
+
+	</li>
+
+
+</ul>
+    </div>
+        <div class="footblock">
+    <p>© 2015 <a href="http://joyent.com">Joyent, Inc.</a> | <a href="mailto:&#x73;&#117;&#112;&#x70;&#x6f;&#114;&#116;&#x40;&#106;&#111;&#x79;&#101;&#x6e;&#x74;&#46;&#99;&#111;&#109;">Questions, comments, feeback.</a></p></div>
+  </div>
+<div id="content" class="content">
+    <nav class="breadcrumb">
+	<ul>
+					<li><a href="/">Home &rsaquo;</a></li>
+					<li><a class="active" href="/rbac">Role Based Access Control &rsaquo;</a></li>
+			</ul>
+</nav>    <h1>Role Based Access Control</h1>
+    <div class="infoblock">
+
+    <div class="stability_3 stability">
+        Stability: <a href="/stability">Stable</a>
+    </div>
+    </div>
+    <p>Role Based Access Control (RBAC) lets you provide limited access
+to your Joyent Cloud account and Manta storage
+to other members of your organization.</p>
+<p>Role Based Access Control is made up of four elements:</p>
+<ul>
+<li>Roles</li>
+<li>Users</li>
+<li>Policies</li>
+<li>Resources</li>
+</ul>
+<p>We'll take them from the bottom up to see how they fit together.</p>
+<p><strong>Resources</strong> are the things you want to grant access to.
+In Manta resources are Manta objects.
+In Joyent Cloud, resources are CloudAPI endpoints.</p>
+<p><strong>Policies</strong> are lists of rules that describe access to resources.
+The rules are written in a human readable language
+that describes the action that is allowed
+and the context in which that rule is valid.</p>
+<p>The default policy for all objects is to deny access always.
+Rules are written in terms of what is allowed.
+For example, the following rules say that
+getting a Manta object and listing a Manta directory is allowed:</p>
+<pre><code>CAN getobject
+CAN getdirectory</code></pre>
+<p><strong>Users</strong> are login credentials
+that are associated with your Joyent Cloud account.
+We also use the term <em>subuser</em>
+to distinguish users subject to access control
+from the account owner.
+While each subuser name must be unique within an account,
+they do not need to be globally unique.</p>
+<p>If there is a Joyent Cloud account named <code>bigco</code>
+and another one named <code>littleco</code>,
+both can have a user named <code>contractor</code>.</p>
+<p><strong>Roles</strong> bring users, policies, and resources together.
+Roles are lists of users and
+lists of policies.
+To allow access to a resource,
+you associate, or tag, a resource with a role.</p>
+<p>When a subuser wants to access a resource,
+the access system checks whether they
+belong to a role associated with the resource.
+If so, the access system checks the policies
+associated with the role
+to determine whether the user can access the resource.</p>
+<p>The account owner always has complete access to every resource in the account.</p>
+<p>To get a sense of how things work, continue with either</p>
+<ul>
+<li><a href="quickstart">Getting Started with Access Control: CLI</a>
+to learn about RBAC using the command line tools.</li>
+<li><a href="portal">Getting Started with Access Control: Portal</a>
+to learn about using RBAC from the Joyent Cloud portal.</li>
+</ul></div>
+<div style="clear:both"></div>
+</body>
+
+</html>
