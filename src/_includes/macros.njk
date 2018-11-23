@@ -1,8 +1,61 @@
 {% macro articlesList(aList) %}
+<style>
 
-<ul reversed class="postlist" style="counter-reset: start-from {{ aList.length + 1 }}">
+.articleList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+
+.articleList-item {
+  width: 43%;
+  font-family: var(--list-font);
+  color: var(--body);
+  margin: 0 0 1em 0;
+  padding-left: 1em;
+  padding-top: .5em;
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.19) ;
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+
+
+}
+
+
+.articleList-item::first-letter {
+  color: var(--darkred);
+  font-weight: 450;
+}
+
+.articleList-item a[href] {
+  text-decoration: none;
+  color: var(--body)
+}
+
+.articleList-item a[href]:hover {
+  text-decoration: underline;
+}
+
+
+.articleList-date {
+  font-size: 60%;
+  color: var(--darkgray);
+  margin-left: 0;
+}
+
+.article-category {
+  font-size: 60%;
+  border: 1px solid var(--lightgray);
+  border-radius: 3px;
+  padding: 2px;
+}
+
+</style>
+
+<div class="articleList">
 {% for article in aList | reverse %}
-	<li class="postlist-item">
+	<div class="articleList-item">
     <a href="{{ article.url | url }}">
       <span>
         {% if article.data.title %}
@@ -12,16 +65,17 @@
         {% endif %}
       </span>
     </a>
-    {{ timeTag(article.date, "postlist-date")}}
-    <div style="display: none">
+        {{ timeTag(article.date, "articleList-date")}}
+    <span class="article-category"><a href="/categories/{{article.data.category}}">{{ article.data.category }}</a></span>
+    <div style="display: block">
 		{% for tag in article.data.tags | sort %}
            {% set tagUrl %}/tags/{{ tag }}/{% endset %}
      <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a>
     {% endfor %}
     </div>
-	</li>
+	</div>
 {% endfor %}
-</ul>
+</div>
 {% endmacro %}
 
 {% macro timeTag(theDate, theClass) %}
