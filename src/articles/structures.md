@@ -1,5 +1,4 @@
 ---
-date: 2018-10-22
 title: Data Structures
 category: Tech
 tags:
