@@ -3,9 +3,24 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 {% from "macros.njk" import timeTag  %}
+{% from "macros.njk" import taglist  %}
 
 <h1>{{ title }}</h1>
-<div class="article-date">{{ timeTag(page.date)}}</div>
+<div class="article-slug">
+<span class="article-date">
+  {{ timeTag(page.date)}}
+</span>
+<span style="color: var(--darkred)">
+  &emsp13;•&emsp13;
+</span>
+<span class="article-category">
+<a href="/categories/{{category}}">{{ category }}</a></span>
+<span style="color: var(--darkred)">
+  &emsp13;•&emsp13;
+</span>
+
+{{ taglist(tags)}}
+</div>
 
 {{ content | safe }}
 

@@ -1,98 +1,4 @@
 {% macro articlesList(aList) %}
-<style>
-
-.articleList {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-top: 15px;
-}
-
-.card {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: max-content minmax(2em, max-content) minmax(1em, max-content);
-  grid-template-areas:
-    "date   category"
-    "title  title"
-    "tags   tags"
-    ;
-
-  width: 90%;
-  height: 100%;
-  overflow: scroll;
-  font-family: var(--list-font);
-  color: var(--body);
-  margin: 0 0 1em 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: .5em;
-  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.19) ;
-/* offset-x | offset-y | blur-radius | spread-radius | color */
-}
-
-
-.card-title {
-  grid-area: title;
-  line-height: 1em;
-  margin-bottom: .5em;
-}
-
-
-.card-title::first-letter {
-  color: var(--darkred);
-  font-weight: 450;
-}
-
-.card-title a[href] {
-  text-decoration: none;
-  color: var(--body);
-  line-height: 1em;
-}
-
-.card-title a[href]:hover {
-  text-decoration: underline;
-}
-
-
-.card-date {
-  font-size: .6rem;
-  color: var(--darkgray);
-  margin-left: 0;
-  grid-area: date;
-}
-
-.card-category {
-  grid-area: category;
-  justify-content: right;
-}
-
-/*  tags  */
-
-.category {
-  font-size: .6rem;
-  color: var(--darkgray);
-  margin-left: 0;
-	font-family: var(--body-font);
-  float: right;
-}
-
-a[href].category,
-a[href].category:visited {
-  color: var(--darkgray);
-  text-decoration: transparent;
-}
-
-
-.card-tags {
-  grid-area: tags;
-  line-height: 1em;
-  margin-bottom: 1em;
-}
-
-</style>
-
 <div class="articleList">
   {% for article in aList | reverse %}
     <div class="card">
@@ -129,4 +35,12 @@ a[href].category:visited {
         datetime="{{ theDate | htmlDateString }}">
     {{ theDate | readableDate }}
   </time></span>
+{% endmacro %}
+
+
+{% macro taglist(theTags) %}
+  {% for tag in theTags | sort %}
+    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+    <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a>
+  {% endfor %}
 {% endmacro %}
