@@ -247,6 +247,7 @@ a[href].tag:visited {
 .card-title::first-letter {
   color: var(--darkred);
   font-weight: 450;
+  font-size: 120%;
 }
 
 .card-title a[href] {

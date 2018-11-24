@@ -1,7 +1,6 @@
 ---
 date: 2018-12-01
 layout: layouts/home.njk
-category: Thinking
 title: Prolegomena
 tags:
   - nav
