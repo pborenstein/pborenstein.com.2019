@@ -286,8 +286,11 @@ nav ul {
   display: flex;
   flex-direction: column;
   padding: 0 0.5em;
-  border: 1px dotted var(--fadedred);
+  /* border: 1px dotted var(--fadedred); */
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.19) ;
+
   margin: 2em 2em 0 0;
+  width: 6em;
 }
 
 .nav-item {
