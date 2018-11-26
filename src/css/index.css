@@ -1,13 +1,15 @@
 :root {
-	--red:        #c22323;
-  --darkred:    #7F0036;
-  --fadedred:   #c223234d;
-	--gray:       #C0C0C0;
-  --darkgray:   #666;
-  --lightgray:  #f2f2f2;
-  --white:      #fff;
-  --body:       #111;
-  --heading:    #333;
+	--red:          #c22323;
+  --fadedred:     #c223234d;
+  --fadedred2:    #dab3c3; /* faded red with 100 alpha */
+  --darkred:      #7F0036;
+  --fadeddarkred: #7F00364d;
+	--gray:         #C0C0C0;
+  --darkgray:     #666;
+  --lightgray:    #f2f2f2;
+  --white:        #fff;
+  --body:         #111;
+  --heading:      #333;
   --list-font:    'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   --footer-font:  'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   --body-font:    'neue-kabel',  Georgia, serif;
@@ -309,8 +311,8 @@ a[href].category:visited {
   margin: 0;
   margin-top: 1em;
   margin-bottom: 2em;
-  border-top: 1px solid var(--darkred);
-  border-bottom: 1px solid var(--darkred);
+  border-top: 1px solid var(--fadeddarkred);
+  border-bottom: 1px solid var(--fadeddarkred);
   padding-top: .5em;
   padding-bottom: .5em;
 }
@@ -579,6 +581,29 @@ th {
 td:last-of-type,
 th:last-of-type {
   padding-left: 0;
+}
+
+td hr::after {
+   content: "example";
+   font-size: 60%;
+   position: relative;
+   top: -1.6em;
+   background: var(--fadedred2);
+   padding: 0 .5em;
+   margin-right: 1em;
+}
+td hr {
+  overflow: visible;
+/* Inset, by Dan Eden via https://css-tricks.com/examples/hrs/*/
+    border: 0;
+    height: 0;
+/*
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+ */
+    border-top: 1px solid var(--fadeddarkred);
+    margin: .5em 0 0 0;
+    text-align: right;
 }
 
 div[class="mdhack"] + table   {

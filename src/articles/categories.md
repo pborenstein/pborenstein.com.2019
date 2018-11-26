@@ -1,48 +1,48 @@
 ---
-title: Collection Data Structures
+title: Implementing Categories
 category: Tech
 tags:
   - eleventy
 templateClass: tmpl-post
 ---
 
-Eleventy uses tags
-to group pages
-into collections.
-Pages that share a tag
-are in the same collection.
-For example,
-a template with the following front matter
-would generate a page the belongs
-to the `transportation`
-and `fantasy` collections.
+OK, so.
 
-``` liquid
-{%- raw -%}
+This is all throat-clearing to get to where
+we want to go: To create a page-level property
+`categories` that works in a way similar to `tags`.
+
+It may turn out that the easier way to do this
+is to just use the existing `tag` mechanism.
+It's just that the idea of having to write something
+like this is kind of gross:
+
+``` text
 ---
-title: Flying Machines
+date: 10/30/2018
+title: Loomings
 tags:
-  - transportation
-  - fantasy
+  - classics
+  - contrived
+  - _cat_examples
 ---
-. . .
-{% endraw %}
 ```
 
+It should look like this:
 
-Collections are accessed
-by name
-as properties
-of the global `collections` object:
-
-``` liquid
-{% raw %}
-{{ collections.posts }}
-{% endraw %}
+``` text
+---
+date: 10/30/2018
+title: Loomings
+category:
+  - examples
+tags:
+  - classics
+  - contrived
+---
 ```
 
-
-
+## Effing `tags`: how do they work?
 
 Eleventy treats the `tags` page property special.
 For every tag name, there's a corresponding array
