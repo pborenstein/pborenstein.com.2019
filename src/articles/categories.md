@@ -3,7 +3,6 @@ title: Implementing Categories
 category: Tech
 tags:
   - eleventy
-templateClass: tmpl-post
 ---
 
 OK, so.

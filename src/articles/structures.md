@@ -3,7 +3,6 @@ title: Collection Data Structures
 category: Tech
 tags:
   - eleventy
-templateClass: tmpl-post
 ---
 
 Eleventy uses tags

@@ -3,7 +3,6 @@ title: Front Matter
 category: Tech
 tags:
   - eleventy
-templateClass: tmpl-post
 ---
 
 <style>

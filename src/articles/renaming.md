@@ -7,7 +7,6 @@ tags:
   - eleventy
 #   - nav
 # navtitle: Renamering
-templateClass: tmpl-post
 ---
 
 The basic thing is that the base

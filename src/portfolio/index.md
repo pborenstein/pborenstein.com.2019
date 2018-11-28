@@ -2,9 +2,6 @@
 date: 2018-01-10
 layout: layouts/home.njk
 title: Portfolio
-# tags:
-#   - nav
-# navtitle: ./# templateClass: tmpl-post
 ---
 
 # {{ title }}

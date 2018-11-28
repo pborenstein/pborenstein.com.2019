@@ -5,7 +5,6 @@ title: "About Me"
 tags:
   - nav
 navtitle: About
-# templateClass: tmpl-post
 ---
 
 
