@@ -1,46 +1,43 @@
-{% macro articlesList(aList) %}
+{%-macro articlesList(aList) -%}
 <div class="articleList">
-  {% for article in aList | reverse %}
+  {%-for article in aList | reverse -%}
     <div class="card">
       <div class="card-title">
         <a href="{{ article.url | url }}">
           <span>
-            {% if article.data.title %}
+            {%-if article.data.title -%}
               {{ article.data.title }}
-            {% else %}
+            {%-else -%}
               <code>{{ article.url }}</code>
-            {% endif %}
+            {%-endif -%}
           </span>
         </a>
       </div>
       <div class="card-date">{{ timeTag(article.date, "")}}</div>
       <div class="card-category">
           <a class="category" href="/categories/{{article.data.category}}">
-            {{ article.data.category }}
+            {{- article.data.category -}}
           </a>
       </div>
-      <div class="card-tags">
-        {% for tag in article.data.tags | sort %}
-          {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-          <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a>
-        {% endfor %}
+      <div class="card-tags">&#8203;
+        {{- taglist(article.data.tags) -}}
       </div>
     </div>
-  {% endfor %}
+  {%-endfor -%}
 </div>
 {% endmacro %}
 
 {% macro timeTag(theDate, theClass) %}
-  <span {% if theClass %}class="{{- theClass -}}"{% endif %}><time
+  <span {%-if theClass -%}class="{{- theClass -}}"{%-endif -%}><time
         datetime="{{ theDate | htmlDateString }}">
     {{ theDate | readableDate }}
   </time></span>
-{% endmacro %}
+{%endmacro %}
 
 
-{% macro taglist(theTags) %}
-  {% for tag in theTags | sort %}
-    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-    <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a>
-  {% endfor %}
-{% endmacro %}
+{%- macro taglist(theTags) -%}
+  {%- for tag in theTags | sort %}
+    {%- set tagUrl %}/tags/{{ tag }}/{%- endset -%}
+    <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a> <!-- -->
+  {%- endfor %}
+{%- endmacro -%}

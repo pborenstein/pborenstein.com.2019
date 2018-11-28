@@ -56,7 +56,7 @@ module.exports = function(eleventyConfig) {
   let options = {
     html: true,
     breaks: false,
-    linkify: true,
+    linkify: false,
     typographer: true
   };
   let opts = {
