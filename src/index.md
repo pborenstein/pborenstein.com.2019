@@ -32,3 +32,5 @@ Read all [about that][].
 [about that]: /tags/eleventy/
 
 
+{% from "macros.njk" import articlesList  %}
+{{ articlesList(collections.articles | head(-3)) }}
