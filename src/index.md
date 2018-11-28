@@ -4,23 +4,15 @@ layout: page.njk
 tags:
   - nav
 navtitle: Home
+templateEngineOverride: njk
 ---
 
-### I'm Philip Borenstein
-
-This is a random picture from [Lorem Picsum](https://picsum.photos/).
-
-![](https://picsum.photos/512/128?gravity=center&random)
-
-
-I'm redoing this site in [Eleventy][].
-
-Read all [about that][].
+<h3 id="im-philip-borenstein">I’m Philip Borenstein</h3>
+<p>This is a random picture from <a href="https://picsum.photos/">Lorem Picsum</a>.</p>
+<p><img src="https://picsum.photos/512/128?gravity=center&amp;random" /></p>
+<p>I’m redoing this site in <a href="https://www.11ty.io/">Eleventy</a>.</p>
+<p>Read all <a href="/tags/eleventy/">about that</a>.</p>
 
 
-
-
-[Eleventy]: https://www.11ty.io/
-[about that]: /tags/eleventy/
-
-
+{% from "macros.njk" import articlesList  %}
+{{ articlesList(collections.articles | head(-3)) }}
