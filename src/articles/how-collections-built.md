@@ -4,7 +4,6 @@ title: How collections get built
 category: Tech
 tags:
   - eleventy
-  - common
 ---
 
 

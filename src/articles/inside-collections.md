@@ -4,7 +4,6 @@ title: About collections
 category: Tech
 tags:
   - eleventy
-  - common
 ---
 
 There are two cases where Eleventy
