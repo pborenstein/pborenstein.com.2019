@@ -307,7 +307,7 @@ Where to start? The tag list in
 {%- raw -%}
 ---
 permalink: /tags/
-layout: layouts/home.njk
+layout: page.njk
 ---
 <h1>Tags</h1>
 

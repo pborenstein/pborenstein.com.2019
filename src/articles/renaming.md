@@ -1,12 +1,9 @@
 ---
 date: 2018-10-18
 title: "Renamering"
-layout: layouts/article.njk
 category: Tech
 tags:
   - eleventy
-#   - nav
-# navtitle: Renamering
 ---
 
 The basic thing is that the base

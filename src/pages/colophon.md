@@ -1,7 +1,6 @@
 ---
 date: 2018-12-01
 title: Colophon
-layout: layouts/home.njk
 tags:
   - nav
 navtitle: Colophon

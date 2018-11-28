@@ -1,6 +1,6 @@
 ---
 date: 2018-01-10
-layout: layouts/home.njk
+layout: page.njk
 title: Portfolio
 ---
 

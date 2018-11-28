@@ -1,6 +1,6 @@
 ---
 date: 2018-01-01
-layout: layouts/home.njk
+layout: page.njk
 tags:
   - nav
 navtitle: Home
