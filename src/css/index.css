@@ -587,10 +587,12 @@ td hr::after {
    content: "example";
    font-size: 60%;
    position: relative;
-   top: -1.6em;
+   top: -1.7em;
    background: var(--fadedred2);
-   padding: 0 .5em;
-   margin-right: 1em;
+   padding: 0 .5em .25em .5em;
+   margin-right: .5em;
+   color: var(--darkred);
+   border-radius: 4px;;
 }
 td hr {
   overflow: visible;
