@@ -1,19 +1,25 @@
-const { DateTime } = require("luxon");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const { DateTime } = require("luxon")
+const pluginRss = require("@11ty/eleventy-plugin-rss")
+const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(pluginSyntaxHighlight);
 
-  eleventyConfig.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj).toFormat("d LLLL yyyy");
-  });
+/*  PLUGINS */
+
+  eleventyConfig.addPlugin(pluginRss)
+  eleventyConfig.addPlugin(pluginSyntaxHighlight)
+
+/* FILTERS */
+
+  eleventyConfig.addFilter("readableDate", dateObj =>
+    DateTime.fromJSDate(dateObj).toFormat("d LLLL yyyy"))
+
+  eleventyConfig.addFilter("shortDate", dateObj =>
+    DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy"))
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj).toISODate();
-  });
+  eleventyConfig.addFilter("htmlDateString", dateObj =>
+    DateTime.fromJSDate(dateObj).toISODate())
 
 
   // Get the first `n` elements of a collection.
@@ -21,21 +27,21 @@ module.exports = function(eleventyConfig) {
     n < 0 ? array.slice(n) : array.slice(0,n))
 
 
+/* COLLECTIONS */
+
   //  The `articles` collection contains
   //  only pages that are in the `./src/articles/` directory
 
-  eleventyConfig
-    .addCollection("articles",
-        (collection) =>
-          collection
-            .getAllSorted()
-            .filter((item) =>
-              item.url && item.inputPath.startsWith('./src/articles/')
-    )
-  );
+  eleventyConfig.addCollection("articles",
+    (collection) =>
+      collection.getAllSorted()
+                .filter((item) =>
+                  item.url && item.inputPath.startsWith('./src/articles/')))
 
-  eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
-  eleventyConfig.addCollection("catList", require("./_11ty/getCatList"));
+  eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"))
+  eleventyConfig.addCollection("catList", require("./_11ty/getCatList"))
+
+/* PASSTHROUGH */
 
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/css");
@@ -45,24 +51,19 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets")
 
   /* Markdown Plugins */
-  let markdownIt = require("markdown-it");
-  let markdownItAnchor = require("markdown-it-anchor");
-  let markdownItMMDTables = require("markdown-it-multimd-table");
-  let options = {
-    html: true,
-    breaks: false,
-    linkify: false,
-    typographer: true
-  };
-  let opts = {
-    permalink: true,
-    permalinkClass: "direct-link",
-    permalinkSymbol: "#"
-  };
 
-  eleventyConfig.setLibrary("md", markdownIt(options)
-    .use(markdownItAnchor, opts)
-    .use(markdownItMMDTables)
+  eleventyConfig.setLibrary("md", require("markdown-it")({
+                                    html: true,
+                                    breaks: false,
+                                    linkify: false,
+                                    typographer: true
+                                  })
+    .use(require("markdown-it-anchor"), {
+            permalink: true,
+            permalinkClass: "direct-link",
+            permalinkSymbol: "#"
+          })
+    .use(require("markdown-it-multimd-table"))
     .use(require('markdown-it-footnote'))
   );
 
