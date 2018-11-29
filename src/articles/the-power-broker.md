@@ -4,9 +4,8 @@ slug: the-power-broker
 title: The Power Broker
 category: Culture
 tags:
-- books
-- new york
-- reviews
+  - books
+  - reviews
 ---
 
 So there was a lot of press about [Robert Caro's](https://en.wikipedia.org/wiki/Robert_Caro) latest installment of his Lyndon Johnson biography. I haven't read the first three volumes of it. I'm saving them for when I run out of things to read.

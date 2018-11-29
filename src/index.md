@@ -16,7 +16,7 @@ templateEngineOverride: njk,md
 
 {% from "macros.njk" import articlesList  %}
 <style>
-  .card { width: 32%;
+  .card { width: 42%;
           grid-template-rows: 1fr 4fr 1fr;
           height: 8em;}
 </style>

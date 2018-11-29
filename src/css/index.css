@@ -264,9 +264,12 @@ a[href].tag:visited {
 
 
 .card-date {
+  line-height: 1em;
   font-size: .6rem;
-  color: var(--darkgray);
+  color: var(--gray);
+	font-family: var(--body-font);
   margin-left: 0;
+  margin-bottom: 1em;
   grid-area: date;
 }
 
@@ -278,8 +281,9 @@ a[href].tag:visited {
 /*  tags  */
 
 .category {
+  line-height: 1em;
   font-size: .6rem;
-  color: var(--darkgray);
+  color: var(--gray);
   margin-left: 0;
 	font-family: var(--body-font);
   float: right;
@@ -287,8 +291,12 @@ a[href].tag:visited {
 
 a[href].category,
 a[href].category:visited {
-  color: var(--darkgray);
+  color: var(--gray);
   text-decoration: transparent;
+}
+
+a[href].category:hover {
+  color: var(--red);
 }
 
 

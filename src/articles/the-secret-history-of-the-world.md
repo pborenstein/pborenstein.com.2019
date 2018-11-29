@@ -1,8 +1,10 @@
 ---
-# date: 2010-05-25 02:57:11
-date: 2019-05-25 02:57:11
+date: 2010-05-25 02:57:11
 slug: the-secret-history-of-the-world
 title: The Secret History of the World
+tags:
+  - books
+  - reviews
 category: Culture
 ---
 
