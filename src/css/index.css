@@ -223,13 +223,15 @@ a[href].tag:visited {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: max-content minmax(2em, max-content) minmax(1em, max-content);
   grid-template-areas:
-    "date   category"
-    "title  title"
+    "title  category"
     "tags   tags"
+    "date   date"
     ;
 
+/*
   width: 90%;
   height: 100%;
+ */
   overflow: scroll;
   font-family: var(--list-font);
   color: var(--body);
@@ -241,10 +243,20 @@ a[href].tag:visited {
 /* offset-x | offset-y | blur-radius | spread-radius | color */
 }
 
+  .card { width: 48%;
+/*
+          grid-template-rows: 1fr 4fr 1fr;
+ */
+          grid-template-rows: minmax(max-content, 3fr) 2fr 1fr;
+          grid-row-gap: 2px;
+          grid-column-gap: 2px;
+          height: 100%}
+
+
 
 .card-title {
   grid-area: title;
-  line-height: 1em;
+  line-height: 1.25em;
   margin-bottom: .5em;
 }
 
@@ -273,20 +285,34 @@ a[href].tag:visited {
 	font-family: var(--body-font);
   margin-left: 0;
   margin-bottom: 1em;
+  align-self: end;
+  border-top: 1px solid var(--gray);
+  padding-top: 2px;
   grid-area: date;
 }
 
 .card-category {
   grid-area: category;
-  justify-content: right;
+  height: 40px;
+  width: 40px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  justify-self: right; /* moves us to the right of
+                          the grid cell */
 }
+
 
 /*  tags  */
 
 .category {
   line-height: 1em;
   font-size: .6rem;
-  color: var(--gray);
+  font-weight: 700;
+  color: var(--darkgray);
   margin-left: 0;
 	font-family: var(--body-font);
   float: right;
@@ -294,12 +320,12 @@ a[href].tag:visited {
 
 a[href].category,
 a[href].category:visited {
-  color: var(--gray);
+  color: var(--darkgray);
   text-decoration: transparent;
 }
 
 a[href].category:hover {
-  color: var(--red);
+  color: var(--gray);
 }
 
 
