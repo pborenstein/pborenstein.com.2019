@@ -2,11 +2,11 @@
   "title": "pborenstein.com",
   "url": "https://pborenstein.com/",
   "feed": {
-    "subtitle": "stuff",
+    "subtitle": "fog in motion",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "url": "https://myurl.com/feed/feed.xml",
-    "id": "https://myurl.com/"
+    "url": "https://pborenstein.com/feed/feed.xml",
+    "id": "https://pborenstein.com/"
   },
   "author": {
     "name": "Philip Borenstein",
