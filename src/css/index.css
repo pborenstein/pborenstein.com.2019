@@ -69,7 +69,12 @@ body {
     "....  foot";
 }
 
-@media (max-width: 600px) {
+@media (max-width: 320px) {}
+@media (max-width: 375px) {}
+@media (max-width: 414px) {}
+@media (max-width: 637px) {}
+
+@media (max-width: 640px) {
   .wrapper {
     display: inherit;
     grid-template-columns: 1fr;
@@ -221,17 +226,16 @@ a[href].tag:visited {
 .card {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: max-content minmax(2em, max-content) minmax(1em, max-content);
+  grid-template-rows: minmax(max-content, 3fr) 2fr 1fr;
+  grid-row-gap: 2px;
+  grid-column-gap: 2px;
   grid-template-areas:
     "title  category"
     "tags   tags"
     "date   date"
-    ;
-
-/*
-  width: 90%;
+  ;
+  width: 48%;
   height: 100%;
- */
   overflow: scroll;
   font-family: var(--list-font);
   color: var(--body);
@@ -240,17 +244,8 @@ a[href].tag:visited {
   padding-right: 1em;
   padding-top: .5em;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.19) ;
-/* offset-x | offset-y | blur-radius | spread-radius | color */
+            /* offset-x | offset-y | blur-radius | spread-radius | color */
 }
-
-  .card { width: 48%;
-/*
-          grid-template-rows: 1fr 4fr 1fr;
- */
-          grid-template-rows: minmax(max-content, 3fr) 2fr 1fr;
-          grid-row-gap: 2px;
-          grid-column-gap: 2px;
-          height: 100%}
 
 
 
@@ -331,6 +326,8 @@ a[href].category:hover {
 .card-tags {
   grid-area: tags;
   line-height: 1em;
+  align-self: end;
+  padding-bottom: 0.25em;
 }
 
 
