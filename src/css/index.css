@@ -277,14 +277,15 @@ a[href].tag:visited {
 }
 
 .card-title a[href]:hover {
-  text-decoration: underline;
+  color: var(--darkred);
+  background: var(--lightgray);
 }
 
 .card-subhead {
   grid-area: subhead;
   font-size: 75%;
   line-height: 1.25em;
-  margin: 0 1em;
+  margin: 0 1em 1em 1em;
   font-style: italic;
   color: var(--darkgray);
 }
