@@ -285,10 +285,8 @@ a[href].tag:visited {
   font-size: 75%;
   line-height: 1.25em;
   margin: 0 1em;
-  padding-left: 1em;
   font-style: italic;
   color: var(--darkgray);
-  border-left: 4px solid var(--fadedred);
 }
 
 
