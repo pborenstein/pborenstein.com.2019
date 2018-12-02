@@ -331,7 +331,6 @@ a[href].category:hover {
 .card-tags {
   grid-area: tags;
   line-height: 1em;
-  margin-bottom: 1em;
 }
 
 

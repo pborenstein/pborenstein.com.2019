@@ -13,15 +13,15 @@
           </span>
         </a>
       </div>
-      <div class="card-date">{{ timeTag(article.date, "")}}</div>
       <div class="card-category">
-          <a class="category" href="/categories/{{article.data.category}}">
+          <a class="category" title="{{article.data.category}}" href="/categories/{{article.data.category}}">
             {{- article.data.category.substring(0,2) -}}
           </a>
       </div>
       <div class="card-tags">&#8203;
         {{- taglist(article.data.tags) -}}
       </div>
+      <div class="card-date">{{ timeTag(article.date, "")}}</div>
     </div>
   {%-endfor -%}
 </div>
