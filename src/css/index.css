@@ -295,7 +295,7 @@ a[href].tag:visited {
   grid-area: category;
   height: 40px;
   width: 40px;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--lightgray);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -310,9 +310,8 @@ a[href].tag:visited {
 
 .category {
   line-height: 1em;
-  font-size: .6rem;
-  font-weight: 700;
-  color: var(--darkgray);
+  font-size: 2em;
+  font-weight: 800;
   margin-left: 0;
 	font-family: var(--body-font);
   float: right;
@@ -320,7 +319,7 @@ a[href].tag:visited {
 
 a[href].category,
 a[href].category:visited {
-  color: var(--darkgray);
+  color: var(--lightgray);
   text-decoration: transparent;
 }
 

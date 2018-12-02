@@ -16,7 +16,7 @@
       <div class="card-date">{{ timeTag(article.date, "")}}</div>
       <div class="card-category">
           <a class="category" href="/categories/{{article.data.category}}">
-            {{- article.data.category -}}
+            {{- article.data.category.substring(0,2) -}}
           </a>
       </div>
       <div class="card-tags">&#8203;
