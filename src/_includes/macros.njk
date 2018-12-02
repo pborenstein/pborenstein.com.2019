@@ -13,9 +13,9 @@
           </span>
         </a>
       </div>
-      <div class="card-subhead {% if not article.data.subhead %} hidden {% endif %}">
+      <div class="card-subhead">
         <span>
-          {{ article.data.subhead }}
+          {{- article.data.subhead | safe -}}
         </span>
       </div>
       <div class="card-category">

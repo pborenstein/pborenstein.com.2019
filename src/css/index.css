@@ -231,14 +231,14 @@ a[href].tag:visited {
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-rows: min-content
-                      4fr
+                      minmax(min-content, max-content)
                       2fr
                       min-content;
   grid-row-gap: 2px;
   grid-column-gap: 2px;
   grid-template-areas:
     "title  category"
-    "subhead subhead"
+    "subhead category"
     "tags   tags"
     "date   date"
   ;

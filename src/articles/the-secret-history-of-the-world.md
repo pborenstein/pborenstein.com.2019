@@ -2,13 +2,12 @@
 date: 2010-05-25 02:57:11
 slug: the-secret-history-of-the-world
 title: The Secret History of the World
+subhead: It may come as a shock to some that Christianity has roots in older traditions, or that many cultures share similar stories.
 tags:
   - books
   - reviews
 category: Culture
 ---
-
-One of the ways I know who's in my Internet cohort is by whether they read [Boing Boing](https://www.boingboing.net/) or not. Typically, people who don't read Boing Boing are latecomers to the net, the kind who get their news from cnn.com. Once in a while, I'll run into someone who used to read Boing Boing but no longer does because he's moved on to something so hip, and so post-Web 2.0 that it doesn't even have a URL.
 
 So I was reading Boing Boing the other day, when I ran across [this little tidbit](https://www.boingboing.net/2010/05/07/fortean-unusual-frin.html) about odd books. I wasn't actually reading Boing Boing itself; I was reading their feed. But there was something about this post that made me want to see the comments.
 
