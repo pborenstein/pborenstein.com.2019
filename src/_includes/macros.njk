@@ -13,6 +13,11 @@
           </span>
         </a>
       </div>
+      <div class="card-subhead {% if not article.data.subhead %} hidden {% endif %}">
+        <span>
+          {{ article.data.subhead }}
+        </span>
+      </div>
       <div class="card-category">
           <a class="category" title="{{article.data.category}}" href="/categories/{{article.data.category}}">
             {{- article.data.category.substring(0,2) -}}
