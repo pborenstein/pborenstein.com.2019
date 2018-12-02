@@ -14,9 +14,11 @@
         </a>
       </div>
       <div class="card-subhead">
+        <a href="{{ article.url | url }}">
         <span>
           {{- article.data.subhead | safe -}}
         </span>
+        </a>
       </div>
       <div class="card-category">
           <a class="category" title="{{article.data.category}}" href="/categories/{{article.data.category}}">

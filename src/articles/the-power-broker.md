@@ -2,10 +2,12 @@
 date: 2012-05-18 16:40:46
 slug: the-power-broker
 title: The Power Broker
+subhead: "Have you seen the size of this thing? It's over 1300 pages long. That is more that the first three Harry Potter books put together. Which I also haven't read."
 category: Culture
 tags:
   - books
   - reviews
+  - Books I Never Finished
 ---
 
 So there was a lot of press about [Robert Caro's](https://en.wikipedia.org/wiki/Robert_Caro) latest installment of his Lyndon Johnson biography. I haven't read the first three volumes of it. I'm saving them for when I run out of things to read.

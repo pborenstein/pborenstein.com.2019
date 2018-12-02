@@ -2,16 +2,15 @@
 date: 2012-02-09 11:49:43
 slug: catch-22
 title: Catch-22
+subhead: It's about some rule.
 category: Culture
 tags:
 - books
 - parenting
+- Books I Never Finished
 ---
 
 A few days ago when I picked up the boy at school, he told me that one of his friends had read _Catch-22_. "She said it was funny, Dad. I want to read it."
-
-
-
 
 "Gosh, son," I said, "I'm not sure that that book is appropriate for you at this point. Are you sure that she read it?"
 

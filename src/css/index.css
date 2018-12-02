@@ -276,8 +276,11 @@ a[href].tag:visited {
   line-height: 1em;
 }
 
+.card-subhead a[href]:hover,
 .card-title a[href]:hover {
+/*
   color: var(--darkred);
+ */
   background: var(--lightgray);
 }
 
@@ -285,9 +288,14 @@ a[href].tag:visited {
   grid-area: subhead;
   font-size: 75%;
   line-height: 1.25em;
-  margin: 0 1em 1em 1em;
+  margin: 0 0 1em 0;
   font-style: italic;
   color: var(--darkgray);
+}
+
+.card-subhead a[href] {
+  text-decoration: none;
+  color: inherit;
 }
 
 

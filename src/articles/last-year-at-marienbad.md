@@ -2,11 +2,10 @@
 date: 2010-02-03 20:07:02
 slug: last-year-at-marienbad
 title: Last Year at Marienbad
-subhead: Watching this movie, you find yourself doing odd things, like wondering whether this is a "movie" or a "film," and why you can't just turn it off.
+subhead: "A woman may or may not have promised to leave her husband."
 category: Culture
 tags:
 - movies
-- pretentious French films
 - reviews
 ---
 
