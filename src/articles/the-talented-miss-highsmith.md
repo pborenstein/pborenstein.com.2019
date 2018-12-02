@@ -2,10 +2,12 @@
 date: 2010-01-09 03:20:09
 slug: the-talented-miss-highsmith
 title: The Talented Miss Highsmith
+subhead: I remember how exciting it was to read <em>The Talented Mr. Ripley</em> some years ago. This isn't about that.
 category: Culture
 tags:
 - books
 - reviews
+- Books I Never Finished
 ---
 
 One of the best parts about my slide down the socioeconomic ladder (perhaps the only good part) is that I no longer believe that I must own a book in order to read it.  My love affair with the library, and [one library in particular](https://www.wellesleyfreelibrary.org/home/), has reached that place where I am comfortable and confident in the endurance of our romance.

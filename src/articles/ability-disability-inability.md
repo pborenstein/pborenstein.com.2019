@@ -2,7 +2,7 @@
 date: 2010-06-28 15:00:10
 slug: ability-disability-inability
 title: 'Ability, Disability, and Inability'
-subtitle: 'Notes from a one-eyed man'
+subhead: I don't have stereoscopic vision, but that doesn't mean that I don't have depth perception.
 category: Life
 tags:
 - ability

@@ -2,10 +2,13 @@
 date: 2010-12-20 16:51:01
 slug: vellum
 title: Vellum
+subhead: Something about a book.
 category: Culture
 tags:
 - books
 - reviews
+- Books I Never Finished
+
 ---
 
 Some twenty or thirty pages in, I lost track of where I was,

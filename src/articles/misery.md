@@ -2,17 +2,19 @@
 date: 2009-08-23 03:32:28
 slug: misery
 title: Misery
+subhead: "It's a book about a writer, so you know it's going to be a lousy story because writers, by definition and by inclination, are self-obsessed boring people."
 category: Culture
 tags:
 - books
 - reviews
+- Books I Never Finished
 ---
 
 I came at this book in a roundabout way.  I don't really like Stephen King's books. I read the _The Stand_ and _The Dead Zone_ many years ago, and I think I read _The Shining_, but I can't really remember. I know that _The Shining_ is about a haunted hotel, and I think that one of the other ones is about some superflu that suffocates people with their own mucus.
 
 I was reading Merlin Mann's [The Problem with “Feeling Creative”](https://www.43folders.com/2009/01/02/feeling-creative)  for inspiration.  Or, as he says in his post, I was reading Merlin Mann to avoid doing something else because I wanted to _feel_ creative instead of _being_ creative.
 
-Somewhere near the top of his post, he mentions books that talk about the creative process and singled out Stephen King's On Writing as an exemplar of the genre. I downloaded it to read with my iPhone's Kindle app, and it was pretty good.
+Somewhere near the top of his post, he mentions books that talk about the creative process and singled out Stephen King's _On Writing_ as an exemplar of the genre. I downloaded it to read with my iPhone's Kindle app, and it was pretty good.
 
 Throughout _On Writing_, King talks about how he wrote his books which, for the most part, involved a lot of sitting down at his chair and writing. Mr King had something of a drug habit (it's not clear whether prolonged chair-sitting caused or enabled it), and apparently _Misery_ was about that. I was curious about the story of a fan mutilating a writer to keep him productive and docile.
 

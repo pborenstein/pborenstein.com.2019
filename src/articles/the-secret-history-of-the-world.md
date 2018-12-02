@@ -2,7 +2,7 @@
 date: 2010-05-25 02:57:11
 slug: the-secret-history-of-the-world
 title: The Secret History of the World
-subhead: It may come as a shock to some that Christianity has roots in older traditions, or that many cultures share similar stories.
+subhead: It comes as a shock to some that Christianity has roots in older traditions and that many cultures share similar stories.
 tags:
   - books
   - reviews

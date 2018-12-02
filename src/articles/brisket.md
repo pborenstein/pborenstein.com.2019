@@ -2,6 +2,7 @@
 date: 2009-09-21 04:49:30
 slug: brisket
 title: Brisket
+subhead: My mother's brisket recipe.
 category: Life
 tags:
 - recipes

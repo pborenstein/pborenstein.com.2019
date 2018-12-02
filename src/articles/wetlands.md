@@ -2,6 +2,7 @@
 date: 2009-09-03 14:14:41
 slug: wetlands
 title: Wetlands
+subhead: The book opens with "As far back as I can remember, I've had hemorrhoids."
 category: Culture
 tags:
 - books

@@ -2,9 +2,9 @@
 date: 2009-08-03 16:14:00
 slug: debugging
 title: Debugging
+subhead: In which the boy learns about rubber-ducky debugging.
 category: Life
 tags:
-- coding
 - parenting
 - programming
 ---
