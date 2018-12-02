@@ -76,9 +76,11 @@ body {
 @media (max-width: 320px) {}
 @media (max-width: 375px) {}
 @media (max-width: 414px) {}
-@media (max-width: 637px) {}
 
 @media (max-width: 640px) {
+  main {
+    padding-top: 0em !important;
+  }
   .wrapper {
     display: inherit;
     grid-template-columns: 1fr;
@@ -238,10 +240,11 @@ a[href].tag:visited {
   grid-column-gap: 2px;
   grid-template-areas:
     "title  category"
-    "subhead category"
+    "subhead subhead"
     "tags   tags"
     "date   date"
   ;
+  word-break: break-word;
   width: 48%;
   height: 100%;
   overflow: scroll;
@@ -314,8 +317,8 @@ a[href].tag:visited {
 
 .card-category {
   grid-area: category;
-  height: 40px;
-  width: 40px;
+  height: 32px;
+  width: 32px;
   border: 1px solid var(--lightgray);
   border-radius: 4px;
   display: flex;
@@ -331,7 +334,7 @@ a[href].tag:visited {
 
 .category {
   line-height: 1em;
-  font-size: 2em;
+  font-size: 1em;
   font-weight: 800;
   margin-left: 0;
 	font-family: var(--body-font);
@@ -340,12 +343,12 @@ a[href].tag:visited {
 
 a[href].category,
 a[href].category:visited {
-  color: var(--lightgray);
+  color: var(--gray);
   text-decoration: transparent;
 }
 
 a[href].category:hover {
-  color: var(--gray);
+  color: var(--darkgray);
 }
 
 
