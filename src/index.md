@@ -15,13 +15,6 @@ templateEngineOverride: njk,md
 ![](https://picsum.photos/512/128?gravity=center&random)
 
 {% from "macros.njk" import articlesList  %}
-<style>
-  .card { width: 42%;
-          grid-template-rows: 1fr 4fr 1fr;
-          grid-row-gap: 2px;
-          grid-column-gap: 2px;
-          height: 8em;}
-</style>
 {{ articlesList(collections.articles | head(-6)) }}
 
 
