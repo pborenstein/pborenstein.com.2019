@@ -1,5 +1,5 @@
 ---
-date: 2018-12-01
+date: 2001-06-01
 title: Prolegomena
 tags:
   - nav
