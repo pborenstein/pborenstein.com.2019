@@ -1,28 +1,29 @@
 ---
 pagination:
-  data: collections.categories
-  resolve: values
-  alias: xyx
+  data: collections
   size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+    - catList
 layout: page.njk
-permalink: /ejs/A-<%- pagination.pageNumber -%>/
+permalink: /ejs/T-<%- pagination.pageNumber -%>/
 ---
 
- <% var x = xyx;
+
+ <% var x = tag;
     %>
 <%= x %>
 
- JSON.stringify(decycle(xyx), null, 2)
-<%- JSON.stringify(decycle(xyx), null, 2) -%>
-
+COLLECTION [ TAG ]
+<%- JSON.stringify(decycle(collections[ tag ]), null, 2) -%>
 
 PAGINATION
-JSON.stringify(decycle(pagination), null, 2)
 <%- JSON.stringify(decycle(pagination), null, 2) -%>
-
-COLLECTIONS
-JSON.stringify(decycle(collections), null, 2)
-<%- JSON.stringify(decycle(collections), null, 2) -%>
 
 
 <%_
