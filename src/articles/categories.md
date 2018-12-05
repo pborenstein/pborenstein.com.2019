@@ -5,6 +5,81 @@ tags:
   - eleventy
 ---
 
+I want there to be Categories.
+
+
+
+They're like newspaper sections.
+The idea is to build silos ^[I see what I did there.] for things
+that shouldn't go together.
+Or that don't necessarily go together.
+
+What are the categories then?
+
+<div style="column-count: 3">
+<div>
+
+- CULTURE
+  - movies
+  - books
+  - writing
+  - poetry
+</div>
+<div>
+
+- TECH
+  - code
+  - gadgets
+  - tools
+  - work
+</div>
+<div>
+
+- LIFE
+  - parenting
+  - relationships
+  - divorce
+  - religion
+</div>
+</div>
+
+
+---
+
+- Can an article have more than one category,
+  or only one?
+- What would it mean for there to be more than
+  one category?
+- OK, only one category.
+
+---
+
+
+
+
+
+``` text
+---
+date: 10/30/2018
+title: Loomings
+category: Tech
+tags:
+  - tools
+  - git
+  - eleventy
+---
+```
+
+What's the default category?
+- stuff
+- misc
+- things
+- uncategorized
+
+Maybe a special category name
+that never gets rendered.
+It doesn't really matter.
+
 OK, so.
 
 This is all throat-clearing to get to where
@@ -207,74 +282,7 @@ In `TemplateMap.cache()`.
 Hmmm. That's not terribly useful. Is that where
 the magic happens?
 
-I'm getting ahead of myself.
 
-- Can an article have more than one category,
-  or only one?
-- What would it mean for there to be more than
-  one category?
-- OK, only one category.
-
-
-What is a category?
-
-It's like a newspaper section.
-The idea is to build silos for things
-that shouldn't go together.
-Or that don't necessarily go together.
-
-What are the categories then?
-
-<div style="column-count: 3">
-<div>
-
-- CULTURE
-  - movies
-  - books
-  - writing
-  - poetry
-</div>
-<div>
-
-- TECH
-  - code
-  - gadgets
-  - tools
-  - work
-</div>
-<div>
-
-- LIFE
-  - parenting
-  - relationships
-  - divorce
-  - religion
-</div>
-</div>
-
-
-
-``` text
----
-date: 10/30/2018
-title: Loomings
-category: Tech
-tags:
-  - tools
-  - git
-  - eleventy
----
-```
-
-What's the default category?
-- stuff
-- misc
-- things
-- uncategorized
-
-Maybe a special category name
-that never gets rendered.
-It doesn't really matter.
 
 OK, so what we're going to do is
 to make our `getCatList` function
