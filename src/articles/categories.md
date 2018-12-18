@@ -68,6 +68,11 @@ What we want is
 a page-level property
 `category` that works in a way similar to `tags`.
 
+Categories are stored in a specially-named
+collection `categories`.
+
+> Since we're reserving the name
+> maybe it should be in Caps?
 
 OK, so what we're going to do is
 to make our `getCatList` function
