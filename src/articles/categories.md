@@ -16,34 +16,7 @@ for things
 that shouldn't go together,
 or that don't necessarily go together.
 
-We'll start with three categories.
 
-<div style="column-count: 3">
-<div>
-
-- CULTURE
-  - movies
-  - books
-  - writing
-  - poetry
-</div>
-<div>
-
-- TECH
-  - code
-  - gadgets
-  - tools
-  - work
-</div>
-<div>
-
-- LIFE
-  - parenting
-  - relationships
-  - divorce
-  - religion
-</div>
-</div>
 
 We'll specify categories
 in front matter like this:
@@ -196,3 +169,35 @@ tags:
 
 
 
+
+
+============
+
+We'll start with three categories.
+
+<div style="column-count: 3">
+<div>
+
+- CULTURE
+  - movies
+  - books
+  - writing
+  - poetry
+</div>
+<div>
+
+- TECH
+  - code
+  - gadgets
+  - tools
+  - work
+</div>
+<div>
+
+- LIFE
+  - parenting
+  - relationships
+  - divorce
+  - religion
+</div>
+</div>
