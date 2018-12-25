@@ -44,19 +44,38 @@ the category in the usual way:
 {%- endraw -%}
 ```
 
+And we introduce a new collection
+called `categories`.
+Just as,
+in a template context,
+`collections`
+is an object that has
+a property for each tag,
+so does `collections.categories`
+have a property for each category.
+Each property refers to an array of articles.
+It looks something like this:
 
-
-## The implementation
-
-What we want is
-a page-level property
-`category` that works in a way similar to `tags`.
-
-Categories are stored in a specially-named
-collection `categories`.
+```js
+collections.categories {
+  Culture: [article_1, article_4],
+  Tech: [article_3],
+  Life: [article_1, article_3]
+}
+```
 
 > Since we're reserving the name
 > maybe it should be in Caps?
+> `collections.Categories`
+
+## The implementation
+
+We want to:
+
+- a list of articles for each category
+- a list of categories
+
+
 
 OK, so what we're going to do is
 to make our `getCatList` function
