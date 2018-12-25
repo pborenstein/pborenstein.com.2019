@@ -16,8 +16,17 @@ that shouldn't go together,
 or that don't necessarily go together.
 
 
+## How we'll use them
 
-We'll specify categories
+Let's look at how we'll use categories:
+
+- How to specify the category for an article
+- How to get an article's category in a template
+- How to work with all of the articles in the same category
+
+### Specifying the category
+
+Specify categories
 with the `category` page-level property
 like this:
 
@@ -33,26 +42,50 @@ tags:
 ---
 ```
 
-In a template, we can refer to
+
+- An article does not need to specify a category.
+- An article can belong to only one category.
+- Category names are in title case by convention.
+
+
+### Using the category in a template
+
+In a template, refer to
 the category in the usual way:
 
 ```html
 {%- raw -%}
-<span class="article-category">
-  <a href="/categories/{{category}}">{{category}}</a>
-</span>
+<a href="/categories/{{category}}">{{category}}</a>
 {%- endraw -%}
 ```
 
-And we introduce a new collection
+### Working with articles in the same category
+
+To work with articles in the same category,
+we introduce a new collection
 called `categories`.
-Just as,
-in a template context,
+To list
+all of the articles in
+the `Tech` category,
+you could do it like this:
+
+```html
+{%- raw -%}
+<ul>
+  {%- for article in collections.categories["Tech"] -%}
+    <li>{{ article.data.title }}</li>
+  {%- endfor -%}
+</ul>
+{%- endraw -%}
+```
+
+
+Just as
 `collections`
 is an object that has
 a property for each tag,
-so does `collections.categories`
-have a property for each category.
+so `collections.categories`
+has a property for each category.
 Each property refers to an array of articles.
 It looks something like this:
 
@@ -64,9 +97,7 @@ collections.categories {
 }
 ```
 
-> Since we're reserving the name
-> maybe it should be in Caps?
-> `collections.Categories`
+
 
 ## The implementation
 
@@ -231,3 +262,5 @@ We'll start with three categories.
   - religion
 </div>
 </div>
+
+
