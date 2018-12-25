@@ -526,6 +526,7 @@ a[href].direct-link:focus:visited,
 code:not([class]) {
 	font-family: var(--code-font);
   font-size: var(--code-font-size);
+  color: var(--darkred);
   padding:  0.125em 0.125em 0px 0.125em;
   margin: 0px 0.125em 0px 0.125em;
   border: 1px solid var(--fadedred);
@@ -684,4 +685,8 @@ div[class="mdhack"] + table tbody tr td:first-child {
 
 .footnotes {
   font-size: 75%;
+}
+
+.footnote-ref {
+  font-family: var(--code-font);
 }
