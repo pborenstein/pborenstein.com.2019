@@ -8,7 +8,6 @@ tags:
 I want there to be Categories.
 
 
-
 They're like newspaper sections.
 The idea is
 to build silos ^[I see what I did there.]
@@ -19,7 +18,8 @@ or that don't necessarily go together.
 
 
 We'll specify categories
-in front matter like this:
+with the `category` page-level property
+like this:
 
 ``` text
 ---
@@ -31,6 +31,17 @@ tags:
   - git
   - eleventy
 ---
+```
+
+In a template, we can refer to
+the category in the usual way:
+
+```html
+{%- raw -%}
+<span class="article-category">
+  <a href="/categories/{{category}}">{{category}}</a>
+</span>
+{%- endraw -%}
 ```
 
 

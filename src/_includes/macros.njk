@@ -47,6 +47,6 @@
 {%- macro taglist(theTags) -%}
   {%- for tag in theTags | sort(false, true) %}
     {%- set tagUrl %}/tags/{{ tag }}/{%- endset -%}
-    <a href="{{ tagUrl | url }}" class="tag"><span>{{ tag }}</span></a> <!-- -->
+    <a href="{{ tagUrl | url }}" class="atag"><span>{{ tag }}</span></a> <!-- -->
   {%- endfor %}
 {%- endmacro -%}

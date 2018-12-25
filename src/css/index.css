@@ -201,7 +201,7 @@ a[href]:hover {
 
 /*  tags  */
 
-.tag {
+.atag {
 	font-family: var(--code-font);
   font-size: 62.5%; /* (10px if default is 16px) */
   padding:  2px 2px;
