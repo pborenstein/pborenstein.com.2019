@@ -103,166 +103,37 @@ collections.categories {
 
 ## The implementation
 
-We want to:
+We want:
 
 - a list of articles for each category
 - a list of categories
 
 
+To get the list of categories,
+we iterate over all of the
+rendered templates.
+This code
+creates a collection called
+`categoryList`
+that contains
+the names of all the categories.
 
-OK, so what we're going to do is
-to make our `getCatList` function
-do several things:
+```js
+getCatList = function(collection) {
+  let catSet = new Set()
 
-- create the categories collection^[I am embarrassed about this side-effect thing.]
-- create a collection with all of the
-  category names
+  collection.getAllSorted().forEach(item =>
+        typeof item.data.category === "string"
+    &&  catSet.add(item.data.category)
+  );
 
-Have we talked about how we're actually going
-going to use these categories?
-Something like this:
-
-``` liquid
-{%- raw -%}
-{{ collections.categories.Culture }}
-{%- endraw -%}
-```
-
-## Now what?
-
-Let's see if this works.
-Let's try to make category pages
-analogous to the tag pages.
-
-Where to start? The tag list in
-`tags-list.njk` looks like this:
-
-``` liquid
-{%- raw -%}
----
-permalink: /tags/
----
-<h1>Tags</h1>
-
-{% for tag in collections.tagList | sort %}
-  {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-  <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
-{% endfor %}
-{%- endraw -%}
-```
-
-Let's make a copy of it called
-`category-list.njk`.
-And copy `tags.njk`
-to `categories.njk`.
-
-OK, this is weird.
-
-This is how I create the categories.
-There's a new `categories` property in `data.collections`.
-Then for each category, the idea is to create
-an array element / object property.
-I want to be able to write
-`collections.categories.Culture`.
-
-
-
-``` js
-  sortedCollection.forEach(function(item) {
-    if (! ("categories" in item.data.collections)) {
-      // no categories collection? make one
-      item.data.collections.categories = {}
-    }
-
-    if (typeof item.data.category === "string") {
-      catSet.add(item.data.category)
-      if (!Array.isArray(item.data.collections.categories[item.data.category])) {
-        item.data.collections.categories[item.data.category] = []
-      }
-
-      item.data.collections.categories[item.data.category].push(item)
-    }
-  });
-```
-So I'll get something like this:
-
-``` json
-collections: {
-  all: [ items ],
-  categories: {
-    Culture: [ items ],
-    Life: [ items ],
-    Thinking: [ items ]
-  }
+  return [...catSet]
 }
-```
 
-I was getting an error:
-
-``` text
-TypeError: collections[collectionName] is not iterable
-```
-
-This turned out to be a bug,
-where Eleventy was expecting
-that every property was some sort
-of array. This gets fixed in [version
-0.6.0.](https://github.com/11ty/eleventy/issues/277).
-
-
-
-## Do we really need to do this?
-
-It may turn out that the easier way
-to implement categories
-is to use the existing `tag` mechanism.
-It's just that the idea of having to write something
-like this is kind of gross:
-
-``` text
----
-date: 10/30/2018
-title: Loomings
-tags:
-  - classics
-  - contrived
-  - _cat_examples
----
+eleventyConfig.addCollection("categoryList", getCatList)
 ```
 
 
 
-
-
-============
-
-We'll start with three categories.
-
-<div style="column-count: 3">
-<div>
-
-- CULTURE
-  - movies
-  - books
-  - writing
-  - poetry
-</div>
-<div>
-
-- TECH
-  - code
-  - gadgets
-  - tools
-  - work
-</div>
-<div>
-
-- LIFE
-  - parenting
-  - relationships
-  - divorce
-  - religion
-</div>
-</div>
 
 
