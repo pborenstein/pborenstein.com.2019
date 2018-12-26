@@ -16,6 +16,8 @@
   --heading-font: 'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   --code-font:    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   --code-font-size: .875em;
+  --shadow:  3px 3px 8px 0px rgba(0, 0, 0, 0.19);
+            /* offset-x | offset-y | blur-radius | spread-radius | color */
   --font-features:  "onum",   /*  onum:   Old style numbers */
                     "ss04",   /*  ss04:   Overlapping W   */
                     "ss06",   /*  ss06:   happy e */
@@ -28,7 +30,7 @@
 html {
   box-sizing: border-box;
   font-size: 100%;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 
 *, *:before, *:after {
@@ -149,6 +151,10 @@ p,ul,ol,pre,table,blockquote,dd {
   margin-top: 0.8rem;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 p img {
   margin: 0;
 }
@@ -209,13 +215,13 @@ a[href]:hover {
   border-radius: 3px;
 }
 
-.article-slug .tag {
+.article-slug .atag {
   border: 0;
 
 }
 
-a[href].tag,
-a[href].tag:visited {
+a[href].atag,
+a[href].atag:visited {
   text-decoration: transparent;
 }
 
@@ -254,8 +260,7 @@ a[href].tag:visited {
   padding-left: 1em;
   padding-right: 1em;
   padding-top: .5em;
-  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.19) ;
-            /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: var(--shadow)
 }
 
 
@@ -406,7 +411,7 @@ a[href].category:hover {
 h1, h2, h3, h4, h5, h6, dt {
   color: var(--heading);
   font-family: var(--heading-font);
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 0.33rem;
   margin-top: 2rem;
 }
@@ -434,9 +439,7 @@ nav ul {
   display: flex;
   flex-direction: column;
   padding: 0 0.5em;
-  /* border: 1px dotted var(--fadedred); */
-  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.19) ;
-
+  box-shadow: var(--shadow);
   margin: 2em 2em 0 0;
   width: 6em;
 }
@@ -529,8 +532,10 @@ code:not([class]) {
   color: var(--darkred);
   padding:  0.125em 0.125em 0px 0.125em;
   margin: 0px 0.125em 0px 0.125em;
+/*
   border: 1px solid var(--fadedred);
   border-radius: 3px;
+ */
   vertical-align: middle; /* [`code`] looks better this way */
 }
 
@@ -560,6 +565,10 @@ pre {
 	background-color: #f6f6f6 !important;
 }
 
+pre[class*="language-"] {
+  box-shadow: var(--shadow);
+}
+
 .highlight-line {
 	padding: 0.125em 1em; /* 2px 16px /16 */
 }
@@ -583,6 +592,7 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
+  box-shadow: var(--shadow);
 }
 
 caption {
