@@ -18,7 +18,7 @@ or that don't necessarily go together.
 
 ## How we'll use them
 
-Let's look at how we'll use categories:
+Let's look at how categories are used in articles:
 
 - How to specify the category for an article
 - How to get an article's category in a template
@@ -26,9 +26,9 @@ Let's look at how we'll use categories:
 
 ### Specifying the category
 
-Specify categories
-with the `category` page-level property
-like this:
+Use the `category` property
+like this to specify
+the category an article belongs to:
 
 ``` text
 ---
@@ -42,10 +42,11 @@ tags:
 ---
 ```
 
+Keep in mind:
 
 - An article does not need to specify a category.
 - An article can belong to only one category.
-- Category names are in title case by convention.
+- Category names are Capitalized by convention.
 
 
 ### Using the category in a template
@@ -62,14 +63,15 @@ the category in the usual way:
 ### Working with articles in the same category
 
 To work with articles in the same category,
-we introduce a new collection
-called `categories`.
+we introduce
+the `categories` collection.
+It works like this:
 To list
 all of the articles in
 the `Tech` category,
-you could do it like this:
+you would write something like this:
 
-```html
+```liquid
 {%- raw -%}
 <ul>
   {%- for article in collections.categories["Tech"] -%}
