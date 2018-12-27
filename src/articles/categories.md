@@ -69,7 +69,7 @@ It works like this:
 To list
 all of the articles in
 the `Tech` category,
-you would write something like this:
+you could do it this way:
 
 ```liquid
 {%- raw -%}
