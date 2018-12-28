@@ -602,9 +602,9 @@ caption {
   font-family: var(--caption-font);
   font-style: italic;
   font-weight: 450;
+  color: var(--darkred);
   margin-top: 1em;
   padding: 0;
-  color: var(--body);
   border-radius: 3px;
 }
 
