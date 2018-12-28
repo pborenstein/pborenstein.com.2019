@@ -599,7 +599,8 @@ caption {
   caption-side: top;
   text-align: right;
   text-transform: lowercase;
-  font-family: var(--heading-font);
+  font-family: var(--caption-font);
+  font-style: italic;
   font-weight: 450;
   margin-top: 1em;
   padding: 0;
