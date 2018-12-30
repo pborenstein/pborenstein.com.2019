@@ -133,6 +133,18 @@ getCatList = function(collection) {
 eleventyConfig.addCollection("categoryList", getCatList)
 ```
 
+And now the fun really begins.
+We want to
+create a property for each
+category.
+Each property is a list
+of articles of that category.
+
+This is the same way that
+Eleventy handles tags,
+so let's see how it does this.
+
+### Excursus: How do tags become collections?
 
 
 
