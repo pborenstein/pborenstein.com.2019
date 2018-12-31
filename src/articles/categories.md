@@ -147,5 +147,119 @@ so let's see how it does this.
 ### Excursus: How do tags become collections?
 
 
+Here's how you create a collection
+by hand:
+
+```js
+eleventyConfig.addCollection("posts",
+  collection => collection
+    .getAllSorted()
+    .filter(
+      item => item
+        .inputPath
+        .startsWith('./posts'))
+  );
+```
+
+The implementation of `addCollection()` looks
+[like this][addCollection]:
+
+```js
+addCollection(name, callback) {
+  name = this.getNamespacedName(name);
+
+  if (this.collections[name]) {
+    throw new Error(
+      `config.addCollection(${name}) already exists. Try a different name for your collection.`
+    );
+  }
+
+  this.collections[name] = callback;
+}
+```
 
 
+All that does is
+to stash the function
+that actually creates the group.
+
+
+The [place where that happens](https://github.com/11ty/eleventy/blob/master/src/TemplateMap.js#L167-L191)
+looks like this:
+
+``` js/5
+async getUserConfigCollectionsData() {
+  let collections = {};
+  let configCollections =
+    this.configCollections || eleventyConfig.getCollections();
+  for (let name in configCollections) {
+    let ret = configCollections[name](this.collection);
+
+    // work with arrays and strings returned from UserConfig.addCollection
+    if (
+      Array.isArray(ret) &&
+      ret.length &&
+      ret[0].inputPath &&
+      ret[0].outputPath
+    ) {
+      collections[name] = this.createTemplateMapCopy(ret);
+    } else {
+      collections[name] = ret;
+    }
+
+    debug(
+      `Collection: collections.${name} size: ${collections[name].length}`
+    );
+  }
+  return collections;
+}
+```
+
+My solution is to gather the categories
+while we get the categories list:
+
+
+```js
+module.exports = function(collection) {
+  let catSet = new Set()
+  let catlist = []
+  let decycled = JSON.stringify(decycle(collection), null, 2)
+  let sortedCollection = collection.getAllSorted()
+
+  debug(decycled)
+
+  sortedCollection.forEach(function(item) {
+    if (! ("categories" in item.data.collections)) {
+      // no categories collection? make one
+      item.data.collections.categories = {}
+    }
+
+    if (typeof item.data.category === "string") {
+      catSet.add(item.data.category)
+      if (!Array.isArray(item.data.collections.categories[item.data.category])) {
+        item.data.collections.categories[item.data.category] = []
+      }
+
+      item.data.collections.categories[item.data.category].push(item)
+    }
+  })
+
+  catlist = [...catSet]
+
+  debug(catlist)
+  return catlist
+}
+```
+
+This works, but can we make it cleaner with something like this?
+
+```js
+
+addCollection("categories", collection => collection)
+
+```
+
+
+
+
+[addCollection]: https://github.com/11ty/eleventy/blob/master/src/UserConfig.js#L213-L223
