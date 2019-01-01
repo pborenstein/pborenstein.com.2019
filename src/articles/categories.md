@@ -64,8 +64,8 @@ the category in the usual way:
 
 To work with articles in the same category,
 we introduce
-the `categories` collection.
-It works like this:
+the `categories` collection.^[We can call this anything
+we want.]
 To list
 all of the articles in
 the `Tech` category,
@@ -99,15 +99,17 @@ collections.categories {
 }
 ```
 
-
-
 ## The implementation
 
 We want:
 
-- a list of articles for each category
 - a list of categories
+- an object that contains
+  a property for each category,
+  and each property is a list
+  of articles for that category
 
+### Creating a list of categories
 
 To get the list of categories,
 we iterate over all of the
@@ -133,134 +135,47 @@ getCatList = function(collection) {
 eleventyConfig.addCollection("categoryList", getCatList)
 ```
 
-And now the fun really begins.
-We want to
-create a property for each
-category.
-Each property is a list
+### Creating a list of articles for each category
+
+To get lists of each article in a category,
+we want to create an object
+that has a property for each category,
+and each property contains a list
 of articles of that category.
 
-This is the same way that
-Eleventy handles tags,
-so let's see how it does this.
-
-### Excursus: How do tags become collections?
-
-
-Here's how you create a collection
-by hand:
+In other words,
+we want to end up with
+an object that looks like this:
 
 ```js
-eleventyConfig.addCollection("posts",
-  collection => collection
-    .getAllSorted()
-    .filter(
-      item => item
-        .inputPath
-        .startsWith('./posts'))
-  );
-```
-
-The implementation of `addCollection()` looks
-[like this][addCollection]:
-
-```js
-addCollection(name, callback) {
-  name = this.getNamespacedName(name);
-
-  if (this.collections[name]) {
-    throw new Error(
-      `config.addCollection(${name}) already exists. Try a different name for your collection.`
-    );
-  }
-
-  this.collections[name] = callback;
+categories {
+  Culture: [article_1, article_4],
+  Tech: [article_3],
+  Life: [article_1, article_3]
 }
 ```
 
+Here's a function that can be used as a callback
+to `addCollection()`.
+It creates a new object.
+Then it iterates over each item
+that has a `category` in its
+frontmatter.
+When it finds one,
+it adds it to the list
+for that category:[^explanation]
 
-All that does is
-to stash the function
-that actually creates the group.
+[^explanation]:
+    What I really want to do is: Push to the array,
+    creating it if it doesn't exist.
 
-
-The [place where that happens](https://github.com/11ty/eleventy/blob/master/src/TemplateMap.js#L167-L191)
-looks like this:
-
-``` js/5
-async getUserConfigCollectionsData() {
-  let collections = {};
-  let configCollections =
-    this.configCollections || eleventyConfig.getCollections();
-  for (let name in configCollections) {
-    let ret = configCollections[name](this.collection);
-
-    // work with arrays and strings returned from UserConfig.addCollection
-    if (
-      Array.isArray(ret) &&
-      ret.length &&
-      ret[0].inputPath &&
-      ret[0].outputPath
-    ) {
-      collections[name] = this.createTemplateMapCopy(ret);
-    } else {
-      collections[name] = ret;
-    }
-
-    debug(
-      `Collection: collections.${name} size: ${collections[name].length}`
-    );
-  }
-  return collections;
-}
-```
-
-My solution is to gather the categories
-while we get the categories list:
 
 
 ```js
-module.exports = function(collection) {
-  let catSet = new Set()
-  let catlist = []
-  let decycled = JSON.stringify(decycle(collection), null, 2)
-  let sortedCollection = collection.getAllSorted()
-
-  debug(decycled)
-
-  sortedCollection.forEach(function(item) {
-    if (! ("categories" in item.data.collections)) {
-      // no categories collection? make one
-      item.data.collections.categories = {}
-    }
-
-    if (typeof item.data.category === "string") {
-      catSet.add(item.data.category)
-      if (!Array.isArray(item.data.collections.categories[item.data.category])) {
-        item.data.collections.categories[item.data.category] = []
-      }
-
-      item.data.collections.categories[item.data.category].push(item)
-    }
-  })
-
-  catlist = [...catSet]
-
-  debug(catlist)
-  return catlist
-}
-```
-
-This works, but can we make it cleaner?
-
-
-Yes, like so:
-
-```js
-module.exports = function(collection) {
+makeCategories = function(collection) {
   let categories = {}
 
-  collection.getAll().forEach(item => {
+  collection.getAllSorted().forEach(item => {
     let category = item.data.category
 
     if (typeof category !== "string")
@@ -276,7 +191,10 @@ module.exports = function(collection) {
 }
 ```
 
+Since we want to call our collection of categories
+`categories`, we'd build it like this:
 
+```js
+addCollection("categories", makeCategories)
+```
 
-
-[addCollection]: https://github.com/11ty/eleventy/blob/master/src/UserConfig.js#L213-L223
