@@ -251,12 +251,29 @@ module.exports = function(collection) {
 }
 ```
 
-This works, but can we make it cleaner with something like this?
+This works, but can we make it cleaner?
+
+
+Yes, like so:
 
 ```js
+module.exports = function(collection) {
+  let categories = {}
 
-addCollection("categories", collection => collection)
+  collection.getAll().forEach(item => {
+    let category = item.data.category
 
+    if (typeof category !== "string")
+      return
+
+    if (Array.isArray(categories[category]))
+      categories[category].push(item)
+    else
+      categories[category] = [item]
+  })
+
+  return categories
+}
 ```
 
 

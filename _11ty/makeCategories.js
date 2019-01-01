@@ -1,20 +1,31 @@
 const decycle = require('json-cycle').decycle
-const debug = require("debug")("catlist");
+const debug = require("debug")("makeCategories");
 
+//  What we want to do here is to create an object
+//  that has a property for each category
+//  and the value of each property is a list
+//  of articles in that category
 
 module.exports = function(collection) {
   let decycled = JSON.stringify(decycle(collection), null, 2)
-  let sortedCollection = collection.getAllSorted()
+  let categories = {} // Here's where we're going to collect the categories
+
 
   debug(decycled)
 
-  sortedCollection.forEach(function(item) {
-    if (typeof item.data.category === "string") {
-      if (!Array.isArray(item.data.collections.categories[item.data.category])) {
-        item.data.collections.categories[item.data.category] = []
-      }
+  collection.getAllSorted().forEach(item => {
+    let category = item.data.category
 
-      item.data.collections.categories[item.data.category].push(item)
-    }
+    if (typeof category !== "string")
+      return
+
+    if (Array.isArray(categories[category]))
+      categories[category].push(item)
+    else
+      categories[category] = [item]
+
   })
+
+  debug(categories)
+  return categories
 }
