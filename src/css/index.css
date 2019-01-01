@@ -701,3 +701,7 @@ div[class="mdhack"] + table tbody tr td:first-child {
 .footnote-ref {
   font-family: var(--code-font);
 }
+
+.footnotes-sep {
+  margin-top: 3rem;
+}
