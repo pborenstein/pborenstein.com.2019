@@ -8,14 +8,12 @@ const debug = require("debug")("makeCategories");
 
 module.exports = function(collection) {
   let decycled = JSON.stringify(decycle(collection), null, 2)
-  let categories = {} // Here's where we're going to collect the categories
-
+  let categories = {}
 
   debug(decycled)
 
   collection.getAllSorted().forEach(item => {
     let category = item.data.category
-
     if (typeof category !== "string")
       return
 
@@ -23,7 +21,6 @@ module.exports = function(collection) {
       categories[category].push(item)
     else
       categories[category] = [item]
-
   })
 
   debug(categories)

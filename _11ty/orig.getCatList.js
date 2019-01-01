@@ -1,6 +1,11 @@
 const decycle = require('json-cycle').decycle
 const debug = require("debug")("catlist");
 
+//  This version creates the category list
+//  and the categories themselves
+//  at the same time.
+//  It's not very pretty, and it forces
+//  the property name "categories"
 
 module.exports = function(collection) {
   let catSet = new Set()
@@ -19,6 +24,7 @@ module.exports = function(collection) {
     if (typeof item.data.category === "string") {
       catSet.add(item.data.category)
       if (!Array.isArray(item.data.collections.categories[item.data.category])) {
+        // no category slot for this category? make one
         item.data.collections.categories[item.data.category] = []
       }
 
@@ -28,7 +34,6 @@ module.exports = function(collection) {
 
   catlist = [...catSet]
 
-  // returning an array in addCollection works in Eleventy 0.5.3
   debug(catlist)
   return catlist
 };

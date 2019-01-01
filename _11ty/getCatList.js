@@ -3,8 +3,7 @@ module.exports = function(collection) {
 
   collection.getAllSorted().forEach(item =>
         typeof item.data.category === "string"
-    &&  catSet.add(item.data.category)
-  )
+    &&  catSet.add(item.data.category))
 
   return [...catSet]
 };
