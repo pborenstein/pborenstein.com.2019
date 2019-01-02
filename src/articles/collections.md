@@ -5,9 +5,7 @@ tags:
   - eleventy
 ---
 
-## Effing `tags`: how do they work?
-
-Eleventy treats the `tags` page property special.
+Eleventy treats the `tags`  property special.
 For every tag name, there's a corresponding array
 of all the templates with that tag.^[I should probably
 write this in English at some point.]

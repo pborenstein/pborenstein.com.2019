@@ -5,20 +5,18 @@ tags:
   - eleventy
 ---
 
-I want there to be Categories.
+I want there to be Categories in Eleventy
+to organize articles into
+broad categories.
 
-
-They're like newspaper sections.
-The idea is
-to build silos ^[I see what I did there.]
-for things
-that shouldn't go together,
-or that don't necessarily go together.
+- An article does not need to specify a category.
+- An article can belong to only one category.
+- Category names are Capitalized by convention.
 
 
 ## How we'll use them
 
-Let's look at how categories are used in articles:
+Let's look at how we'll use categories:
 
 - How to specify the category for an article
 - How to get an article's category in a template
@@ -42,17 +40,11 @@ tags:
 ---
 ```
 
-Keep in mind:
-
-- An article does not need to specify a category.
-- An article can belong to only one category.
-- Category names are Capitalized by convention.
-
 
 ### Using the category in a template
 
 In a template, refer to
-the category in the usual way:
+the category property in the usual way:
 
 ```html
 {%- raw -%}
@@ -62,9 +54,8 @@ the category in the usual way:
 
 ### Working with articles in the same category
 
-To work with articles in the same category,
-we introduce
-the `categories` collection.^[We can call this anything
+We can work with articles in the same category
+by creating a `categories` collection.^[We can call this anything
 we want.]
 To list
 all of the articles in
@@ -126,8 +117,7 @@ getCatList = function(collection) {
 
   collection.getAllSorted().forEach(item =>
         typeof item.data.category === "string"
-    &&  catSet.add(item.data.category)
-  );
+    &&  catSet.add(item.data.category))
 
   return [...catSet]
 }
@@ -142,7 +132,6 @@ we want to create an object
 that has a property for each category,
 and each property contains a list
 of articles of that category.
-
 In other words,
 we want to end up with
 an object that looks like this:
@@ -155,21 +144,23 @@ categories {
 }
 ```
 
-Here's a function that can be used as a callback
-to `addCollection()`.
-It creates a new object.
-Then it iterates over each item
-that has a `category` in its
-frontmatter.
-When it finds one,
-it adds it to the list
+We can use the
+`makeCategories()` function
+as a callback to
+to `addCollection()`
+to create this object.
+We iterate over each item
+that has a `category`
+property in its
+front matter
+and add it to the list
 for that category:[^explanation]
 
 [^explanation]:
-    What I really want to do is: Push to the array,
+    This `if (Array.isArray(categories[category]))`
+    thing is really stupid.
+    What I really want to do is: push to the array,
     creating it if it doesn't exist.
-
-
 
 ```js
 makeCategories = function(collection) {
@@ -197,4 +188,5 @@ Since we want to call our collection of categories
 ```js
 addCollection("categories", makeCategories)
 ```
+
 
