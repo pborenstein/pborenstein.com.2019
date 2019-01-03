@@ -5,6 +5,42 @@ tags:
   - eleventy
 ---
 
+Eleventy uses tags
+to group pages
+into collections.
+Pages that share a tag
+are in the same collection.
+For example,
+a template with the following front matter
+would generate a page the belongs
+to the `transportation`
+and `fantasy` collections.
+
+``` liquid
+{%- raw -%}
+---
+title: Flying Machines
+tags:
+  - transportation
+  - fantasy
+---
+. . .
+{% endraw %}
+```
+
+
+Collections are accessed
+by name
+as properties
+of the global `collections` object:
+
+``` liquid
+{% raw %}
+{{ collections.posts }}
+{% endraw %}
+```
+
+
 Eleventy treats the `tags`  property special.
 For every tag name, there's a corresponding array
 of all the templates with that tag.^[I should probably

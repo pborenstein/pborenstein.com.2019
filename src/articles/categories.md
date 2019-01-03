@@ -1,5 +1,6 @@
 ---
 title: Implementing Categories
+subhead: A collection of collections.
 category: Tech
 tags:
   - eleventy
@@ -82,13 +83,17 @@ has a property for each category.
 Each property refers to an array of articles.
 It looks something like this:
 
-```js
-collections.categories {
-  Culture: [article_1, article_4],
-  Tech: [article_3],
-  Life: [article_1, article_3]
+``` json
+collections: {
+  all: [ items ],
+  categories: {
+    Culture: [ items ],
+    Life: [ items ],
+    Thinking: [ items ]
+  }
 }
 ```
+
 
 ## The implementation
 
