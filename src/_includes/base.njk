@@ -36,10 +36,10 @@
       </li>
       <li>
         <p class="footer-text">
-        {% if git.curbranch != 'HEAD' %}
-          {{git.curbranch}}@
+        {%- if git.curbranch != 'HEAD' -%}
+          {{- git.curbranch-}}@
         {%- endif -%}
-        {{ git.commitsha }}
+        {{- git.commitsha -}}
         </p>
       </li>
     </ul>

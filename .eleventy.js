@@ -36,6 +36,7 @@ module.exports = function(eleventyConfig) {
     collection => collection
       .getAllSorted()
       .filter(item => item.url
+                   && ! item.inputPath.includes('index.njk')
                    && item.inputPath.startsWith('./src/articles/')))
 
   eleventyConfig.addCollection("tagList",    require("./_11ty/getTagList"))
