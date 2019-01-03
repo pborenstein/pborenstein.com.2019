@@ -1,0 +1,10 @@
+---
+date: 2001-03-01
+layout: page.njk
+---
+{% from "macros.njk" import articlesList  %}
+
+<h1>All the odds</h1>
+
+
+{{ articlesList(collections.odds) }}

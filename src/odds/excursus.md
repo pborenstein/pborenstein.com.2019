@@ -3,6 +3,7 @@ title: "Excursus: How tags become categories"
 category: Tech
 tags:
   - eleventy
+  - odds
 ---
 
 Here's how you create a collection
