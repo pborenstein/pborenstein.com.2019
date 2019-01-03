@@ -530,13 +530,14 @@ code:not([class]) {
 	font-family: var(--code-font);
   font-size: var(--code-font-size);
   color: var(--darkred);
+/*
   padding:  0.125em 0.125em 0px 0.125em;
   margin: 0px 0.125em 0px 0.125em;
-/*
+
   border: 1px solid var(--fadedred);
   border-radius: 3px;
  */
-  vertical-align: middle; /* [`code`] looks better this way */
+  /* vertical-align: middle; /* [`code`] looks better this way */
 }
 
 
