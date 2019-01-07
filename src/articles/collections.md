@@ -36,9 +36,97 @@ of the global `collections` object:
 
 ``` liquid
 {% raw %}
-{{ collections.posts }}
+{{ collections.transportation }}
 {% endraw %}
 ```
+
+This is
+[the function](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L146-L161)
+that creates
+the collections that correspond to  tags:
+
+``` js/9
+async getTaggedCollectionsData() {
+  let collections = {};
+  collections.all = this.createTemplateMapCopy(
+    this.collection.getAllSorted()
+  );
+  debug(`Collection: collections.all size: ${collections.all.length}`);
+
+  let tags = this.getAllTags();
+  for (let tag of tags) {
+    collections[tag] = this.createTemplateMapCopy(
+      this.collection.getFilteredByTag(tag)
+    );
+    debug(`Collection: collections.${tag} size: ${collections[tag].length}`);
+  }
+  return collections;
+}
+```
+
+Where does `getTaggedCollectionsData` get called?
+In `TemplateMap.cache()`.
+Hmmm. That's not terribly useful. Is that where
+the magic happens?
+
+
+
+
+============ how it happens
+
+
+The [place where that happens](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L167-L191)
+
+but this is for collection building functions
+that were stashed by [addCollection()](https://github.com/11ty/eleventy/blob/d70abd65cfa2235dc29657fc6e0d714248c70eed/src/UserConfig.js#L233-L243)
+
+```js
+addCollection(name, callback) {
+  name = this.getNamespacedName(name);
+
+  if (this.collections[name]) {
+    throw new UserConfigError(
+      `config.addCollection(${name}) already exists. Try a different name for your collection.`
+    );
+  }
+
+  this.collections[name] = callback;
+}
+```
+
+looks like this:[^realgetuser]
+
+``` js/6
+  async getUserConfigCollectionsData() {
+    let collections = {};
+    let configCollections =
+      this.configCollections || eleventyConfig.getCollections();
+    for (let name in configCollections) {
+      let ret = configCollections[name](this.collection);
+
+      // work with arrays and strings returned from UserConfig.addCollection
+      if (
+        Array.isArray(ret) &&
+        ret.length &&
+        ret[0].inputPath &&
+        ret[0].outputPath
+      ) {
+        collections[name] = this.createTemplateMapCopy(ret);
+      } else {
+        collections[name] = ret;
+      }
+
+      debug(
+        `Collection: collections.${name} size: ${collections[name].length}`
+      );
+    }
+    return collections;
+  }
+```
+
+
+
+================== what's in addCollection's collection param
 
 
 When you want to create a new collection that's not
@@ -103,30 +191,6 @@ Let's put links in these tables.
 
 
 
-How do the tagged items end up in the collections?
-Haven't we done this already?
-[Yes we have.](/articles/how-collections-built/)
-
-The [place where that happens](https://github.com/11ty/eleventy/blob/master/src/TemplateMap.js#L165-L189)
-looks like this:[^realgetuser]
-
-``` js/6
-async getUserConfigCollectionsData() {
-  let collections = {};
-  let configCollections =
-    this.configCollections || eleventyConfig.getCollections();
-  for (let name in configCollections) {
-    collections[name] = this.createTemplateMapCopy(
-      configCollections[name](this.collection)
-    );
-    debug(
-      `Collection: collections.${name} size: ${collections[name].length}`
-    );
-  }
-  return collections;
-}
-```
-
 
 This is a typical way of creating a collection.
 
@@ -167,36 +231,6 @@ getFilteredByTag(tagName) {
                 item.data.tags.some(tag => tag === tagName))
 }
 ```
-
-This is how the the individual collections
-get into to the `collections` property:
-
-
-``` js/9
-async getTaggedCollectionsData() {
-  let collections = {};
-  collections.all = this.createTemplateMapCopy(
-    this.collection.getAllSorted()
-  );
-  debug(`Collection: collections.all size: ${collections.all.length}`);
-
-  let tags = this.getAllTags();
-  for (let tag of tags) {
-    collections[tag] = this.createTemplateMapCopy(
-      this.collection.getFilteredByTag(tag)
-    );
-    debug(`Collection: collections.${tag} size: ${collections[tag].length}`);
-  }
-  return collections;
-}
-
-```
-
-Where does `getTaggedCollectionsData` get called?
-In `TemplateMap.cache()`.
-Hmmm. That's not terribly useful. Is that where
-the magic happens?
-
 
 
 # Other Stuff
