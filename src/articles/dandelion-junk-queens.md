@@ -2,7 +2,7 @@
 date: 2010-08-22 14:12:00
 slug: dandelion-junk-queens
 title: Dandelion Junk Queens
-category: Culture
+category: Visual
 subhead: <img width="100%" src="https://farm5.static.flickr.com/4082/4914583899_f75365741d.jpg)">
 tags:
 - music

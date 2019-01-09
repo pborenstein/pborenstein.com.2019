@@ -2,7 +2,7 @@
 date: 2016-09-26T00:00:00-05
 title: Garage
 subhead: <img src="https://farm6.staticflickr.com/5696/29915594713_9a244a6b6a.jpg" width="100%" alt="Garage">
-category: Culture
+category: Visual
 tags:
 - photos
 ---

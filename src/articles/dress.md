@@ -3,7 +3,7 @@ date: 2011-03-02 01:43:21
 slug: dress
 title: Caged Dress
 subhead: <img src="https://farm6.staticflickr.com/5215/5393430759_fa384b52bd.jpg" width="100%" alt="Caged Dress"></a>
-category: Culture
+category: Visual
 tags:
 - photos
 ---
