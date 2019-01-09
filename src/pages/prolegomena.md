@@ -29,10 +29,12 @@ Things like:
 
 There are things I don't want:
 
-- Any JavaScript framework
-- Things that pop up & get in your way
-- Huge hero pictures on the front page
-- Comments
+- a JavaScript framework
+- things that pop up & get in your way
+- huge hero pictures on the front page
+- comments
+
+
 
 
 
