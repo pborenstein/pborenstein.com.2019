@@ -27,6 +27,12 @@ Things like:
   - my resume & portfolio
   - things I'm thinking about
 
+There are things I don't want:
+
+- Any JavaScript framework
+- Things that pop up & get in your way
+- Huge hero pictures on the front page
+- Comments
 
 
 
