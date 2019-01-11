@@ -4,30 +4,36 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 
 module.exports = function(eleventyConfig) {
 
-/*  PLUGINS */
+/*  ===
+  PLUGINS
+    ===  */
 
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
 
-/* FILTERS */
+/*  ===
+  FILTERS
+    ===  */
+                  eleventyConfig.addFilter(
+  "readableDate", dateObj =>
+        DateTime.fromJSDate(dateObj).toFormat("d LLLL yyyy"))
 
-  eleventyConfig.addFilter("readableDate", dateObj =>
-    DateTime.fromJSDate(dateObj).toFormat("d LLLL yyyy"))
+                  eleventyConfig.addFilter(
+  "shortDate", dateObj =>
+        DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy"))
 
-  eleventyConfig.addFilter("shortDate", dateObj =>
-    DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy"))
+                  eleventyConfig.addFilter( // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
+  "htmlDateString", dateObj =>
+        DateTime.fromJSDate(dateObj).toISODate())
 
-  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter("htmlDateString", dateObj =>
-    DateTime.fromJSDate(dateObj).toISODate())
-
-
-  // Get the first `n` elements of a collection.
-  eleventyConfig.addFilter("head", (array, n) =>
-    n < 0 ? array.slice(n) : array.slice(0,n))
+                  eleventyConfig.addFilter( // Get the first `n` elements of a collection.
+  "head", (array, n) =>
+        n < 0 ? array.slice(n) : array.slice(0,n))
 
 
-/* COLLECTIONS */
+/*  ===
+  COLLECTIONS
+    ===  */
 
   //  The `articles` collection contains
   //  only pages that are in the `./src/articles/` directory
@@ -43,7 +49,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("catList",    require("./_11ty/getCatList"))
   eleventyConfig.addCollection("categories", require("./_11ty/makeCategories"))
 
-/* PASSTHROUGH */
+/*  ===
+  PASSTHROUGH DIRECTORIES
+    ===  */
 
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/css");
@@ -52,7 +60,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/rbac")
   eleventyConfig.addPassthroughCopy("src/assets")
 
-  /* Markdown Plugins */
+/*  ===
+  MARKDOWN PLUGINS
+    ===  */
 
   eleventyConfig.setLibrary("md", require("markdown-it")({
                                     html: true,
@@ -60,13 +70,13 @@ module.exports = function(eleventyConfig) {
                                     linkify: false,
                                     typographer: true
                                   })
+    .use(require("markdown-it-multimd-table"))
+    .use(require('markdown-it-footnote'))
     .use(require("markdown-it-anchor"), {
             permalink: true,
             permalinkClass: "direct-link",
-            permalinkSymbol: "• • •"
+            permalinkSymbol: "• : •"
           })
-    .use(require("markdown-it-multimd-table"))
-    .use(require('markdown-it-footnote'))
   );
 
   return {
@@ -82,14 +92,14 @@ module.exports = function(eleventyConfig) {
     pathPrefix: "/",
 
     markdownTemplateEngine: "liquid",
-    htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
-    passthroughFileCopy: true,
+    htmlTemplateEngine:     "njk",
+    dataTemplateEngine:     "njk",
+    passthroughFileCopy:    true,
     dir: {
-      output: "_site",
-      input: "src",
+      output:   "_site",
+      input:    "src",
       includes: "_includes",  // inside the input directory
-      data: "_data"           // inside the input directory
+      data:     "_data"           // inside the input directory
     }
   };
 };
