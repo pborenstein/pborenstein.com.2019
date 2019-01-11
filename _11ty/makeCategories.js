@@ -1,9 +1,9 @@
 const decycle = require('json-cycle').decycle
 const debug = require("debug")("makeCategories");
 
-//  What we want to do here is to create an object
-//  that has a property for each category
-//  and the value of each property is a list
+//  We want to create an object
+//  that has a property for each category.
+//  The value of each property is a list
 //  of articles in that category
 
 module.exports = function(collection) {

@@ -5,6 +5,22 @@ tags:
   - eleventy
 ---
 
+Eleventy uses `collections`
+to group posts
+in according to various criteria.
+One collection might consist
+of articles in a series.
+Another collection could be
+of posts about transportation.
+A third could be
+all the posts
+in a particular directory.
+
+Eleventy gives you two ways to create collections:
+
+- implicitly with tags
+- explicityle with `addCollection()`
+
 Eleventy uses tags
 to group pages
 into collections.
@@ -28,8 +44,8 @@ tags:
 {% endraw %}
 ```
 
-
-Collections are accessed
+Within a template
+collections are accessed
 by name
 as properties
 of the global `collections` object:
@@ -74,8 +90,47 @@ the magic happens?
 
 ============ how it happens
 
+IT =  how named (non-tag) get built
+      - stash a function that creates the collection
+      - where the function gets called.
+
+      Collections are central data structures
+      There are two collection-building mechanisms:
+        - tags
+        - addCollection()
+
 
 The [place where that happens](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L167-L191)
+
+
+```js
+async getUserConfigCollectionsData() {
+  let collections = {};
+  let configCollections =
+    this.configCollections || eleventyConfig.getCollections();
+  for (let name in configCollections) {
+    let ret = configCollections[name](this.collection);
+
+    // work with arrays and strings returned from UserConfig.addCollection
+    if (
+      Array.isArray(ret) &&
+      ret.length &&
+      ret[0].inputPath &&
+      ret[0].outputPath
+    ) {
+      collections[name] = this.createTemplateMapCopy(ret);
+    } else {
+      collections[name] = ret;
+    }
+
+    debug(
+      `Collection: collections.${name} size: ${collections[name].length}`
+    );
+  }
+  return collections;
+}
+```
+
 
 but this is for collection building functions
 that were stashed by [addCollection()](https://github.com/11ty/eleventy/blob/d70abd65cfa2235dc29657fc6e0d714248c70eed/src/UserConfig.js#L233-L243)

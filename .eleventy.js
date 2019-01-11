@@ -63,7 +63,7 @@ module.exports = function(eleventyConfig) {
     .use(require("markdown-it-anchor"), {
             permalink: true,
             permalinkClass: "direct-link",
-            permalinkSymbol: "#"
+            permalinkSymbol: "• • •"
           })
     .use(require("markdown-it-multimd-table"))
     .use(require('markdown-it-footnote'))
@@ -79,9 +79,6 @@ module.exports = function(eleventyConfig) {
     ],
 
     // If your site lives in a different subdirectory, change this.
-    // Leading or trailing slashes are all normalized away, so don’t worry about it.
-    // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
-    // This is only used for URLs (it does not affect your file structure)
     pathPrefix: "/",
 
     markdownTemplateEngine: "liquid",
@@ -89,10 +86,10 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
     passthroughFileCopy: true,
     dir: {
+      output: "_site",
       input: "src",
-      includes: "_includes",
-      data: "_data",
-      output: "_site"
+      includes: "_includes",  // inside the input directory
+      data: "_data"           // inside the input directory
     }
   };
 };
