@@ -16,6 +16,16 @@ Not that my tweets and Facebook posts
 have any enduring value,
 but I should have control of my own stuff.
 
+Whenever I post something on Twitter or Facebook,
+I'm constantly checking to see if anyone liked
+or responded to what I wrote.
+
+In the early days of Twitter
+it wasn't unusual to engage in
+conversations that lasted throughout the day.
+But then it got mean.
+
+
 Specifically, I want something like
 a [commonplace book]
 that I can use
