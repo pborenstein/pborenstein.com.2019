@@ -6,8 +6,8 @@ tags:
 ---
 
 Eleventy uses `collections`
-to group posts
-in according to various criteria.
+to **group posts**
+according to various criteria.
 One collection might consist
 of articles in a series.
 Another collection could be
@@ -18,19 +18,18 @@ in a particular directory.
 
 Eleventy gives you two ways to create collections:
 
-- implicitly with tags
-- explicityle with `addCollection()`
+- implicitly, with tags in the front matter
+- explicitly, with `addCollection()`
 
-Eleventy uses tags
-to group pages
-into collections.
+## Tag-based collections
+
 Pages that share a tag
 are in the same collection.
-For example,
-a template with the following front matter
-would generate a page the belongs
-to the `transportation`
-and `fantasy` collections.
+A template with the following front matter
+would generate
+pages in the collections a page the belongs
+`transportation`
+and `fantasy`.
 
 ``` liquid
 {%- raw -%}
@@ -48,20 +47,26 @@ Within a template
 collections are accessed
 by name
 as properties
-of the global `collections` object:
+of the global `collections` object.
+The collection is an array of page items.
+
 
 ``` liquid
 {% raw %}
-{{ collections.transportation }}
+<p>
+  The title of this page is:
+  {{ collections.transportation[0].data.title }}
+</p>
 {% endraw %}
 ```
+
 
 This is
 [the function](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L146-L161)
 that creates
 the collections that correspond to  tags:
 
-``` js/9
+``` js/9-10
 async getTaggedCollectionsData() {
   let collections = {};
   collections.all = this.createTemplateMapCopy(
@@ -80,10 +85,96 @@ async getTaggedCollectionsData() {
 }
 ```
 
-Where does `getTaggedCollectionsData` get called?
-In `TemplateMap.cache()`.
-Hmmm. That's not terribly useful. Is that where
-the magic happens?
+`getTaggedCollectionsData()` gets called
+in `TemplateMap.cache()` which is where
+Eleventy builds the collections.
+
+## Explicit Collections
+
+Explicit Collections is a stupid name
+for this.
+
+When you want to create a new collection that's not
+a tag, you can use `addCollection()` in your
+`.eleventy.js` configuration file.
+
+`addCollection()` takes two arguments:
+- the name of the collection (a string)
+- a function that takes a `collection` as an argument.
+
+
+```js
+  eleventyConfig.addCollection("articles",
+    collection => collection
+      .getAllSorted()
+      .filter(item => item.url
+                   && ! item.inputPath.includes('index.njk')
+                   && item.inputPath.startsWith('./src/articles/')))
+```
+
+So, what's in this `collection` parameter?
+
+<div class="mdhack"></div>
+
+| Property | Type | Description |
+| :---     | :--- | :---        |
+| items | [`item`] | All of the templates that Eleventy processed. Is this always the same as the number of pages? |
+| sortAscending | Boolean | ? Whether the items are sorted in ascending order? |
+| sortNumeric | Boolean | ? Whether the items are sorted in numeric order? |
+| sortFunctionStringMap | object | Something to do with the sorting stuff. We're not going to talk about it here. |
+[<div class="table-caption">Collection properties</div>]
+
+We're interested in the `items` array.
+This table shows what an `item` looks like.[^item]
+
+[^item]: I'm using the notation `[item]` to indicate that
+      the property called `items` is an array of item objects.
+      There really isn't an `item` object. In other words,
+      you'll never see JSON like this:
+
+      ```json
+      {
+        "item" : { ... }
+      }
+      ```
+
+<div class="mdhack"></div>
+
+| Property | Type | Description |
+| :---     | :--- | :---        |
+| template | object | Content and metadata about this item's template. In other words, its page. |
+| inputPath | string | A path relative to the source directory. Though really it's more like `./src/index.md` where `src` is the source directory. |
+| fileSlug | string | The base name of the input file. The final element in the path. Never `index`. If the file is index.md, the slug is an empty string. |
+| data | object | Whoa |
+| date | string | An the file's date in <span style="font-variant-caps: small-caps; font-variant: small-caps">ISO 8601</span> format. There's some trickery about dates. |
+| _pages | [`stuff`] | Something to do with Elventy's caching that I'm not even going to think about. |
+| url | string | The URL of this page. Actually just the path without the scheme, host, port info etc. |
+| outputPath | string | Where the processed file ended up. Relative to where `.eleventy.js` is |
+[<div class="table-caption">item properties</div>]
+
+Let's put links in these tables.
+
+
+https://www.11ty.io/docs/collections/#collection-api-methods
+
+https://www.11ty.io/docs/collections/#collection-item-data-structure
+
+The `collection` item itself isn't all that interesting.
+It contains the array of items
+and some other stuff used for sorting.
+
+
+The collection API
+
+All of these return an array of collection items.
+
+| Method                        | Description                                                                |
+| :---------------------------- | :------------------------------------------------------------------------- |
+| `getAll()`                    | Gets all of the items in arbitrary order.                                  |
+| `getAllSorted()`              | Gets all of the items in order.                                            |
+| `getFilteredByTag( tagName )` | Get all of the items with a specific tag.                                  |
+| `getFilteredByGlob( glob )`   | Gets all of the items whose `inputPath` matches one or more glob patterns. |
+
 
 
 
@@ -183,65 +274,6 @@ looks like this:[^realgetuser]
 
 ================== what's in addCollection's collection param
 
-
-When you want to create a new collection that's not
-a tag, you can use `addCollection()` in your
-`.eleventy.js` configuration file.
-
-`addCollection()` takes two arguments:
-- the name of the collection (a string)
-- a function that takes a `collection` as an argument.
-
-
-```js
-  eleventyConfig.addCollection("articles", function(collection) {
-    return collection.getAllSorted().filter(function(item) {
-      return item.url && item.inputPath.startsWith('./src/articles/');
-    });
-  });
-```
-
-So, what's in this `collection` parameter?
-
-<div class="mdhack"></div>
-
-| Property | Type | Description |
-| :---     | :--- | :---        |
-| items | [`item`] | All of the templates that Eleventy processed. Is this always the same as the number of pages? |
-| sortAscending | Boolean | ? Whether the items are sorted in ascending order? |
-| sortNumeric | Boolean | ? Whether the items are sorted in numeric order? |
-| sortFunctionStringMap | object | Something to do with the sorting stuff. We're not going to talk about it here. |
-[<div class="table-caption">Collection properties</div>]
-
-We're interested in the `items` array.
-This table shows what an `item` looks like.[^item]
-
-[^item]: I'm using the notation `[item]` to indicate that
-      the property called `items` is an array of item objects.
-      There really isn't an `item` object. In other words,
-      you'll never see JSON like this:
-
-      ```json
-      {
-        "item" : { ... }
-      }
-      ```
-
-<div class="mdhack"></div>
-
-| Property | Type | Description |
-| :---     | :--- | :---        |
-| template | object | Content and metadata about this item's template. In other words, its page. |
-| inputPath | string | A path relative to the source directory. Though really it's more like `./src/index.md` where `src` is the source directory. |
-| fileSlug | string | The base name of the input file. The final element in the path. Never `index`. If the file is index.md, the slug is an empty string. |
-| data | object | Whoa |
-| date | string | An the file's date in <span style="font-variant-caps: small-caps; font-variant: small-caps">ISO 8601</span> format. There's some trickery about dates. |
-| _pages | [`stuff`] | Something to do with Elventy's caching that I'm not even going to think about. |
-| url | string | The URL of this page. Actually just the path without the scheme, host, port info etc. |
-| outputPath | string | Where the processed file ended up. Relative to where `.eleventy.js` is |
-[<div class="table-caption">item properties</div>]
-
-Let's put links in these tables.
 
 
 
