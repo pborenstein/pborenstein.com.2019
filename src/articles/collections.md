@@ -64,7 +64,7 @@ It looks like this:
       "data": {...},
       "date": "2009-08-07T13:52:12.000Z",
       "url": "/articles/finding-oz/",
-      "templateContent": "<p>As with most books I never finish, this one started with a promising review.\nI can’t find the review now, so I can’t tell what it was that drew me to <em>Finding Oz: How L. Frank Baum Discovered the Great American Story</em>.</p>\n<p>I was never that big a fan of <em>The Wizard of Oz</em>. I liked the movie well enough, and, because it’s <a href=\"https://www.gutenberg.org/etext/55\">out of copyright</a>, it was one of the first books I downloaded and read on my old Palm. I read it to the boy when he was in first grade, though I’d be surprised if he remembers much of it. I don’t.</p>\n<p>Finding Oz begins with the story of L. Frank Baum. He worried that his first name, Lyman, made him sound untrustworthy and chose instead to use his “more honest sounding” middle name. The book mentions that a <a href=\"https://en.wikipedia.org/wiki/Plank_road\">plank road</a> ran in front of the Baum house, foreshadowing, perhaps, the Yellow Brick Road. I don’t know. I never got that far.</p>\n<p>Ultimately what dissuaded me from finishing the book were three things:</p>\n<ul>\n<li>Baum framed the pencil with which he “wrote The Emerald City”</li>\n<li>He was a sickly child with dreams of greatness</li>\n<li>I just didn’t care that much about The Wizard of Oz</li>\n</ul>\n",
+      "templateContent": "<p>As with most books ... much about The Wizard of Oz</li>\n</ul>\n",
       "template": {...}
     },
     ...
@@ -82,11 +82,11 @@ of all of the page objects generated.
 | Property          | Description                                                                                                                               |
 | :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | `inputPath`       | Path to this file including the `input` directory.<hr><code class="phony">"./src/articles/finding-oz.md"</code>                                              |
-| `outputPath`      | the full path to the output file to be written for this content<hr><code class="phony">"_site/articles/finding-oz/index.html"</code> |
-| `fileSlug`        | New in v0.5.3 Mapped from the input file name, useful for permalinks. Read more about fileSlug.                                           |
+| `outputPath`      | Path to the rendered file.<hr><code class="phony">"_site/articles/finding-oz/index.html"</code> |
+| `fileSlug`        | Short name from the file name. [There are rules](https://www.11ty.io/docs/data/#fileslug). <hr><code class="phony">"./src/articles/finding-oz.md"</code> |
 | `data`            | ...                                                                                                                                       |
-| `date`            | the resolved date used for sorting. Read more about Content Dates.                                                                        |
-| `url`             | url used to link to this piece of content.                                                                                                |
+| `date`            | The date of this file in UTC. There are rules.  |
+| `url`             | Path to this content. Doesn't include protocol or host. You can get these from WHERE?                                                                                                |
 | `templateContent` | the rendered content of this template. This does not include layout wrappers.                                                             |
 | `template`        | ...                                                                                                                                       |
 [<div class="table-caption">collection item properties</div>]
