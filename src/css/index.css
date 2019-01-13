@@ -225,6 +225,12 @@ a[href].atag:visited {
   text-decoration: transparent;
 }
 
+summary {
+  color: var(--darkred);
+  outline-color: var(--white);
+  cursor: pointer;
+}
+
 /* cards */
 
 .articleList {

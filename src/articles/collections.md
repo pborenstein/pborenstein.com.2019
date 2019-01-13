@@ -8,7 +8,7 @@ tags:
 Eleventy uses `collections`
 to **group posts**
 according to various criteria.
-One collection might consist
+A collection might consist
 of articles in a series.
 Another collection could be
 of posts about transportation.
@@ -25,19 +25,20 @@ Eleventy gives you two ways to create collections:
 
 Pages that share a tag
 are in the same collection.
+A page with the
 A template with the following front matter
 would generate
 pages in the collections a page the belongs
-`transportation`
-and `fantasy`.
+`posts`
+and `scifi`.
 
 ``` liquid
 {%- raw -%}
 ---
-title: Flying Machines
+title: Flying Autos
 tags:
-  - transportation
-  - fantasy
+  - posts
+  - scifi
 ---
 . . .
 {% endraw %}
@@ -48,7 +49,47 @@ collections are accessed
 by name
 as properties
 of the global `collections` object.
-The collection is an array of page items.
+It looks like this:
+
+
+```json
+{
+  "all": [...],
+  "nav": [...],
+  "books": [
+    {
+      "inputPath": "./src/articles/finding-oz.md",
+      "outputPath": "_site/articles/finding-oz/index.html",
+      "fileSlug": "finding-oz",
+      "data": {...},
+      "date": "2009-08-07T13:52:12.000Z",
+      "url": "/articles/finding-oz/",
+      "templateContent": "<p>As with most books I never finish, this one started with a promising review.\nI can’t find the review now, so I can’t tell what it was that drew me to <em>Finding Oz: How L. Frank Baum Discovered the Great American Story</em>.</p>\n<p>I was never that big a fan of <em>The Wizard of Oz</em>. I liked the movie well enough, and, because it’s <a href=\"https://www.gutenberg.org/etext/55\">out of copyright</a>, it was one of the first books I downloaded and read on my old Palm. I read it to the boy when he was in first grade, though I’d be surprised if he remembers much of it. I don’t.</p>\n<p>Finding Oz begins with the story of L. Frank Baum. He worried that his first name, Lyman, made him sound untrustworthy and chose instead to use his “more honest sounding” middle name. The book mentions that a <a href=\"https://en.wikipedia.org/wiki/Plank_road\">plank road</a> ran in front of the Baum house, foreshadowing, perhaps, the Yellow Brick Road. I don’t know. I never got that far.</p>\n<p>Ultimately what dissuaded me from finishing the book were three things:</p>\n<ul>\n<li>Baum framed the pencil with which he “wrote The Emerald City”</li>\n<li>He was a sickly child with dreams of greatness</li>\n<li>I just didn’t care that much about The Wizard of Oz</li>\n</ul>\n",
+      "template": {...}
+    },
+    ...
+  ],
+  "programming": [...],
+}
+```
+
+Each property is an array of page objects.
+The special `all` collection is an array
+of all of the page objects generated.
+
+<div class="mdhack"></div>
+
+| Property          | Description                                                                                                                               |
+| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `inputPath`       | Path to this file including the `input` directory.<hr><code class="phony">"./src/articles/finding-oz.md"</code>                                              |
+| `outputPath`      | the full path to the output file to be written for this content<hr><code class="phony">"_site/articles/finding-oz/index.html"</code> |
+| `fileSlug`        | New in v0.5.3 Mapped from the input file name, useful for permalinks. Read more about fileSlug.                                           |
+| `data`            | ...                                                                                                                                       |
+| `date`            | the resolved date used for sorting. Read more about Content Dates.                                                                        |
+| `url`             | url used to link to this piece of content.                                                                                                |
+| `templateContent` | the rendered content of this template. This does not include layout wrappers.                                                             |
+| `template`        | ...                                                                                                                                       |
+[<div class="table-caption">collection item properties</div>]
 
 
 ``` liquid
@@ -60,11 +101,22 @@ The collection is an array of page items.
 {% endraw %}
 ```
 
+This:  X
 
-This is
-[the function](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L146-L161)
-that creates
-the collections that correspond to  tags:
+
+I think there are two versions of an item object:
+
+1.  The one here in collections.x in a template
+2.  The other one in the collection parameter to addCollection()
+
+
+<details>
+<summary>
+Implementation notes
+</summary>
+
+[`getTaggedCollectionsData()`](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L146-L161)
+is the function that turns tags into collections.
 
 ``` js/9-10
 async getTaggedCollectionsData() {
@@ -88,6 +140,12 @@ async getTaggedCollectionsData() {
 `getTaggedCollectionsData()` gets called
 in `TemplateMap.cache()` which is where
 Eleventy builds the collections.
+</details>
+
+
+
+
+
 
 ## Explicit Collections
 
@@ -104,24 +162,24 @@ a tag, you can use `addCollection()` in your
 
 
 ```js
-  eleventyConfig.addCollection("articles",
-    collection => collection
-      .getAllSorted()
-      .filter(item => item.url
-                   && ! item.inputPath.includes('index.njk')
-                   && item.inputPath.startsWith('./src/articles/')))
+eleventyConfig.addCollection("articles",
+  collection => collection
+    .getAllSorted()
+    .filter(item => item.url
+                 && ! item.inputPath.includes('index.njk')
+                 && item.inputPath.startsWith('./src/articles/')))
 ```
 
 So, what's in this `collection` parameter?
 
 <div class="mdhack"></div>
 
-| Property | Type | Description |
-| :---     | :--- | :---        |
-| items | [`item`] | All of the templates that Eleventy processed. Is this always the same as the number of pages? |
-| sortAscending | Boolean | ? Whether the items are sorted in ascending order? |
-| sortNumeric | Boolean | ? Whether the items are sorted in numeric order? |
-| sortFunctionStringMap | object | Something to do with the sorting stuff. We're not going to talk about it here. |
+| Property              | Type     | Description                                                                                   |
+| :-------------------- | :------- | :-------------------------------------------------------------------------------------------- |
+| items                 | [`item`] | All of the templates that Eleventy processed. Is this always the same as the number of pages? |
+| sortAscending         | Boolean  | ? Whether the items are sorted in ascending order?                                            |
+| sortNumeric           | Boolean  | ? Whether the items are sorted in numeric order?                                              |
+| sortFunctionStringMap | object   | Something to do with the sorting stuff. We're not going to talk about it here.                |
 [<div class="table-caption">Collection properties</div>]
 
 We're interested in the `items` array.
@@ -140,16 +198,16 @@ This table shows what an `item` looks like.[^item]
 
 <div class="mdhack"></div>
 
-| Property | Type | Description |
-| :---     | :--- | :---        |
-| template | object | Content and metadata about this item's template. In other words, its page. |
-| inputPath | string | A path relative to the source directory. Though really it's more like `./src/index.md` where `src` is the source directory. |
-| fileSlug | string | The base name of the input file. The final element in the path. Never `index`. If the file is index.md, the slug is an empty string. |
-| data | object | Whoa |
-| date | string | An the file's date in <span style="font-variant-caps: small-caps; font-variant: small-caps">ISO 8601</span> format. There's some trickery about dates. |
-| _pages | [`stuff`] | Something to do with Elventy's caching that I'm not even going to think about. |
-| url | string | The URL of this page. Actually just the path without the scheme, host, port info etc. |
-| outputPath | string | Where the processed file ended up. Relative to where `.eleventy.js` is |
+| Property   | Type      | Description                                                                                                                                            |
+| :--------- | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| template   | object    | Content and metadata about this item's template. In other words, its page.                                                                             |
+| inputPath  | string    | A path relative to the source directory. Though really it's more like `./src/index.md` where `src` is the source directory.                            |
+| fileSlug   | string    | The base name of the input file. The final element in the path. Never `index`. If the file is index.md, the slug is an empty string.                   |
+| data       | object    | Whoa                                                                                                                                                   |
+| date       | string    | An the file's date in <span style="font-variant-caps: small-caps; font-variant: small-caps">ISO 8601</span> format. There's some trickery about dates. |
+| _pages     | [`stuff`] | Something to do with Elventy's caching that I'm not even going to think about.                                                                         |
+| url        | string    | The URL of this page. Actually just the path without the scheme, host, port info etc.                                                                  |
+| outputPath | string    | Where the processed file ended up. Relative to where `.eleventy.js` is                                                                                 |
 [<div class="table-caption">item properties</div>]
 
 Let's put links in these tables.
@@ -386,50 +444,6 @@ templateFormats: [
   "ejs"
 ]
 ```
-
-If you look at `collections-ejs.json`,
-the output of `collections.ejs`,
-it looks something like this:
-
-```json
-{
-  "all": [],
-  "nav": [],
-  "post": [],
-  "another-tag": [],
-  "eleventy": [
-    {
-      "inputPath": "./posts/inside-collections.md",
-      "fileSlug": "inside-collections",
-      "date": "2018-09-02T00:49:59.000Z",
-      "outputPath": "_site/posts/inside-collections/index.html",
-      "url": "/posts/inside-collections/",
-      "templateContent": "..."
-    }
-  ],
-  "number-2": [],
-  "second-tag": [],
-  "posts": [],
-  "tagList": [
-    "another-tag",
-    "number-2",
-    "second-tag",
-    "eleventy"
-  ]
-}
-```
-
-A saved version is in `collections-page.json`.
-
-[So,][] here's what's in each property of `collections`.
-
-- Every property except `tagList` is a list of rendered pages.
-- `all` is the list of all rendered pages.
-- Other properties are the names of tags, and the
-  contents is a list of posts with that tag.
-- `tagList` is a special collection made in `.eleventy.js`
-  that lists all of the tags except the special
-  metatags (`all`, `nav`, `post`, `posts`).
 
 
 
