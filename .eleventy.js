@@ -30,6 +30,16 @@ module.exports = function(eleventyConfig) {
   "head", (array, n) =>
         n < 0 ? array.slice(n) : array.slice(0,n))
 
+                  eleventyConfig.addFilter( // decycled dump
+  "pdump", require("./_11ty/pdump"))
+
+                  eleventyConfig.addFilter( // keys
+  "okeys", (obj,n) => {
+        let k = Object.keys(obj)
+        return n === undefined ? k : k[n]
+        })
+
+
 
 /*  ===
   COLLECTIONS

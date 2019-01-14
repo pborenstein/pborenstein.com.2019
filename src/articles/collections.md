@@ -75,20 +75,20 @@ It looks like this:
 
 Each property is an array of page objects.
 The special `all` collection is an array
-of all of the page objects generated.
+of all of the page objects Eleventy generates.
 
 <div class="mdhack"></div>
 
-| Property          | Description                                                                                                                               |
-| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `inputPath`       | Path to this file including the `input` directory.<hr><code class="phony">"./src/articles/finding-oz.md"</code>                                              |
-| `outputPath`      | Path to the rendered file.<hr><code class="phony">"_site/articles/finding-oz/index.html"</code> |
-| `fileSlug`        | Short name from the file name. [There are rules](https://www.11ty.io/docs/data/#fileslug). <hr><code class="phony">"./src/articles/finding-oz.md"</code> |
-| `data`            | ...                                                                                                                                       |
-| `date`            | The date of this file in UTC. There are rules.  |
-| `url`             | Path to this content. Doesn't include protocol or host. You can get these from WHERE?                                                                                                |
-| `templateContent` | the rendered content of this template. This does not include layout wrappers.                                                             |
-| `template`        | ...                                                                                                                                       |
+| Property          | Description                                                                                                                                                      |
+| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `inputPath`       | Path to this file including the `input` directory.<hr><code class="phony">./src/articles/finding-oz.md</code>                                                  |
+| `outputPath`      | Path to the rendered file.<hr><code class="phony">articles/finding-oz/index.html</code>                                                                                                    |
+| `fileSlug`        | Short name from the file name. [There are rules](https://www.11ty.io/docs/data/#fileslug). <hr><code class="phony">./src/articles/finding-oz.md</code> |
+| `data`            | ...                                                                                                                                                              |
+| `date`            | The date of this file in UTC. [There are rules](https://www.11ty.io/docs/dates/). <hr><code class="phony">2009-08-07T13:52:12.000Z</code>                      |
+| `url`             | Path to this content. Doesn't include protocol or host. <hr><code class="phony">/articles/finding-oz/</code>                                                                 |
+| `templateContent` | The rendered content, not including any layout wrappers.<hr><code class="phony">&lt;p&gt;As with most books ... much about The Wizard of Oz&lt;/li&gt;\n&lt;/ul&gt;\n</code> |
+| `template`        | ...                                                                                                                                                              |
 [<div class="table-caption">collection item properties</div>]
 
 
