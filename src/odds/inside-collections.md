@@ -15,7 +15,7 @@ uses `collection` as a parameter:
   {%- raw -%}
   {% for tag in collections.tagList %}
   {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-  <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+  <a href="{{ tagUrl | url }}" class="atag">{{ tag }}</a>
   {% endfor %}
   {%- endraw -%}
   ```

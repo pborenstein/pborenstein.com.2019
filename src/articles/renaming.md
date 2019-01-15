@@ -61,7 +61,7 @@ postslist.njk.
 		{% for tag in post.data.tags %}
       {%- if tag != "post" -%}
       {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-      <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+      <a href="{{ tagUrl | url }}" class="atag">{{ tag }}</a>
       {%- endif -%}
     {% endfor %}
 	</li>
@@ -150,7 +150,7 @@ So, these lines in the `articlesList` macro are weird:
 {% for tag in post.data.tags %}
   {%- if tag != "post" -%}
   {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-  <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+  <a href="{{ tagUrl | url }}" class="atag">{{ tag }}</a>
   {%- endif -%}
 {% endfor %}
 {% endraw %}

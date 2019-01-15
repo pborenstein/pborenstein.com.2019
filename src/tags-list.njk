@@ -10,7 +10,7 @@ layout: page.njk
            padding-left: 0">
 {% for tag in collections.tagList | sort(false, true) %}
   {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-  <li><a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a></li>
+  <li><a href="{{ tagUrl | url }}" class="atag">{{ tag }}</a></li>
 {% endfor %}
 </ul>
 </div>
