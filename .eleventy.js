@@ -49,15 +49,13 @@ module.exports = function(eleventyConfig) {
   //  only pages that are in the `./src/articles/` directory
 
   eleventyConfig.addCollection("articles",
-    collection => collection
-      .getAllSorted()
-      .filter(item => item.url
-                   && ! item.inputPath.includes('index.njk')
-                   && item.inputPath.startsWith('./src/articles/')))
+    (collection) =>
+      collection.getAllSorted()
+                .filter((item) =>
+                  item.url && item.inputPath.startsWith('./src/articles/')))
 
-  eleventyConfig.addCollection("tagList",    require("./_11ty/getTagList"))
-  eleventyConfig.addCollection("catList",    require("./_11ty/getCatList"))
-  eleventyConfig.addCollection("categories", require("./_11ty/makeCategories"))
+  eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"))
+  eleventyConfig.addCollection("catList", require("./_11ty/getCatList"))
 
 /*  ===
   PASSTHROUGH DIRECTORIES

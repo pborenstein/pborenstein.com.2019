@@ -6,10 +6,10 @@ pagination:
   filter:
     - all
     - nav
-    - articles
+    - post
+    - posts
     - tagList
     - catList
-    - categories
 layout: page.njk
 renderData:
   title: Tagged “{{ tag }}”
@@ -17,7 +17,7 @@ permalink: /tags/{{ tag }}/
 ---
 {% from "macros.njk" import articlesList  %}
 
-<h1>{{ tag }}, articles tagged</h1>
+<h1>{{ tag }}</h1>
 
 {{ articlesList(collections[ tag ]) }}
 
