@@ -12,7 +12,7 @@ navtitle: About
 I'm Philip Borenstein. I write documentation for developers.
 
 -   Here's my [resume](https://portfolio.pborenstein.com/resume/pbresume.html) ([PDF](https://portfolio.pborenstein.com/resume/pbresume.pdf) | [MS
-    Word](https://portfolio.pborenstein.com//resume/pbresume.docx)).
+    Word](https://portfolio.pborenstein.com/resume/pbresume.docx)).
 -   Here's my [portfolio](https://portfolio.pborenstein.com/). It'll give you an idea of
     the kinds of things I write.
 -   My contact info is [at the bottom of this page](#contact).
