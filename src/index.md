@@ -22,26 +22,3 @@ templateEngineOverride: njk,md
 [about that]: /tags/eleventy/
 
 
-{% from "macros.njk" import articlesList  %}
-<style>
-  .card { width: 32%;
-          grid-template-rows: 1fr 4fr 1fr;
-          height: 8em;}
-</style>
-{{ articlesList(collections.articles | head(-4)) }}
-
-
-This is a random picture from [Lorem Picsum](https://picsum.photos/).
-
-![](https://picsum.photos/512/128?gravity=center&random)
-
-
-I'm redoing this site in [Eleventy][].
-
-Read all [about that][].
-
-
-[Eleventy]: https://www.11ty.io/
-[about that]: /tags/eleventy/
-
-

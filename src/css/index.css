@@ -18,6 +18,7 @@
   --code-font-size: .875em;
   --shadow:  3px 3px 8px 0px rgba(0, 0, 0, 0.19);
             /* offset-x | offset-y | blur-radius | spread-radius | color */
+  --caption-font: 'Cochin', 'Times', serif;
   --font-features:  "onum",   /*  onum:   Old style numbers */
                     "ss04",   /*  ss04:   Overlapping W   */
                     "ss06",   /*  ss06:   happy e */

@@ -47,23 +47,41 @@ tags:
 In a template, refer to
 the category property in the usual way:
 
-This is a typical way of creating a collection.
-
-``` js
-eleventyConfig.addCollection("articles", collection =>
-  collection.getAllSorted()
-            .filter(item => item.url &&
-                            item.inputPath.startsWith('./src/articles/'))
-})
+```html
+{%- raw -%}
+<a href="/categories/{{category}}">{{category}}</a>
+{%- endraw -%}
 ```
 
-We're creating a collection
-made up of pages
-that were rendered
-from templates
-in the `./src/articles/` directory.^[The current directory `.` is the directory
-that you're executing `eleventy` in. It contains `.eleventy.js`.]
+### Working with articles in the same category
 
+We can work with articles in the same category
+by creating a `categories` collection.^[We can call this anything
+we want.]
+To list
+all of the articles in
+the `Tech` category,
+you could do it this way:
+
+```liquid
+{%- raw -%}
+<ul>
+  {%- for article in collections.categories["Tech"] -%}
+    <li>{{ article.data.title }}</li>
+  {%- endfor -%}
+</ul>
+{%- endraw -%}
+```
+
+
+Just as
+`collections`
+is an object that has
+a property for each tag,
+so `collections.categories`
+has a property for each category.
+Each property refers to an array of articles.
+It looks something like this:
 
 ``` json
 collections: {
@@ -74,11 +92,6 @@ collections: {
     Thinking: [ items ]
   }
 }
-```
-
-
-## The implementation
-
 ```
 
 
