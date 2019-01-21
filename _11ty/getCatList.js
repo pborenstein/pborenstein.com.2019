@@ -6,4 +6,4 @@ module.exports = function(collection) {
     &&  catSet.add(item.data.category))
 
   return [...catSet]
-};
+}
