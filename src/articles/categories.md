@@ -1,9 +1,11 @@
 ---
 title: Implementing Categories
+date: 2019-01-20
 subhead: A collection of collections.
 category: Tech
 tags:
   - eleventy
+  - collections
 ---
 
 I want there to be Categories in Eleventy

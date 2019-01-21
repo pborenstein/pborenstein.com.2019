@@ -1,9 +1,13 @@
 ---
+date: 2009-08-07 13:52:12
+slug: finding-oz
 title: Finding Oz
+subhead: 'L. Frank Baum worried that his first name, Lyman, made him sound untrustworthy and chose instead to use his "more honest sounding" middle name.'
 category: Culture
 tags:
 - books
 - reviews
+- Books I Never Finished
 ---
 
 As with most books I never finish, this one started with a promising review.
