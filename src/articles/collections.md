@@ -281,7 +281,7 @@ Implementation: How custom collections get built
 </summary>
 
 [`getUserConfigCollectionsData()`](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L167-191)
-is the function that turns tags into collections.
+is the function that calls `addCollection()`'s callback.
 
 ```js
 async getUserConfigCollectionsData() {
