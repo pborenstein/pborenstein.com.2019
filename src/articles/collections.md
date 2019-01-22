@@ -14,15 +14,15 @@ according to various criteria.
 A collection might consist
 of articles in a series.
 Another collection could be
-of posts about transportation.
+of posts about books.
 A third could be
 all the posts
 in a particular directory.
 
 Eleventy gives you two ways to create collections:
 
-- implicitly, with tags in the front matter
-- explicitly, with `addCollection()`
+- [implicitly](#tag-based-collections), with tags in the front matter
+- [explicitly](#custom-collections), with `addCollection()`
 
 ## Tag-based collections
 
@@ -30,7 +30,7 @@ Pages that share a tag
 are in the same collection.
 A template with the following front matter
 would generate
-pages in the collections a page the belongs
+pages in the collections
 `books`
 and `reviews`.
 
@@ -79,7 +79,7 @@ item in the collection.
 ```
 
 
-The `collections` object  looks like this:
+The `collections` object itself looks like this:
 
 
 ```json
@@ -105,9 +105,10 @@ The `collections` object  looks like this:
 
 Each property is an array of
 [collection item objects][collection-data]
-(the doc also calls them template objects).
+(the doc also calls them
+[template objects](https://www.11ty.io/docs/collections/#return-values)).
 The special collection `all`  is an array
-of all of the page objects Eleventy generates.
+of all of the page objects that Eleventy generates.
 
 [collection-data]: https://www.11ty.io/docs/collections/#collection-item-data-structure
 
@@ -191,9 +192,12 @@ eleventyConfig.addCollection("articles",
 - the name of the collection (a string)
 - a function that takes a `collection` as an argument.
 
-[^addcollection]: `addCollection()` just
-  sets the function to be called later
-  in `getUserConfigCollectionsData()`.
+[^addcollection]: `addCollection()` doesn't actually
+  do anything other than to associate the collection-building
+  function with the collection name. The collection-building
+  function itself is called later
+  in
+  [`getUserConfigCollectionsData()`](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L167-L191).
 
       ```js
       addCollection(name, callback) {
@@ -210,9 +214,13 @@ eleventyConfig.addCollection("articles",
       ```
 
 
-You'd think that the `collection` parameter
+You might think that the `collection` parameter
 is an array of template objects like the
-tag-based collections. This parameter
+tag-based `collections` object.
+Instead, this parameter is
+an instance of a [`TemplateCollection`][template-collection],
+which is derived from from [`Sortable`][sortableSrc],
+and
 looks like this:
 
 ```json
@@ -228,16 +236,17 @@ looks like this:
 }
 ```
 
-The `collection` parameter is an object
-of class derived from [`Sortable`][sortableSrc]. The `items` property
-is a collection of all the template objects.
+Its `items` property
+is an array of all the template objects.
 It's the same as `collections.all`.
-You can use the [following methods][collection-methods]
+You don't want to access the items directly
+like this: `collection.item[n]`.
+Instead use the [following methods][collection-methods]
 to get the items.
 
 [sortableSrc]: https://github.com/11ty/eleventy/blob/master/src/Util/Sortable.js
 [collection-methods]: https://www.11ty.io/docs/collections/#collection-api-methods
-
+[template-collection]: https://github.com/11ty/eleventy/blob/master/src/TemplateCollection.js
 
 | Method                        | Description                                                                |
 | :---------------------------- | :------------------------------------------------------------------------- |
@@ -247,8 +256,8 @@ to get the items.
 | `getFilteredByGlob(glob)`   | Gets all of the items whose `inputPath` matches one or more glob patterns. |
 [<div class="table-caption">collection api methods</div>]
 
-The items are [the same](#collection-items) as the ones
-in the tag-based collections. Almost.
+The items are almost [the same](#collection-items) as the ones
+in the tag-based collections.
 In tag-based collections, items have `templateContent`.
 In `addCollection()` collections, items have `_pages`.
 I don't know why.
@@ -275,15 +284,15 @@ module.exports = function(collection) {
 
 ```
 
-<details style="margin-top: 1em">
+<details style="margin-top: 1em" id=getUserConfigCollectionsData>
 <summary>
 Implementation: How custom collections get built
 </summary>
 
-[`getUserConfigCollectionsData()`](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L167-191)
+[`getUserConfigCollectionsData()`](https://github.com/11ty/eleventy/blob/7cac4ac0b6b99dd79d07ab94d1a443c276fe73db/src/TemplateMap.js#L167-L191)
 is the function that calls `addCollection()`'s callback.
 
-```js
+```js/5
 async getUserConfigCollectionsData() {
   let collections = {};
   let configCollections =

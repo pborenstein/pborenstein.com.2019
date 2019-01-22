@@ -67,7 +67,7 @@ body {
   height: 100%;
   grid-row-gap: 1rem;
   grid-column-gap: 1em;
-  grid-template-columns: 25vw minmax(16rem, 32rem);
+  grid-template-columns: 25vw minmax(16rem, 30rem);
   grid-template-rows: auto 1fr   6rem;
   /* grid-auto-rows: minmax(100px, auto); */
   grid-template-areas:
@@ -80,7 +80,7 @@ body {
 @media (max-width: 375px) {}
 @media (max-width: 414px) {}
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   main {
     padding-top: 0em !important;
   }
@@ -138,6 +138,20 @@ header {
 
 span.slug {
   color: var(--red);
+}
+
+#logo a[href] {
+  text-decoration: none;
+  color: inherit;
+}
+
+#logo a[href]:hover {
+  text-decoration: none;
+  color: var(--red);
+}
+#logo a[href]:hover .slug{
+  text-decoration: none;
+  color: var(--heading);
 }
 
 
@@ -201,6 +215,7 @@ a[href] {
   text-decoration: none;
   color: var(--red)
 }
+
 
 a[href]:hover {
   text-decoration: underline;
@@ -545,6 +560,10 @@ code:not([class]) {
   border-radius: 3px;
  */
   /* vertical-align: middle; /* [`code`] looks better this way */
+}
+
+a[href] > code {
+  text-decoration: underline;
 }
 
 
