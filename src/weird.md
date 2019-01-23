@@ -4,30 +4,18 @@ layout: page.njk
 templateEngineOverride: njk,md
 ---
 
-### This is weird
+Some footnote tests.[^footnote] More.
 
-This is what it looks like with Markdown,
-as opposed to straight HTML and Nunjucks.
+Viverra Curabitur ante, ultricies Nullam pede pellentesque eu, ultricies
+eleifend dui? Viverra justo, Aenean tellus! Leo semper montes, fringilla
+consectetuer enim venenatis vulputate enim.
 
-- The `articlesList` macro expands to
-  HTML first.
-- That then gets rendered as Markdown,
-  and since some of the code is indented
-  4 spaces, it gets treated as code.
-- I can either:
-  #. Write a macro that's all Markdown
-  #. Rewrite the macro to eat all whitespace
+Integer vulputate sem! Varius ultricies nisi? Dapibus elit?^[inline]
 
-Option 2 turned out to be the thing.
+Vulputate eget nascetur pede mus; Natoque imperdiet eleifend consequat Lorem
+elementum justo, fringilla nec, porttitor justo, Nulla Nam sociis a, viverra
+Aenean dapibus. Ultricies ante, Aenean massa felis consequat montes, pede Nullam
+quam penatibus amet, arcu!
 
 
-{% from "macros.njk" import articlesList  %}
-{% from "macros.njk" import taglist  %}
-
-<hr>
-
-{{ taglist([])}}
-
-<hr>
-
-{{ articlesList(collections.articles | head(-3) ) }}
+[^footnote]: footnote target.
