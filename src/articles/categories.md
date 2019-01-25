@@ -10,11 +10,24 @@ tags:
 
 I want there to be Categories in Eleventy
 to organize articles into
-broad domains.
+broad domains.[^That's what I say _now_.
+The original impetus for this was to figure
+out [how collections work](/articles/collections/).]
+The idea is that all articles about
+books will go into the Culture category,
+articles about tech go into the Tech category,
+and so on.
 
-- An article does not need to specify a category.
+- An article does not have to specify a category.
 - An article can belong to only one category.
 - Category names are Capitalized by convention.
+
+Tags, on the other hand, can be in any
+category. A weird book and
+some weird code would be
+in different categories,
+but they could both be tagged `weird`.
+
 
 
 ## How we'll use them
