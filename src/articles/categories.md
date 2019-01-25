@@ -10,7 +10,7 @@ tags:
 
 I want there to be Categories in Eleventy
 to organize articles into
-broad categories.
+broad domains.
 
 - An article does not need to specify a category.
 - An article can belong to only one category.
@@ -58,8 +58,8 @@ the category property in the usual way:
 ### Working with articles in the same category
 
 We can work with articles in the same category
-by creating a `categories` collection.^[We can call this anything
-we want.]
+by creating a `categories` collection.^[You can use any name
+you like. I happen to like "categories".]
 To list
 all of the articles in
 the `Tech` category,
@@ -166,22 +166,29 @@ for that category:[^explanation]
 [^explanation]:
     This `if (Array.isArray(categories[category]))`
     thing is really stupid.
-    What I really want to do is: push to the array,
+    Isn't there a way to push to an array,
     creating it if it doesn't exist.
 
 ```js
 makeCategories = function(collection) {
   let categories = {}
 
+    // Every rendered page
+
   collection.getAllSorted().forEach(item => {
     let category = item.data.category
+
+      // Ignore the ones without a category
 
     if (typeof category !== "string")
       return
 
     if (Array.isArray(categories[category]))
+        //  category array exists? Just push
       categories[category].push(item)
     else
+        //  Otherwise create it and
+        //  make `item` the first, uh, item.
       categories[category] = [item]
   })
 
@@ -196,4 +203,7 @@ Since we want to call our collection of categories
 addCollection("categories", makeCategories)
 ```
 
-
+So now we have a way to make a collection
+that has collections of its own.
+I use it to segregate my posts into
+unique buckets.
