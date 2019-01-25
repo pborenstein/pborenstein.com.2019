@@ -37,6 +37,3 @@ categories:
 
 {%- endfor -%}
 
-
-
-
