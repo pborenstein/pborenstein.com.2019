@@ -10,7 +10,7 @@ tags:
 
 I want there to be Categories in Eleventy
 to organize articles into
-broad domains.[^That's what I say _now_.
+broad domains.^[That's what I say _now_.
 The original impetus for this was to figure
 out [how collections work](/articles/collections/).]
 The idea is that all articles about
