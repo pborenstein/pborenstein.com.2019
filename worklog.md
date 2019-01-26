@@ -37,3 +37,16 @@ permalink: /tags/{{ tag }}/
 ```
 
 I don't think this is even yaml
+
+So I have my dump from FLickr
+I think I can use jq to get just the info I need.
+
+philip@ningal: ~/projects/flickr-data/72157706055333385_e56880227933_part1
+$ jq '{ url: .photopage, image:  .original }'  photo_9119411418.json
+{
+  "url": "https://www.flickr.com/photos/twohorses/9119411418/",
+  "image": "http://farm6.staticflickr.com/5483/9119411418_7a1c6e9c40_o.jpg"
+}
+
+philip@ningal: ~/projects/flickr-data/72157706055333385_e56880227933_part1
+
