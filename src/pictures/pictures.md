@@ -13,7 +13,7 @@ photos:
   - title: Dress
     loc: https://farm6.staticflickr.com/5215/5393430759_fa384b52bd_s.jpg
   - title: Robosapien
-    loc: http://farm1.staticflickr.com/2/1395256_ee5e5ff215_s.jpg
+    loc: https://farm1.staticflickr.com/2/1395256_ee5e5ff215_s.jpg
 
 ---
 
