@@ -2,9 +2,9 @@
 layout: page.njk
 templateEngineOverride: njk,md
 pagination:
-  data: photos
-  size: 1
-  alias: huh
+  data: flickr
+  size: 6
+  alias: ph
 photos:
   - title: Dandelion Junk Queens
     loc: https://farm5.static.flickr.com/4082/4914583899_f75365741d_s.jpg
@@ -17,31 +17,19 @@ photos:
 
 ---
 
-```
-{{huh|pdump|safe}}
-```
-
-### {{huh.title}}
-It's in: {{huh.loc}}
-
-do: {{ 1==1}}
-
-{{ "_wtf_" if 0 == 1 }}
-
-- [first]({{pagination.firstPageHref}}) {{ "_we are here_" if pagination.firstPageHref == page.url }}
-- [previous]({{pagination.previousPageHref}})
-- [next]({{pagination.nextPageHref}})
-- [last]({{pagination.lastPageHref}}) {{ "_we are here_" if pagination.lastPageHref == page.url }}
+{{ "•" if pagination.firstPageHref == page.url }} [first]({{pagination.firstPageHref}})
+[previous]({{pagination.previousPageHref}})
+[next]({{pagination.nextPageHref}})
+[last]({{pagination.lastPageHref}}) {{ "•" if pagination.lastPageHref == page.url }}
 
 
-![{{huh.title}}]({{huh.loc}})
 
-dump
+{% for f in ph  %}
+### {{f.name}}
 
-```
-{{page|pdump|safe}}
-```
+<a href="{{f.photopage}}">
+  <img class="{{ f.exif | rotate }}" src="{{f.original}}" width=200>
+</a>
 
-```
-{{pagination|pdump|safe}}
-```
+{% endfor %}
+

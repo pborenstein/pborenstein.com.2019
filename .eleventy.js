@@ -50,6 +50,9 @@ module.exports = function(eleventyConfig) {
         return n === undefined ? k : k[n]
         })
 
+                  eleventyConfig.addFilter( //
+  "rotate", require("./_11ty/rotate"))
+
 
 
 /*  ===
