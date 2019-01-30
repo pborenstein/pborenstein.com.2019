@@ -1,45 +1,45 @@
 ---
 layout: page.njk
-templateEngineOverride: njk,md
+templateEngineOverride: njk
 pagination:
   data: flickr
-  size: 3
+  size: 6
   alias: ph
 ---
 
-{{ "â€¢" if pagination.firstPageHref == page.url }} [first]({{pagination.firstPageHref}})
-[previous]({{pagination.previousPageHref}})
-[next]({{pagination.nextPageHref}})
-[last]({{pagination.lastPageHref}}) {{ "â€¢" if pagination.lastPageHref == page.url }}
+<div style="display: flex; justify-content: space-evenly">
+<span>
+{{ "¥" if pagination.firstPageHref == page.url }}
+<a href="{{pagination.firstPageHref}}">first</a></span>
+<a href="{{pagination.previousPageHref}}">previous</a>
+<a href="{{pagination.nextPageHref}}">next</a>
+<span><a href="{{pagination.lastPageHref}}">last</a>
+{{ "¥" if pagination.lastPageHref == page.url }}</span>
+</div>
 
 {% from "macros.njk" import card  %}
 {% from "macros.njk" import timeTag %}
 
+<div class="articleList">
 {% for f in ph  %}
 
-```
-pagination: {{pagination.pageNumber}}/{{pagination.links.length}}
-```
-
 {% set orientation =  f.exif | rotate  %}
-{% set theName = f.name if f.name != " " else "nope" %}
+{% set theName = f.name if f.name != " " else "Photo" %}
 
 {{card(f.photopage,
-       theName,"<img src='" + f.original + "' width=200 class='" + orientation +"'>",
+       theName,"<img src='" + f.original + "' width=100% class='" + orientation +"'>",
        "Visual",
        f.date_taken)}}
 
 {% endfor %}
+</div>
 
-```
-{{pagination.links.length}}
-
-{{pagination|pdump|safe}}
-```
-
-
-{{ "â€¢" if pagination.firstPageHref == page.url }} [first]({{pagination.firstPageHref}})
-[previous]({{pagination.previousPageHref}})
-[next]({{pagination.nextPageHref}})
-[last]({{pagination.lastPageHref}}) {{ "â€¢" if pagination.lastPageHref == page.url }}
-
+<div style="display: flex; justify-content: space-evenly">
+<span>
+{{ "¥" if pagination.firstPageHref == page.url }}
+<a href="{{pagination.firstPageHref}}">first</a></span>
+<a href="{{pagination.previousPageHref}}">previous</a>
+<a href="{{pagination.nextPageHref}}">next</a>
+<span><a href="{{pagination.lastPageHref}}">last</a>
+{{ "¥" if pagination.lastPageHref == page.url }}</span>
+</div>

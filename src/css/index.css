@@ -757,12 +757,15 @@ div[class="mdhack"] + table tbody tr td:first-child {
   margin-top: 3rem;
 }
 
+/* rotating doesn't change the dimensions
+    so hack the size a little
+    so scream much stupid very hack */
 .rotate90 {
-  -webkit-transform:rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
+  -webkit-transform:rotate(90deg) scale(.66);
+  -moz-transform: rotate(90deg) scale(.66);
+  -ms-transform: rotate(90deg) scale(.66);
+  -o-transform: rotate(90deg) scale(.66);
+  transform: rotate(90deg) scale(.66);
 }
 
 .rotate180 {
