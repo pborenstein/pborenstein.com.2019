@@ -13,12 +13,17 @@ templateEngineOverride: njk,md
             width: 100% }
 </style>
 ![](https://picsum.photos/512/128?gravity=center&random)
-
 {% from "macros.njk" import articlesList  %}
-{{ articlesList(collections.articles | head(-6)) }}
 
 
-[Eleventy]: https://www.11ty.io/
-[about that]: /tags/eleventy/
+{% for cat in ["Tech", "Life", "Visual", "Culture"] %}
+
+## {{cat}}
+
+{{ articlesList(collections.categories[cat] | head(-2)) }}
+
+{%- endfor -%}
+
+
 
 
