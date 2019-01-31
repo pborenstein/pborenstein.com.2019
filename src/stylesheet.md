@@ -27,7 +27,7 @@ instead on as some wow and.
 
 **Card**
 {% from "macros.njk" import card  %}
-{{ card("https://en.wikipedia.org/wiki/Lunar_plaque", "Apollo 11 Inscription", "Here men from the planet Earth first set foot upon the Moon, July 1969 A.D. We came in peace for all mankind", "Example", "July 20, 1969") }}
+{{ card("https://en.wikipedia.org/wiki/Lunar_plaque", "Apollo 11 Inscription", "Here men from the planet Earth first set foot upon the Moon, July 1969 A.D. We came in peace for all mankind", "Example",  ["space", "moon", "history"] ,"July 20, 1969") }}
 
 
 Taped mammoth adroit woefully aboard much beaver ouch
