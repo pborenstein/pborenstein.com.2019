@@ -50,3 +50,36 @@
     <a href="{{ tagUrl | url }}" class="atag"><span>{{ tag }}</span></a> <!-- -->
   {%- endfor %}
 {%- endmacro -%}
+
+
+{%-macro card(url, title, subhead, category, time) -%}
+<div class="card">
+  <div class="card-title">
+    <a href="{{ url | url }}">
+      <span>
+        {%-if title -%}
+          {{ title }}
+        {%-else -%}
+          <code>{{ url }}</code>
+        {%-endif -%}
+      </span>
+    </a>
+  </div>
+  <div class="card-subhead">
+    <a href="{{ url | url }}">
+    <span>
+      {{- subhead | safe -}}
+    </span>
+    </a>
+  </div>
+  <div class="card-category">
+      <a class="category" title="{{category}}" href="/categories/{{category}}">
+        {{- category.substring(0,2) -}}
+      </a>
+  </div>
+  <div class="card-tags">&#8203;
+    {{- taglist(tags) -}}
+  </div>
+  <div class="card-date">{{ time }}</div>
+</div>
+{% endmacro %}
