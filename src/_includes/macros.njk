@@ -1,6 +1,10 @@
 {%-macro articlesList(aList) -%}
 <div class="articleList">
   {%-for article in aList | reverse -%}
+
+  {{card("url", "title", "subhead", "category", "time")}}
+
+  {#
     <div class="card">
       <div class="card-title">
         <a href="{{ article.url | url }}">
@@ -30,6 +34,7 @@
       </div>
       <div class="card-date">{{ timeTag(article.date, "")}}</div>
     </div>
+  #}
   {%-endfor -%}
 </div>
 {% endmacro %}
