@@ -1,40 +1,7 @@
 {%-macro articlesList(aList) -%}
 <div class="articleList">
   {%-for article in aList | reverse -%}
-
-  {{card("url", "title", "subhead", "category", "time")}}
-
-  {#
-    <div class="card">
-      <div class="card-title">
-        <a href="{{ article.url | url }}">
-          <span>
-            {%-if article.data.title -%}
-              {{ article.data.title }}
-            {%-else -%}
-              <code>{{ article.url }}</code>
-            {%-endif -%}
-          </span>
-        </a>
-      </div>
-      <div class="card-subhead">
-        <a href="{{ article.url | url }}">
-        <span>
-          {{- article.data.subhead | safe -}}
-        </span>
-        </a>
-      </div>
-      <div class="card-category">
-          <a class="category" title="{{article.data.category}}" href="/categories/{{article.data.category}}">
-            {{- article.data.category.substring(0,2) -}}
-          </a>
-      </div>
-      <div class="card-tags">&#8203;
-        {{- taglist(article.data.tags) -}}
-      </div>
-      <div class="card-date">{{ timeTag(article.date, "")}}</div>
-    </div>
-  #}
+    {{card(article.url, article.data.title, article.data.subhead, article.data.category, article.data.tags, timeTag(article.date, ""))}}
   {%-endfor -%}
 </div>
 {% endmacro %}
@@ -57,7 +24,7 @@
 {%- endmacro -%}
 
 
-{%-macro card(url, title, subhead, category, time) -%}
+{%-macro card(url, title, subhead, category, tags, time) -%}
 <div class="card">
   <div class="card-title">
     <a href="{{ url | url }}">
