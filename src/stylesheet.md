@@ -63,13 +63,22 @@ primis inceptos.
   - truck
   - sedan
 - Borden Island
-- Brock Island
 
 Jaguar one out arduous strange overabundantly and
 excepting gosh supportive before wore expansive yet
 enthusiastically more alas when close unceremoniously
 hey well tragic while far far ouch unthinkingly one
 vibrant far much ouch.
+
+<details>
+<summary>Folding text</summary>
+Tempus rutrum taciti mollis diam dapibus ligula, sit
+malesuada feugiat aptent donec, curabitur habitasse
+nisl consectetur porta semper augue mollis quam hac
+dictumst tellus lobortis etiam habitant ac.
+
+
+</details>
 
 ``` js
 const decycle = require('json-cycle').decycle
@@ -111,11 +120,6 @@ per tristique nec dictum.
 | `inputPath`       | Path to this file including the `input` directory.<hr><code class="phony">./src/articles/finding-oz.md</code>                                                               |
 | `outputPath`      | Path to the rendered file.<hr><code class="phony">articles/finding-oz/index.html</code>                                                                                     |
 | `fileSlug`        | Short name from the file name. [There are rules](https://www.11ty.io/docs/data/#fileslug). <hr><code class="phony">./src/articles/finding-oz.md</code>                      |
-| `data`            | Data from the front matter of the rendered page. The global variables available to each page.                                                                               |
-| `date`            | The date of this file in UTC. [There are rules](https://www.11ty.io/docs/dates/). <hr><code class="phony">2009-08-07T13:52:12.000Z</code>                                   |
-| `url`             | Path to this content. Doesn't include protocol or host. <hr><code class="phony">/articles/finding-oz/</code>                                                                |
-| `templateContent` | The rendered content, not including any layout wrappers.<hr><code class="phony">&lt;p&gt;As with most books ... much about The Wizard of Oz&lt;/li&gt;\n&lt;/ul&gt;\n</code>|
-| `template`        | All sorts of data parsed out of the template. Things like the Eleventy configuration, markdown engine setup, and lots of stuff we probably shouldn't rely on.               |
 [<div class="table-caption">collection item properties</div>]
 
 
@@ -128,6 +132,21 @@ nostra eros lectus tempor aenean senectus rutrum congue
 mauris nunc diam ut, in pretium semper ultrices odio,
 conubia sodales ipsum diam molestie.
 
+<details>
+<summary>Some code</summary>
+
+``` js
+const decycle = require('json-cycle').decycle
+const debug = require("debug")("catlist");
+
+
+module.exports = function pdump(obj) {
+  let decycled = JSON.stringify(decycle(obj), null, 2)
+
+  return decycled;
+}
+```
+</details>
 
 
 ##### Heading 5
