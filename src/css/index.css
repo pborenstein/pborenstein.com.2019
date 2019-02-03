@@ -177,8 +177,8 @@ p img {
 blockquote {
   margin: 0.8rem 1em 0rem 1em;
   padding: 0 1em;
-  border-left: 4px solid var(--red);
-  font-style: italic;
+  border-left: 4px solid var(--fadeddarkred);
+  font-style: initial;
 }
 
 
@@ -258,6 +258,7 @@ summary {
 }
 
 .card {
+  border-radius: 10px;
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-rows: min-content
