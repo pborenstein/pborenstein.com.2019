@@ -119,7 +119,7 @@ of all of the page objects that Eleventy generates.
 | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `inputPath`       | Path to this file including the `input` directory.<hr><code class="phony">./src/articles/finding-oz.md</code>                                                               |
 | `outputPath`      | Path to the rendered file.<hr><code class="phony">articles/finding-oz/index.html</code>                                                                                     |
-| `fileSlug`        | Short name from the file name. [There are rules](https://www.11ty.io/docs/data/#fileslug). <hr><code class="phony">./src/articles/finding-oz</code>                      |
+| `fileSlug`        | Short name from the file name. [There are rules](https://www.11ty.io/docs/data/#fileslug). <hr><code class="phony">finding-oz</code>                      |
 | `data`            | Data from the front matter of the rendered page. The global variables available to each page.                                                                               |
 | `date`            | The date of this file in UTC. [There are rules](https://www.11ty.io/docs/dates/). <hr><code class="phony">2009-08-07T13:52:12.000Z</code>                                   |
 | `url`             | Path to this content. Doesn't include protocol or host. <hr><code class="phony">/articles/finding-oz/</code>                                                                |
@@ -219,7 +219,7 @@ is an array of template objects like the
 tag-based `collections` object.
 Instead, this parameter is
 an instance of a [`TemplateCollection`][template-collection],
-which is derived from from [`Sortable`][sortableSrc],
+which is derived from [`Sortable`][sortableSrc],
 and
 looks like this:
 
