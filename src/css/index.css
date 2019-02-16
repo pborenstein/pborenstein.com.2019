@@ -357,6 +357,10 @@ summary {
                           the grid cell */
 }
 
+.graybox {
+  background-color: var(--lightgray);
+  border-radius: 3px;
+}
 
 /*  tags  */
 
