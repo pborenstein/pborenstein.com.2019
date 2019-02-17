@@ -330,7 +330,7 @@ div[class~="t"] > ul > li > ul {
   display: table-row
 }
 
-div[class~="q"] > ul > li > ul > li {
+div[class~="t"] > ul > li > ul > li {
   display: table-cell
 }
 ```
@@ -542,7 +542,7 @@ to do it:
     <div class="t" markdown="1">
 
     - - **City**
-      - ***Pop***
+      - **Pop***
     - - New York City<br>
         A lot of people think that this is the capital
       - 8.6 million
@@ -575,7 +575,7 @@ to do it:
     <div class="t" markdown="1">
 
     - - **City**
-      - *Pop*
+      - **Pop**
     - - Manchester
       - 110,000
     - - Nashua

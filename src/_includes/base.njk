@@ -35,15 +35,17 @@
         </p>
       </li>
       <li>
-        <p class="footer-text">
+        <p class="footer-text" id="sha">
+        <a href="https://github.com/pborenstein/pborenstein.com/blob/master{{ page.inputPath.slice(1) }}">
         {%- if git.curbranch != 'HEAD' -%}
           {{- git.curbranch-}}@
         {%- endif -%}
         {{- git.commitsha -}}
+        </a>
         </p>
       </li>
     </ul>
     </footer>
-    <!-- Current page: {{ page.url | url }} -->
+    <!--  {{page | pdump | safe }} -->
   </body>
 </html>

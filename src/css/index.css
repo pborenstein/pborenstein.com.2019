@@ -525,6 +525,13 @@ footer ul {
 	display: inline-block;
 }
 
+#sha a,
+#sha a:hover
+{
+  text-decoration: none;
+  color: var(--gray);
+}
+
 
 
 
