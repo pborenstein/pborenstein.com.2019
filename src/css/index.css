@@ -1,3 +1,6 @@
+@import url("list-table.css");
+
+
 :root {
 	--red:          #c22323;
   --fadedred:     #c223234d;
@@ -152,6 +155,10 @@ span.slug {
 #logo a[href]:hover .slug{
   text-decoration: none;
   color: var(--heading);
+}
+
+.box-shadow {
+  box-shadow: var(--shadow);
 }
 
 
