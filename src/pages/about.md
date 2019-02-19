@@ -57,5 +57,5 @@ How to find me
     [LinkedIn](https://www.linkedin.com/in/pborenstein).
 -   Follow me on [Twitter](https://twitter.com/pborenstein) because I
     have opinions.
--   If we went to high school together, friend me on
-    [Facebook](https://www.facebook.com/pborenstein).
+-   <s>If we went to high school together, friend me on
+    [Facebook](https://www.facebook.com/pborenstein).</s>

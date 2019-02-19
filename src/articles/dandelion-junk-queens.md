@@ -7,7 +7,7 @@ subhead: <img width="100%" src="https://farm5.static.flickr.com/4082/4914583899_
 tags:
 - music
 - photos
-- travel
+- seattle
 ---
 
 We're spending a couple of days in Seattle after our Alaska cruise, so of course we walked around Pike Place Market yesterday. The highlight of that stroll was running across [Dandelion Junk Queens](https://dandelionjunkqueens.tk/).
