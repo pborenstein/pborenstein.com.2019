@@ -2,8 +2,28 @@
   list-table
 
   Make Markdown lists behave as a table.
-
   https://www.pborenstein.com/articles/tablehacks/
+
+  Usage:
+
+  <div class="list-table extra" markdown="1">
+
+    - - **State**
+      - **Capital**
+      - **Size**
+    - - Texas
+      - Austin
+      - Medium
+    - - California
+      - Sacramento
+      - Medium
+    - - Illinois
+      - Springfield
+      - Medium
+
+  </div>
+
+
 
 ****/
 

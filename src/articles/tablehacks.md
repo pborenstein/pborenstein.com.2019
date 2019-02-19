@@ -19,7 +19,7 @@ There really has to be an easier way to do tables.
 
 **tl;dr**
 - use the `display` property to make list elements behave like table elements
-- the [CSS you're looking for](#styling-a-list-as-a-table)
+- the [CSS you're looking for](https://gist.github.com/pborenstein/12c787ab201e275a7449f602c95324b8)
 - a [codepen](https://codepen.io/pborenstein/pen/QYxWNR) if you just want to see the code
 
 
