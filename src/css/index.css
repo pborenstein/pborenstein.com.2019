@@ -316,9 +316,6 @@ summary {
 
 .card-subhead a[href]:hover,
 .card-title a[href]:hover {
-/*
-  color: var(--darkred);
- */
   background: var(--lightgray);
 }
 

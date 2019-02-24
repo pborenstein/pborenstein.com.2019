@@ -1,0 +1,22 @@
+---
+date: 2001-03-01
+layout: page.njk
+---
+
+{% from "macros.njk" import timeTag  %}
+
+{# macro timeTag(theDate, theClass) #}
+
+<h1>All the squibs</h1>
+
+
+<div class="articleList">
+  <ul>
+  {%-for q in collections.q | reverse -%}
+  <li>
+    {{ q.templateContent | safe }}
+    {{ timeTag(q.date) }}
+  </li>
+  {%-endfor -%}
+  </ul>
+</div>

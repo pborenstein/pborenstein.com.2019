@@ -55,6 +55,13 @@ module.exports = function(eleventyConfig) {
                    && ! item.inputPath.includes('index.njk')
                    && item.inputPath.startsWith('./src/articles/')))
 
+  eleventyConfig.addCollection("q",
+    collection => collection
+      .getAllSorted()
+      .filter(item => item.url
+                   && ! item.inputPath.includes('index.njk')
+                   && item.inputPath.startsWith('./src/q/')))
+
   eleventyConfig.addCollection("tagList",    require("./_11ty/getTagList"))
   eleventyConfig.addCollection("catList",    require("./_11ty/getCatList"))
   eleventyConfig.addCollection("categories", require("./_11ty/makeCategories"))
