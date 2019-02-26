@@ -6,6 +6,7 @@ title: table
 
 # Heading 1
 
+Nothing.
 
 <div class="list-table box-shadow" markdown="1">
 
