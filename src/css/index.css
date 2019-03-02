@@ -328,6 +328,13 @@ summary {
   color: var(--darkgray);
 }
 
+.card-line,
+.card-line p,
+.card-subhead
+{
+  line-height: 1.25;
+}
+
 .card-subhead a[href] {
   text-decoration: none;
   color: inherit;

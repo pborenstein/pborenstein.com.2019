@@ -9,14 +9,62 @@ layout: page.njk
 
 <h1>All the squibs</h1>
 
+<style>
 
+.squib {
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "squib-date"
+    "squib-text"
+  ;
+  width: 100%;
+  margin: 0 0 1em 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: .5em;
+  box-shadow: var(--shadow)
+}
+
+.squib-text {
+  grid-area: squib-text;
+  font-family: var(--code-font);
+  font-size: 85%;
+  word-break: break-word;
+  height: 10em;
+  overflow: scroll;
+  color: var(--body);
+}
+
+.squib-date {
+  grid-area: squib-date;
+  line-height: 1em;
+  font-size: .6rem;
+  color: var(--red);
+	font-family: var(--body-font);
+  margin-left: 0;
+  margin-bottom: 1em;
+  align-self: end;
+/*
+  border-bottom: 1px solid var(--darkred);
+ */
+  padding-top: 2px;
+  text-align: right;
+}
+
+
+</style>
 <div class="articleList">
-  <ul>
   {%-for q in collections.q | reverse -%}
-  <li>
-    {{ q.templateContent | safe }}
-    {{ timeTag(q.date) }}
-  </li>
+    <div class="squib">
+      <div class="squib-text">
+        {{ q.templateContent | safe }}
+      </div>
+      <div class="squib-date">
+        {{q.date | dateTime }}
+      </div>
+    </div>
   {%-endfor -%}
-  </ul>
 </div>

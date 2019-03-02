@@ -22,6 +22,13 @@ module.exports = function(eleventyConfig) {
   "shortDate", dateObj =>
         DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy"))
 
+                  eleventyConfig.addFilter(
+  "dateTime", dateObj =>
+        DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy")+
+        DateTime.fromJSDate(dateObj).toFormat(" t").toLowerCase()
+
+        )
+
                   eleventyConfig.addFilter( // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   "htmlDateString", dateObj =>
         DateTime.fromJSDate(dateObj).toISODate())

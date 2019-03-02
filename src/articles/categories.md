@@ -6,6 +6,8 @@ category: Tech
 tags:
   - eleventy
   - collections
+  - _nav
+  - _flim
 ---
 
 I want there to be Categories in Eleventy

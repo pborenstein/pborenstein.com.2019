@@ -2,7 +2,6 @@
 date: 2010-02-03 20:07:02
 slug: last-year-at-marienbad
 title: Last Year at Marienbad
-subhead: "A woman may or may not have promised to leave her husband."
 category: Culture
 tags:
 - movies

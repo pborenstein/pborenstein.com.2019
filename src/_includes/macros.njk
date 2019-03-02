@@ -1,13 +1,19 @@
 {%-macro articlesList(aList) -%}
 <div class="articleList">
   {%-for article in aList | reverse -%}
-    {{card(article.url, article.data.title, article.data.subhead, article.data.category, article.data.tags, timeTag(article.date, ""))}}
+    {% set text %}{{article.templateContent|safe|truncate(48) }}{% endset %}
+    {{ card(article.url,
+            article.data.title,
+            text,
+            article.data.category,
+            article.data.tags,
+            timeTag(article.date, ""))}}
   {%-endfor -%}
 </div>
 {% endmacro %}
 
 {% macro timeTag(theDate, theClass) %}
-  <span {%-if theClass -%}class="{{- theClass -}}"{%-endif -%}><time
+  <span {% if theClass -%}class="{{- theClass -}}"{%-endif -%}><time
         datetime="{{ theDate | htmlDateString }}">
     {{ theDate | readableDate }}
   </time></span>
@@ -18,8 +24,10 @@
 
 {%- macro taglist(theTags) -%}
   {%- for tag in theTags | sort(false, true) %}
+    {%- if tag.substring(0,1) !== "_" -%}
     {%- set tagUrl %}/tags/{{ tag }}/{%- endset -%}
     <a href="{{ tagUrl | url }}" class="atag"><span>{{ tag }}</span></a> <!-- -->
+    {%- endif -%}
   {%- endfor %}
 {%- endmacro -%}
 
@@ -27,6 +35,7 @@
 {%-macro card(url, title, subhead, category, tags, time) -%}
 <div class="card">
   <div class="card-title">
+  {%-if title -%}
     <a href="{{ url | url }}">
       <span>
         {%-if title -%}
@@ -36,18 +45,21 @@
         {%-endif -%}
       </span>
     </a>
+  {%-endif -%}
   </div>
   <div class="card-subhead">
     <a href="{{ url | url }}">
-    <span>
-      {{- subhead | safe -}}
+    <span class="card-line">
+      {{ subhead | safe }}
     </span>
     </a>
   </div>
   <div class="card-category">
+    {%- if category %}
       <a class="category" title="{{category}}" href="/categories/{{category}}">
         {{- category.substring(0,2) -}}
       </a>
+    {% endif %}
   </div>
   <div class="card-tags">&#8203;
     {{- taglist(tags) -}}
