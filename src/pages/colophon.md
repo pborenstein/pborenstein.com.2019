@@ -2,7 +2,7 @@
 date: 2001-05-01
 title: Colophon
 tags:
-  - nav
+  - _nav
 navtitle: Colophon
 ---
 # {{ title }}

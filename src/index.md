@@ -2,7 +2,7 @@
 date: 2001-01-01
 layout: page.njk
 tags:
-  - nav
+  - _nav
 navtitle: Home
 templateEngineOverride: njk,md
 ---

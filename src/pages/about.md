@@ -2,7 +2,7 @@
 date: 2001-02-01
 title: "About Me"
 tags:
-  - nav
+  - _nav
 navtitle: About
 ---
 

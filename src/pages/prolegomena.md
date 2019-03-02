@@ -2,7 +2,7 @@
 date: 2001-06-01
 title: Prolegomena
 tags:
-  - nav
+  - _nav
 navtitle: Prolegomena
 ---
 
