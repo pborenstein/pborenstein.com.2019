@@ -3,10 +3,11 @@
   {%-for article in aList | reverse -%}
     {{ card(article.url,
             article.data.title,
-            article.data.subhead,
+            (article.data.subhead or
+             article.templateContent|truncate(128)),
             article.data.category,
             article.data.tags,
-            article.date)}}
+            timeTag(article.date,""))}}
   {%-endfor -%}
 </div>
 {% endmacro %}
@@ -71,9 +72,7 @@
   <div class="card-tags">
     &#8203;{{- taglist(tags) -}}
   </div>
-  <div class="card-date">
-    {{- timeTag(date,"") -}} {{date}}
-  </div>
+  <div class="card-date">{{-date-}}</div>
 </div>
 {%- endmacro -%}
 
