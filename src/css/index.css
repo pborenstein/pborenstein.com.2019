@@ -330,7 +330,8 @@ summary {
 
 .card-line,
 .card-line p,
-.card-subhead
+.card-subhead,
+.card-subhead p
 {
   line-height: 1.25;
 }
