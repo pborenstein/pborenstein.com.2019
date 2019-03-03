@@ -95,7 +95,7 @@ module.exports = function(eleventyConfig) {
     .use(require("markdown-it-anchor"), {
             permalink: true,
             permalinkClass: "direct-link",
-            permalinkSymbol: "• : •"
+            permalinkSymbol: "•:•"
           })
   );
 

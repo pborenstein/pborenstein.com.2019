@@ -16,7 +16,7 @@ templateEngineOverride: njk,md
 {% from "macros.njk" import articlesList  %}
 
 
-{% for cat in ["Tech", "Life", "Visual", "Culture"] %}
+{% for cat in collections.catList %}
 
 ## {{cat}}
 
