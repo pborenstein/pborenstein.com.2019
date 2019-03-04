@@ -18,9 +18,11 @@ templateEngineOverride: njk,md
 
 {% for cat in collections.catList %}
 
-## {{cat}}
 
-{{ articlesList(collections.categories[cat] | head(-2)) }}
+{% if cat !== "Q" %}
+  ## {{cat}}
+  {{ articlesList(collections.categories[cat] | head(-2)) }}
+{% endif %}
 
 
 {%- endfor -%}

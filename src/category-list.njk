@@ -9,11 +9,15 @@ title: Categories
 ---
 <h1>{{title}}</h1>
 
+
 <ul>
 {% for cat in collections.catList | sort %}
+  {%- if cat !== "Q" -%}
   {% set catUrl %}/categories/{{ cat }}/{% endset %}
   <li>
   <a href="{{ catUrl | url }}" class="cat">{{ cat }}</a>
   </li>
+  {%- endif -%}
+
 {% endfor %}
 </ul>
