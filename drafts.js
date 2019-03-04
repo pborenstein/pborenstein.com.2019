@@ -17,17 +17,13 @@ const drafttime = draft.createdAt
 
 const dateStr = date => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
 const timeStr = date => `${pad(date.getHours())}:${pad(date.getMinutes())}`
-
-const datestr = dateStr(posttime)
-const timestr = timeStr(posttime)
-
 const fname = `${dateStr(posttime)}-${timeStr(posttime)}.md`
 
-const doc = `
----
-date: ${dateStr(drafttime)}T${timeStr(drafttime)}
-date-posted: ${dateStr(posttime)}T${timeStr(posttime)}
-tags: [ "squibs" ]
+const doc = `---
+date: ${dateStr(posttime)}T${timeStr(posttime)}
+draftDate: ${dateStr(drafttime)}T${timeStr(drafttime)}
+category: Q
+tags: _q
 title: ${dateStr(drafttime)}T${timeStr(drafttime)}
 ---
 
@@ -50,13 +46,15 @@ const options = {
 var http = HTTP.create();
 var response = http.request(options);
 
-if (response.success) {
+if (response.statusCode >= 200) {
   app.displaySuccessMessage('Posted')
 } else {
   app.displayErrorMessage(`Something went wrong (${response.statusCode})`)
-    console.log(response.statusCode);
-    console.log(response.error);
 }
+
+console.log("success "+ response.success)
+console.log("status "+ response.statusCode);
+console.log("error "+ response.error);
 
 function pad(n) {
     let str = String(n);
