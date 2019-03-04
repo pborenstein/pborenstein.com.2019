@@ -23,11 +23,15 @@ module.exports = function(eleventyConfig) {
         DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy"))
 
                   eleventyConfig.addFilter(
-  "dateTime", dateObj =>
-        DateTime.fromJSDate(dateObj).toFormat("d LLL yyyy")+
-        DateTime.fromJSDate(dateObj).toFormat(" t").toLowerCase()
+  "dateTime", dateObj => {
+        if (typeof dateObj === 'string')
+          dateObj = DateTime.fromISO(dateObj)
+        else
+          dateObj = DateTime.fromJSDate(dateObj)
 
-        )
+        return  dateObj.toFormat("d LLL yyyy")+
+                dateObj.toFormat(" t").toLowerCase()
+    })
 
                   eleventyConfig.addFilter( // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   "htmlDateString", dateObj =>

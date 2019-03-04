@@ -1,0 +1,22 @@
+---
+layout: base.njk
+---
+{% from "macros.njk" import timeTag  %}
+
+<div class="article-slug" style="text-align: justify">
+<span class="article-date" style="float: left" >
+  {{ draftDate|dateTime}}
+</span>
+<span class="article-date" style="float: right">
+  {{ date | dateTime}}
+</span>
+<div style="clear: both;"></div>
+</div>
+
+{# god thats ugly https://css-tricks.com/left-align-and-right-align-text-on-the-same-line/ #}
+
+{{ content | safe }}
+
+<section class="article-footer">
+  <a href="{{ '/q' | url }}">← back to notes</a>
+</section>
