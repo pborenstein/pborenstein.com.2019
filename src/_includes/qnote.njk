@@ -15,7 +15,7 @@ layout: base.njk
 
 {# god thats ugly https://css-tricks.com/left-align-and-right-align-text-on-the-same-line/ #}
 
-{{ content | safe }}
+{{ content | nl2br | safe }}
 
 <section class="article-footer">
   <a href="{{ '/q' | url }}">← back to notes</a>
