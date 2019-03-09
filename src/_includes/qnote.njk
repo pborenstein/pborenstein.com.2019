@@ -13,8 +13,27 @@ layout: base.njk
   <div style="clear: both;"></div>
 </div>
 
+<style>
+.squib-content {
+  font-family: 'Alegreya', cursive;
+  font-size: 75%;
+}
+.squib-content,
+.squib-content p {
+  line-height: 1.25em;
+}
+</style>
 
+
+  <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+
+<div class="squib-content">
+{% if newlines %}
 {{ content | nl2br | safe }}
+{% else %}
+{{ content | safe }}
+{% endif %}
+</div>
 
 <section class="article-footer">
   <a href="{{ '/q' | url }}">← back to notes</a>

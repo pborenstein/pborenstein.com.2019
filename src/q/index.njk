@@ -10,12 +10,13 @@ layout: page.njk
 .squib {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows:  auto 1em;
+  grid-template-rows:  1fr auto 1fr;
   grid-template-areas:
+    "squib-date-1"
     "squib-text"
-    "squib-date"
+    "squib-date-2"
   ;
-  width: 100%;
+  width: 46%;
   margin: 0 0 1.25em 0;
   padding-left: .5em;
   padding-right: 0;
@@ -27,20 +28,49 @@ layout: page.njk
 
 .squib-text {
   grid-area: squib-text;
-  font-family: 'Alegreya', cursive;
-  font-size: 85%;
+  line-height: 1;
   word-break: break-word;
-  max-height: 9em;
+  max-height: 3em;
   overflow: scroll;
   color: var(--body);
 }
 
 .squib-text p {
+  font-family: 'Alegreya', cursive;
+  font-size: 75%;
+  line-height: 1.25em;
   margin: 0 0 .4em 0;
 }
 
+.squib-draft-date {
+  grid-area: squib-date-2;
+  line-height: 1em;
+  font-size: .6rem;
+  color: var(--gray);
+	font-family: var(--body-font);
+  margin-left: 0;
+  align-self: end;
+  text-align: left;
+  margin-top: 6px;
+  padding-top: 6px;
+/*  border-top: 1px solid var(--gray); */
+}
+
+.squib-post-date {
+  grid-area: squib-date-1;
+  line-height: 1em;
+  font-size: .6rem;
+  color: var(--gray);
+	font-family: var(--body-font);
+  margin-left: 0;
+  align-self: end;
+  text-align: right;
+/*  border-bottom: 1px solid var(--gray); */
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
 .squib-date {
-  grid-area: squib-date;
   line-height: 1em;
   font-size: .6rem;
   color: var(--gray);
@@ -49,25 +79,33 @@ layout: page.njk
   margin-bottom: 1em;
   align-self: end;
   padding-top: 2px;
-  text-align: right;
 }
+
+.squib a[href] {
+  color: var(--gray);
+}
+.squib a[href]:hover {
+  color: var(--red);
+  text-decoration: none;
+}
+
 </style>
 
 <div class="articleList" style="margin-top: 3px">
   {%-for q in collections.q | reverse -%}
     <div class="squib">
-      <a href="{{q.url|url}}">
-        <div class="squib-date">
+      <div class="squib-post-date">
+        <a href="{{- q.url|url -}}" style="border-bottom: 1px solid var(--gray)">
           {{- q.date | dateTime -}}
-        </div>
-      </a>
-      <div class="squib-text">
-        <a href="{{q.url|url}}">
-         <span class="squib-date" style="font-family: var(--body-font)">
-            {{- q.data.draftDate | dateTime -}}
-          </span>
         </a>
+      </div>
+      <div class="squib-text">
         {{- q.templateContent | nl2br | safe -}}
+      </div>
+      <div class="squib-draft-date">
+        <a href="{{- q.url|url -}}" style="border-top: 1px solid var(--gray);">
+          {{- q.data.draftDate | dateTime -}}
+        </a>
       </div>
     </div>
   {%-endfor -%}
