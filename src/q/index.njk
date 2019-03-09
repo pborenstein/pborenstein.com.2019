@@ -67,7 +67,7 @@ layout: page.njk
             {{- q.data.draftDate | dateTime -}}
           </span>
         </a>
-        {{- q.templateContent | safe -}}
+        {{- q.templateContent | nl2br | safe -}}
       </div>
     </div>
   {%-endfor -%}
