@@ -11,4 +11,4 @@ tags:
 
 
 
-<a href="https://www.flickr.com/photos/twohorses/4914538999" title="Woman with flowers"><img src="https://farm5.staticflickr.com/4134/4914538999_6d70a39d34.jpg" width="500" height="500" alt="Woman with flowers"></a>
+<a href="https://www.flickr.com/photos/twohorses/4914538999" title="Woman with flowers"><img src="https://farm5.staticflickr.com/4134/4914538999_6d70a39d34.jpg" width="100%" height="100%" alt="Woman with flowers"></a>

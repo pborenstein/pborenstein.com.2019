@@ -8,4 +8,4 @@ tags:
 - photos
 ---
 
-<a href="https://www.flickr.com/photos/twohorses/5393430759/" title="Caged Dress"><img src="https://farm6.staticflickr.com/5215/5393430759_fa384b52bd.jpg" width="500" height="500" alt="Caged Dress"></a>
+<a href="https://www.flickr.com/photos/twohorses/5393430759/" title="Caged Dress"><img src="https://farm6.staticflickr.com/5215/5393430759_fa384b52bd.jpg" width="100%" height="100%" alt="Caged Dress"></a>
