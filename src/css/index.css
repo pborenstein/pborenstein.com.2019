@@ -5,7 +5,7 @@
 	--red:          #c22323;
   --fadedred:     #c223234d;
   --fadedred2:    #dab3c3; /* faded red with 100 alpha */
-  --darkred:      #7F0036;
+  --darkred:      #7F0036; /* 127, 0, 54 */
   --fadeddarkred: #7F00364d;
 	--gray:         #C0C0C0;
   --darkgray:     #666;
@@ -19,7 +19,7 @@
   --heading-font: 'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
   --code-font:    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   --code-font-size: .875em;
-  --shadow:  3px 3px 8px 0px rgba(0, 0, 0, 0.19);
+  --shadow:  3px 3px 4px 0px rgba(0, 0, 0, 0.19);
             /* offset-x | offset-y | blur-radius | spread-radius | color */
   --caption-font: 'Cochin', 'Times', serif;
   --font-features:  "onum",   /*  onum:   Old style numbers */
@@ -265,7 +265,7 @@ summary {
 }
 
 .card {
-  border-radius: 10px;
+  border-radius: 4px;
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-rows: min-content
@@ -281,7 +281,7 @@ summary {
     "date   date"
   ;
   word-break: break-word;
-  width: 48%;
+  width: 100%;
   height: 100%;
   overflow: scroll;
   font-family: var(--list-font);
