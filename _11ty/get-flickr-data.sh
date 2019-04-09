@@ -7,7 +7,6 @@ user_id=${FLICKR_USER_ID}&format=json&\
 nojsoncallback=1&\
 per_page=6&\
 extras=date_taken,owner_name,\
-url_l,\
-url_m,\
-url_k,\
+url_n,\
+url_s,\
 url_o" | jq  .photos.photo
