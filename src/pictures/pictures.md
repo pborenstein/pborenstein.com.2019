@@ -28,13 +28,9 @@ pagination:
 
 <div class="articleList">
 {% for f in ph  %}
-{{card("https://www.flickr.com/photos/"+f.owner+"/"+f.id,
-       f.title if f.title else "Photo",
-       "<img src='"+f.url_n+"' width=100% >",
-       "Visual",
-       [],
-       f.datetaken)}}
-
+<a href="https://www.flickr.com/photos/{{ f.owner}}/{{f.id}}/">
+<img src="{{f.url_s}}" width=90% >
+</a>
 {% endfor %}
 </div>
 
