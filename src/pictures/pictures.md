@@ -3,7 +3,7 @@ layout: page.njk
 templateEngineOverride: njk
 pagination:
   data: flickr
-  size: 4
+  size: 6
   alias: ph
 ---
 {% from "macros.njk" import card  %}
@@ -13,7 +13,7 @@ pagination:
 
 <style>
 .card {
-  width: initial !important;
+  width: 47% !important;
 }
 </style>
 
@@ -29,8 +29,8 @@ pagination:
 <div class="articleList">
 {% for f in ph  %}
 {{card("https://www.flickr.com/photos/"+f.owner+"/"+f.id,
-       f.title,
-       "<img src='"+f.url_s+"' >",
+       f.title if f.title else "Photo",
+       "<img src='"+f.url_n+"' width=100% >",
        "Visual",
        [],
        f.datetaken)}}
