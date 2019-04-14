@@ -3,7 +3,7 @@ layout: page.njk
 templateEngineOverride: njk
 pagination:
   data: flickr
-  size: 6
+  size: 12
   alias: ph
 ---
 {% from "macros.njk" import card  %}
@@ -26,13 +26,14 @@ pagination:
 <span><a href="{{pagination.lastPageHref}}">last</a>
 </div>
 
-<div class="articleList">
-{% for f in ph  %}
-<a href="https://www.flickr.com/photos/{{ f.owner}}/{{f.id}}/">
-<img src="{{f.url_s}}" width=90% >
-</a>
-{% endfor %}
+<div class="flexbin">
+  {% for f in ph  %}
+  <a style="margin: 0" href="https://www.flickr.com/photos/{{ f.owner}}/{{f.id}}/">
+    <img src="{{f.url_z}}">
+  </a>
+  {% endfor %}
 </div>
+
 
 <div style="display: flex; justify-content: space-evenly">
 <span>
