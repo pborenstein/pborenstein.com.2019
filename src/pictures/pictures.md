@@ -10,14 +10,6 @@ pagination:
 {% from "macros.njk" import timeTag %}
 
 
-
-<style>
-.card {
-  width: 47% !important;
-}
-</style>
-
-
 <div style="display: flex; justify-content: space-evenly">
 <span>
 <a href="{{pagination.firstPageHref}}">first</a></span>
@@ -26,9 +18,9 @@ pagination:
 <span><a href="{{pagination.lastPageHref}}">last</a>
 </div>
 
-<div class="flexbin">
+<div class="flexbin flexbin-margin">
   {% for f in ph  %}
-  <a style="margin: 0" href="https://www.flickr.com/photos/{{ f.owner}}/{{f.id}}/">
+  <a href="https://www.flickr.com/photos/{{ f.owner}}/{{f.id}}/">
     <img src="{{f.url_z}}">
   </a>
   {% endfor %}
