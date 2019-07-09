@@ -65,60 +65,18 @@ body {
   }
 
 
+
 .wrapper {
   display: grid;
-  height: 100%;
-  grid-row-gap: 1rem;
-  grid-column-gap: 1em;
-  grid-template-columns: 25vw minmax(16rem, 30rem);
-  grid-template-rows: auto 1fr   6rem;
-  /* grid-auto-rows: minmax(100px, auto); */
+  grid-template-columns: 1fr minmax(16rem, 30rem) 1fr;
+  grid-template-rows: auto;
+  grid-row-gap: 0;
+  grid-column-gap: 0;
   grid-template-areas:
-    "....  head"
-    "nav   main"
-    "....  foot";
-}
-
-@media (max-width: 320px) {}
-@media (max-width: 375px) {}
-@media (max-width: 414px) {}
-
-@media (max-width: 600px) {
-  main {
-    padding-top: 0em !important;
-  }
-  .wrapper {
-    display: inherit;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-row-gap: 0;
-    grid-column-gap: 0;
-    grid-template-areas:
-      "head"
-      "nav"
-      "main"
-      "foot"
-  }
-  table {
-    table-layout: fixed;
-  }
-  nav {
-    margin: 0 0 1rem 0 !important;
-  }
-  nav ul {
-    flex-direction: row !important;
-    justify-content: space-between;
-    margin: 0 0 0 0rem !important;
-    padding: 0 0 0 .2em !important;
-    max-width: 4rem;
-    border: 0 !important;
-    box-shadow: 0px 0px 0px 0px transparent !important;
-  }
-  .nav-item {
-    display: inline;
-    margin-left: 0;
-    margin-right: 0;
-  }
+  "... head ..."
+  "... nav  ..."
+  "... main ..."
+  "... foot ..."
 }
 
 /*  page header */
@@ -163,9 +121,10 @@ span.slug {
 
 
 /*  Main content */
+
 main {
   grid-area: main;
-  padding-top: 1.5em;
+  padding-top: 0;
 }
 
 p,ul,ol,pre,table,blockquote,dd {
@@ -427,11 +386,6 @@ a[href].category:hover {
   font-style: italic;
 }
 
-.article-category {
-
-}
-
-
 .article-footer {
   margin: 1rem 0 0 0;
   font-family: var(--body-font);
@@ -468,22 +422,28 @@ h1 {
 
 /*  navigation */
 
+
+
 nav {
   grid-area: nav;
-  margin: 0 0 0 auto;
+  margin: 0 0 1rem 0;
 }
 
 nav ul {
-  list-style: none inside;
   display: flex;
-  flex-direction: column;
-  padding: 0 0.5em;
-  box-shadow: var(--shadow);
-  margin: 2em 2em 0 0;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none inside;
+  margin: 0 0 0 0rem;
+  padding: 0 0 0 .2em;
+  max-width: 4rem;
   width: 6em;
+  border: 0;
+  box-shadow: 0px 0px 0px 0px transparent;
 }
 
 .nav-item {
+  display: inline;
   margin-right: 1em;
   margin-left: 0;
   font-family: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
@@ -576,14 +536,6 @@ code:not([class]) {
 	font-family: var(--code-font);
   font-size: var(--code-font-size);
   color: var(--darkred);
-/*
-  padding:  0.125em 0.125em 0px 0.125em;
-  margin: 0px 0.125em 0px 0.125em;
-
-  border: 1px solid var(--fadedred);
-  border-radius: 3px;
- */
-  /* vertical-align: middle; /* [`code`] looks better this way */
 }
 
 a[href] > code {
@@ -662,8 +614,6 @@ caption {
 .table-caption {
   width: max-content;
   padding: 0;
-  /* border-bottom: var(--fadedred);
-  box-shadow: inset 0 -4px 0 var(--fadedred); from wired */
   float: right;
   background-image: linear-gradient(180deg,transparent 75%,var(--fadedred) 0) /* from https://www.ideo.com/ */
 }
@@ -691,9 +641,6 @@ tbody tr:nth-child(even) {
 
 th, td {
   vertical-align: text-top;
-}
-
-td, th {
   padding: 5px;
 }
 
@@ -757,29 +704,3 @@ div[class="mdhack"] + table tbody tr td:first-child {
   margin-top: 3rem;
 }
 
-/* rotating doesn't change the dimensions
-    so hack the size a little
-    so scream much stupid very hack */
-.rotate90 {
-  -webkit-transform:rotate(90deg) scale(.66);
-  -moz-transform: rotate(90deg) scale(.66);
-  -ms-transform: rotate(90deg) scale(.66);
-  -o-transform: rotate(90deg) scale(.66);
-  transform: rotate(90deg) scale(.66);
-}
-
-.rotate180 {
-  -webkit-transform:rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
-
-.rotate270 {
-  -webkit-transform:rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-  transform: rotate(270deg);
-}
