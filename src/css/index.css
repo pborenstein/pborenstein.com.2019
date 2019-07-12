@@ -68,7 +68,7 @@ body {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr minmax(16rem, 30rem) 1fr;
+  grid-template-columns: 1fr minmax(16rem, 34rem) 1fr;
   grid-template-rows: auto;
   grid-row-gap: 0;
   grid-column-gap: 0;
