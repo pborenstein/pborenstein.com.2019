@@ -50,8 +50,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; /* WTFF: https://stackoverflow.com/questions/26352852/fonts-are-displaying-different-in-chrome-firefox */
     font-family: var(--body-font);
-    font-size: 1rem;
-    line-height: 1.5rem;
     font-weight:  400;
     margin: 0 20px;
     padding: 0;
@@ -62,13 +60,27 @@ body {
     -moz-font-feature-settings: var(--font-features);
     -webkit-font-feature-settings: var(--font-features);
     font-feature-settings: var(--font-features);
-  }
+    --tt-key: body;
+    --tt-ease: linear;
+}
 
+
+
+@keyframes body {
+  0%, 16% {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  65%, 100% {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+}
 
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr minmax(16rem, 34rem) 1fr;
+  grid-template-columns: 1fr minmax(8rem, 35rem) 1fr;
   grid-template-rows: auto;
   grid-row-gap: 0;
   grid-column-gap: 0;
@@ -76,7 +88,7 @@ body {
   "... head ..."
   "... nav  ..."
   "... main ..."
-  "... foot ..."
+  "... foot ...";
 }
 
 /*  page header */
@@ -87,6 +99,7 @@ header {
 }
 
 #logo {
+  --tt-key: logo;
   clear: both;
   color: var(--heading);
   font-family: var(--heading-font);
@@ -96,6 +109,19 @@ header {
   margin-bottom: 0rem;
   font-weight: 700;
 }
+
+@keyframes logo {
+  0%, 16% {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  65%, 100% {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+}
+
+
 
 span.slug {
   color: var(--red);
@@ -128,7 +154,6 @@ main {
 }
 
 p,ul,ol,pre,table,blockquote,dd {
-  line-height: 1.4rem;
   margin-top: 0.8rem;
 }
 
