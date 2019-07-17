@@ -61,10 +61,12 @@ body {
     -webkit-font-feature-settings: var(--font-features);
     font-feature-settings: var(--font-features);
     --tt-key: body;
-    --tt-ease: linear;
 }
 
 
+/*
+ * https://github.com/typetura/typetura.js
+ */
 
 @keyframes body {
   0%, 16% {
@@ -80,7 +82,7 @@ body {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr minmax(8rem, 35rem) 1fr;
+  grid-template-columns: 1fr minmax(17rem, 35rem) 1fr;
   grid-template-rows: auto;
   grid-row-gap: 0;
   grid-column-gap: 0;

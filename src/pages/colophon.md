@@ -15,6 +15,7 @@ Made with:
 - [BBEdit][] & [VS Code]
 - [Neue Kabel][kabel] via [Typekit][]
 - [Lorem Picsum][]
+- [typetura][]
 
 I liked the red and black. It's been done,
 (_cough_ Mad Men),
@@ -31,3 +32,4 @@ but not by me.
 [Typekit]: https://typekit.com
 [kabel]: https://www.monotype.com/resources/font-stories/neue-kabel-reshaping-a-lost-classic/
 [Lorem Picsum]: https://picsum.photos/
+[typetura]: https://github.com/typetura/typetura.js
