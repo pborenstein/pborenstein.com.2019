@@ -2,33 +2,34 @@
 
 
 :root {
-	--red:          #c22323;
-  --fadedred:     #c223234d;
-  --fadedred2:    #dab3c3; /* faded red with 100 alpha */
-  --darkred:      #7F0036; /* 127, 0, 54 */
-  --fadeddarkred: #7F00364d;
-	--gray:         #C0C0C0;
-  --darkgray:     #666;
-  --lightgray:    #f2f2f2;
-  --white:        #fff;
-  --body:         #111;
-  --heading:      #333;
-  --list-font:    'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-  --footer-font:  'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-  --body-font:    'neue-kabel',  Georgia, serif;
-  --heading-font: 'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-  --code-font:    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-  --code-font-size: .875em;
-  --shadow:  3px 3px 4px 0px rgba(0, 0, 0, 0.19);
-            /* offset-x | offset-y | blur-radius | spread-radius | color */
-  --caption-font: 'Cochin', 'Times', serif;
-  --font-features:  "onum",   /*  onum:   Old style numbers */
-                    "ss04",   /*  ss04:   Overlapping W   */
-                    "ss06",   /*  ss06:   happy e */
-                    "ss08",   /*  ss08:   diamond I dots */
-                    "ss11",   /*  ss11:   round a */
-                    "ss14";   /*  ss14:   tail l */
-                  /* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
+  --color-body:         #111;
+  --color-darkgray:     #666;
+  --color-darkred:      #7F0036; /* 127, 0, 54 */
+  --color-fadeddarkred: #7F00364d;
+  --color-fadedred:     #c223234d;
+  --color-fadedred2:    #dab3c3; /* faded red with 100 alpha */
+  --color-gray:         #C0C0C0;
+  --color-heading:      #333;
+  --color-lightgray:    #f2f2f2;
+  --color-red:          #c22323;
+  --color-white:        #fff;
+  --color-shadow:       3px 3px 4px 0px rgba(0, 0, 0, 0.19);
+                        /* offset-x | offset-y | blur-radius | spread-radius | color */
+
+  --font-body:          'neue-kabel',  Georgia, serif;
+  --font-caption:       'Cochin', 'Times', serif;
+  --font-code-size:     .875em;
+  --font-code:          Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  --font-footer:        'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --font-heading:       'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --font-list:          'neue-kabel', 'Gill Sans', "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  --font-features:      "onum",   /*  onum:   Old style numbers */
+                        "ss04",   /*  ss04:   Overlapping W   */
+                        "ss06",   /*  ss06:   happy e */
+                        "ss08",   /*  ss08:   diamond I dots */
+                        "ss11",   /*  ss11:   round a */
+                        "ss14";   /*  ss14:   tail l */
+                                /* https://www.myfonts.com/fonts/linotype/neue-kabel/regular/glyphs.html */
 }
 
 html {
@@ -49,13 +50,13 @@ html {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; /* WTFF: https://stackoverflow.com/questions/26352852/fonts-are-displaying-different-in-chrome-firefox */
-    font-family: var(--body-font);
+    font-family: var(--font-body);
     font-weight:  400;
     margin: 0 20px;
     padding: 0;
     word-wrap: break-word;
-    color: var(--body);
-    background-color: var(--white);
+    color: var(--color-body);
+    background-color: var(--color-white);
     font-variant-numeric: oldstyle-nums;
     -moz-font-feature-settings: var(--font-features);
     -webkit-font-feature-settings: var(--font-features);
@@ -101,15 +102,15 @@ header {
 }
 
 #logo {
-  --tt-key: logo;
   clear: both;
-  color: var(--heading);
-  font-family: var(--heading-font);
+  color: var(--color-heading);
+  font-family: var(--font-heading);
   padding: 0 0em 0.1em 0em;
-  font-size: 2.5rem;
-  line-height: 3rem;
+  font-size: 4rem;
+  line-height: 5rem;
   margin-bottom: 0rem;
   font-weight: 700;
+  --tt-key: logo;
 }
 
 @keyframes logo {
@@ -118,15 +119,13 @@ header {
     line-height: 3rem;
   }
   65%, 100% {
-    font-size: 4rem;
-    line-height: 5rem;
   }
 }
 
 
 
 span.slug {
-  color: var(--red);
+  color: var(--color-red);
 }
 
 #logo a[href] {
@@ -136,15 +135,15 @@ span.slug {
 
 #logo a[href]:hover {
   text-decoration: none;
-  color: var(--red);
+  color: var(--color-red);
 }
 #logo a[href]:hover .slug{
   text-decoration: none;
-  color: var(--heading);
+  color: var(--color-heading);
 }
 
 .box-shadow {
-  box-shadow: var(--shadow);
+  box-shadow: var(--color-shadow);
 }
 
 
@@ -170,7 +169,7 @@ p img {
 blockquote {
   margin: 0.8rem 1em 0rem 1em;
   padding: 0 1em;
-  border-left: 4px solid var(--fadeddarkred);
+  border-left: 4px solid var(--color-fadeddarkred);
   font-style: initial;
 }
 
@@ -206,7 +205,7 @@ p :not(ul) {
 
 a[href] {
   text-decoration: none;
-  color: var(--red)
+  color: var(--color-red)
 }
 
 
@@ -217,10 +216,10 @@ a[href]:hover {
 /*  tags  */
 
 .atag {
-	font-family: var(--code-font);
+	font-family: var(--font-code);
   font-size: 62.5%; /* (10px if default is 16px) */
   padding:  2px 2px;
-  border: 1px solid var(--fadedred);
+  border: 1px solid var(--color-fadedred);
   border-radius: 3px;
 }
 
@@ -235,8 +234,8 @@ a[href].atag:visited {
 }
 
 summary {
-  color: var(--darkred);
-  outline-color: var(--white);
+  color: var(--color-darkred);
+  outline-color: var(--color-white);
   cursor: pointer;
 }
 
@@ -270,13 +269,13 @@ summary {
   width: 100%;
   height: 100%;
   overflow: scroll;
-  font-family: var(--list-font);
-  color: var(--body);
+  font-family: var(--font-list);
+  color: var(--color-body);
   margin: 0 0 1em 0;
   padding-left: 1em;
   padding-right: 1em;
   padding-top: .5em;
-  box-shadow: var(--shadow)
+  box-shadow: var(--color-shadow)
 }
 
 
@@ -289,20 +288,20 @@ summary {
 
 
 .card-title::first-letter {
-  color: var(--darkred);
+  color: var(--color-darkred);
   font-weight: 700;
   font-size: 125%;
 }
 
 .card-title a[href] {
   text-decoration: none;
-  color: var(--body);
+  color: var(--color-body);
   line-height: 1em;
 }
 
 .card-subhead a[href]:hover,
 .card-title a[href]:hover {
-  background: var(--lightgray);
+  background: var(--color-lightgray);
 }
 
 .card-subhead {
@@ -311,7 +310,7 @@ summary {
   line-height: 1.25em;
   margin: 0 0 1em 0;
   font-style: italic;
-  color: var(--darkgray);
+  color: var(--color-darkgray);
 }
 
 .card-line,
@@ -331,12 +330,12 @@ summary {
 .card-date {
   line-height: 1em;
   font-size: .6rem;
-  color: var(--gray);
-	font-family: var(--body-font);
+  color: var(--color-gray);
+	font-family: var(--font-body);
   margin-left: 0;
   margin-bottom: 1em;
   align-self: end;
-  border-top: 1px solid var(--gray);
+  border-top: 1px solid var(--color-gray);
   padding-top: 2px;
   grid-area: date;
 }
@@ -345,7 +344,7 @@ summary {
   grid-area: category;
   height: 32px;
   width: 32px;
-  border: 1px solid var(--lightgray);
+  border: 1px solid var(--color-lightgray);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -356,7 +355,7 @@ summary {
 }
 
 .graybox {
-  background-color: var(--lightgray);
+  background-color: var(--color-lightgray);
   border-radius: 3px;
 }
 
@@ -367,18 +366,18 @@ summary {
   font-size: 1em;
   font-weight: 800;
   margin-left: 0;
-	font-family: var(--body-font);
+	font-family: var(--font-body);
   float: right;
 }
 
 a[href].category,
 a[href].category:visited {
-  color: var(--gray);
+  color: var(--color-gray);
   text-decoration: transparent;
 }
 
 a[href].category:hover {
-  color: var(--darkgray);
+  color: var(--color-darkgray);
 }
 
 
@@ -398,12 +397,12 @@ a[href].category:hover {
 .article-slug {
   font-size: 62.5%;
   line-height: 1.3em;
-  color: var(--darkgray);
+  color: var(--color-darkgray);
   margin: 0;
   margin-top: 1em;
   margin-bottom: 2em;
-  border-top: 1px solid var(--fadeddarkred);
-  border-bottom: 1px solid var(--fadeddarkred);
+  border-top: 1px solid var(--color-fadeddarkred);
+  border-bottom: 1px solid var(--color-fadeddarkred);
   padding-top: .5em;
   padding-bottom: .5em;
 }
@@ -415,7 +414,7 @@ a[href].category:hover {
 
 .article-footer {
   margin: 1rem 0 0 0;
-  font-family: var(--body-font);
+  font-family: var(--font-body);
   font-size: 0.875rem;
 }
 
@@ -429,8 +428,8 @@ a[href].category:hover {
 */
 
 h1, h2, h3, h4, h5, h6, dt {
-  color: var(--heading);
-  font-family: var(--heading-font);
+  color: var(--color-heading);
+  font-family: var(--font-heading);
   font-weight: 600;
   margin-bottom: 0.33rem;
   margin-top: 2rem;
@@ -486,7 +485,7 @@ nav ul {
 
 .nav-item a[href] {
   text-decoration: none;
-  color: var(--darkgray)
+  color: var(--color-darkgray)
 }
 
 .nav-item a[href]:hover {
@@ -500,11 +499,11 @@ nav ul {
 footer {
   grid-area: foot;
   font-size: 1rem;
-  color: var(--gray);
-  font-family: var(--footer-font);
+  color: var(--color-gray);
+  font-family: var(--font-footer);
   font-size: 0.6rem;
   margin: 0 0 1rem 0;
-  border-top: 1px solid var(--darkred);
+  border-top: 1px solid var(--color-darkred);
   padding-top: 0.5em;
 }
 
@@ -530,7 +529,7 @@ footer ul {
 #sha a:hover
 {
   text-decoration: none;
-  color: var(--gray);
+  color: var(--color-gray);
 }
 
 
@@ -539,7 +538,7 @@ footer ul {
 
 /* links to markdown header with disappearing # */
 .direct-link {
-	font-family: var(--heading-font);
+	font-family: var(--font-heading);
 	text-decoration: none;
 	font-style: normal;
 	margin-left: .1em;
@@ -562,9 +561,9 @@ a[href].direct-link:focus:visited,
       apply only to naked <code> blocks
 */
 code:not([class]) {
-	font-family: var(--code-font);
-  font-size: var(--code-font-size);
-  color: var(--darkred);
+	font-family: var(--font-code);
+  font-size: var(--font-code-size);
+  color: var(--color-darkred);
 }
 
 a[href] > code {
@@ -576,8 +575,8 @@ a[href] > code {
 /*  Code Highlighting */
 
 pre {
-	font-family: var(--code-font);
-	font-size: var(--code-font-size);
+	font-family: var(--font-code);
+	font-size: var(--font-code-size);
 	line-height: 1.375;
 	direction: ltr;
 	text-align: left;
@@ -598,7 +597,7 @@ pre {
 }
 
 pre[class*="language-"] {
-  box-shadow: var(--shadow);
+  box-shadow: var(--color-shadow);
 }
 
 .highlight-line {
@@ -624,17 +623,17 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  box-shadow: var(--shadow);
+  box-shadow: var(--color-shadow);
 }
 
 caption {
   caption-side: top;
   text-align: right;
   text-transform: lowercase;
-  font-family: var(--caption-font);
+  font-family: var(--font-caption);
   font-style: italic;
   font-weight: 450;
-  color: var(--darkred);
+  color: var(--color-darkred);
   margin-top: 1em;
   padding: 0;
   border-radius: 3px;
@@ -644,7 +643,7 @@ caption {
   width: max-content;
   padding: 0;
   float: right;
-  background-image: linear-gradient(180deg,transparent 75%,var(--fadedred) 0) /* from https://www.ideo.com/ */
+  background-image: linear-gradient(180deg,transparent 75%,var(--color-fadedred) 0) /* from https://www.ideo.com/ */
 }
 
 thead th:nth-child(1) {
@@ -660,11 +659,11 @@ thead th:nth-child(3) {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: var(--lightgray);
+  background-color: var(--color-lightgray);
 }
 
 tbody tr:nth-child(even) {
-  background-color: var(--white);
+  background-color: var(--color-white);
 }
 
 
@@ -675,7 +674,7 @@ th, td {
 
 th {
   padding-bottom: 0;
-  color: var(--body);
+  color: var(--color-body);
 }
 
 td:last-of-type,
@@ -688,10 +687,10 @@ td hr::after {
    font-size: 60%;
    position: relative;
    top: -1.7em;
-   background: var(--fadedred2);
+   background: var(--color-fadedred2);
    padding: 0 .5em .25em .5em;
    margin-right: .5em;
-   color: var(--darkred);
+   color: var(--color-darkred);
    border-radius: 4px;;
 }
 td hr {
@@ -703,7 +702,7 @@ td hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
  */
-    border-top: 1px solid var(--fadeddarkred);
+    border-top: 1px solid var(--color-fadeddarkred);
     margin: .5em 0 0 0;
     text-align: right;
 }
@@ -717,8 +716,8 @@ div[class="mdhack"] + table thead {
 }
 
 div[class="mdhack"] + table tbody tr td:first-child {
-  font-family: var(--code-font);
-  font-size: var(--code-font-size);
+  font-family: var(--font-code);
+  font-size: var(--font-code-size);
 }
 
 .footnotes {
@@ -726,7 +725,7 @@ div[class="mdhack"] + table tbody tr td:first-child {
 }
 
 .footnote-ref {
-  font-family: var(--code-font);
+  font-family: var(--font-code);
 }
 
 .footnotes-sep {
