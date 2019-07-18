@@ -62,6 +62,8 @@ body {
     -webkit-font-feature-settings: var(--font-features);
     font-feature-settings: var(--font-features);
     --tt-key: body;
+    font-size: 1.5rem;
+    line-height: 1.4;
 }
 
 
@@ -70,13 +72,13 @@ body {
  */
 
 @keyframes body {
-  0%, 16% {
-    font-size: 1rem;
+  0% {
+    font-size: .5rem;
     line-height: 1.5;
   }
-  65%, 100% {
-    font-size: 1.25rem;
-    line-height: 1.4;
+  25% {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 }
 
@@ -430,9 +432,15 @@ a[href].category:hover {
 h1, h2, h3, h4, h5, h6, dt {
   color: var(--color-heading);
   font-family: var(--font-heading);
-  font-weight: 600;
-  margin-bottom: 0.33rem;
+  font-weight: 700;
+  margin-bottom: 0rem;
   margin-top: 2rem;
+  --tt-key: heads;
+}
+
+@keyframes heads {
+   0% { font-weight: 300; }
+  50% { font-weight: 700; }
 }
 
 h1:first-child,
@@ -441,12 +449,6 @@ h3:first-child {
   margin-top: 0px;
 }
 
-/*
-h1 {
-  font-size: 2rem;
-  line-height: 2rem;
-}
- */
 
 /*  navigation */
 
@@ -675,7 +677,19 @@ th, td {
 th {
   padding-bottom: 0;
   color: var(--color-body);
+  --tt-key: th;
 }
+
+@keyframes th {
+  0% {
+    font-weight: 400;
+  } 50% {
+    font-weight: 700;
+  }
+
+
+}
+
 
 td:last-of-type,
 th:last-of-type {
