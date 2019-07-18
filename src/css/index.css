@@ -116,11 +116,9 @@ header {
 }
 
 @keyframes logo {
-  0%, 16% {
+  0%, 25% {
     font-size: 2.5rem;
     line-height: 3rem;
-  }
-  65%, 100% {
   }
 }
 
