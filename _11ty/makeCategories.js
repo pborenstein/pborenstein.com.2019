@@ -1,6 +1,3 @@
-const decycle = require('json-cycle').decycle
-const debug = require("debug")("makeCategories");
-
 //  We want to create an object
 //  that has a property for each category.
 //  The value of each property is a list
@@ -14,12 +11,15 @@ module.exports = function(collection) {
     if (typeof category !== "string")
       return
 
-    if (Array.isArray(categories[category]))
-      categories[category].push(item)
-    else
-      categories[category] = [item]
+    categories[category] = categories[category] || []
+    categories[category] = [...categories[category], item]
+
+    // above is cleverer but below is readabler
+    // if (Array.isArray(categories[category]))
+    //   categories[category].push(item)
+    // else
+    //   categories[category] = [item]
   })
 
-  debug(categories)
   return categories
 }
