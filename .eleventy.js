@@ -111,14 +111,13 @@ module.exports = function(eleventyConfig) {
       "md",
       "njk",
       "html",
-      'liquid',
       "ejs"
     ],
 
     // If your site lives in a different subdirectory, change this.
     pathPrefix: "/",
 
-    markdownTemplateEngine: "liquid",
+    markdownTemplateEngine: "njk",
     htmlTemplateEngine:     "njk",
     dataTemplateEngine:     "njk",
     passthroughFileCopy:    true,
