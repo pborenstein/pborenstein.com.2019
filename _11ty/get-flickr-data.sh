@@ -10,5 +10,5 @@ extras=date_taken,owner_name,\
 url_n,\
 url_s,\
 url_t,\
-url_z, \
+url_z,\
 url_o" | jq  .photos.photo
